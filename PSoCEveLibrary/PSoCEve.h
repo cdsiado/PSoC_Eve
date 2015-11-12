@@ -322,7 +322,7 @@
 #define DL_LINE_WIDTH       	0x0E000000
 #define DLLineWidth(width) (DL_LINE_WIDTH | (width << 4))
 // -------¡-------------------------------    
-#define DL_COLOR_A          	0x0F000000 
+#define DL_COLOR_A          	0x10000000 
 #define DLColorA(alpha) (DL_COLOR_A | alpha)
 // ---------------------------------------    
 #define DL_CLEAR_STENCIL    	0x11000000
@@ -359,7 +359,7 @@
 #define DLScissorXY(x, y) (DL_SCISSOR_XY | (x << 9) | y)    
 // ---------------------------------------    
 #define DL_SCISSOR_SIZE     	0x1C000000
-#define DLScissorSize(x, y) (DL_SCISSOR_SIZE | (width << 10) | height)    
+#define DLScissorSize(width, height) (DL_SCISSOR_SIZE | (width << 10) | height)    
 // ---------------------------------------    
 #define DL_JUMP             	0x1E000000
 #define DLJump(address) (DL_JUMP | address)    

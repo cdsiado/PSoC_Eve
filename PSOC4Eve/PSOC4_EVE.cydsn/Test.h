@@ -30,6 +30,8 @@ void T_DL_PRIMITIVE_LINE();
 void T_PRIMITIVE_EDGESTRIP();
 void T_PRIMITIVE_RECTANGLE();
 void T_PRIMITIVE_BITMAP();
+void T_DL_B();
+void T_DL_SCISSOR();
 
 /* *** COPROCESSOR *** */
 
@@ -48,6 +50,9 @@ void T_CMD_SPINNER();
 void T_CMD_DIAL();
 void T_CMD_NUMBER();
 void T_CMD_SKETCH();
+void T_CMD_LOGO();
+void T_CMD_SCREENSAVER();
+void T_CMD_COLDSTART();
     
 #endif /* End TEST_H */    
 

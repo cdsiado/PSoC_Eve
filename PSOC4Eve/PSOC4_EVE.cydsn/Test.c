@@ -17,6 +17,7 @@
 #include <project.h>
 #include "..\..\PSocEveLibrary\PSoCEve.h"    
 #include "Demos_Resources.h"
+#include "Test.h"
 
 /*******************************************************************************
 ********************************************************************************
@@ -42,6 +43,7 @@ void T_Init()
 
 void T_DL_A()
 {
+    T_CMD_COLDSTART();
     // Test: CLEAR_COLOR_RGB, CLEAR
     
     DLStartList();                                      // Start the display list.
@@ -70,6 +72,7 @@ void T_DL_A()
 
 void T_DL_PRIMITIVE_POINT()
 {
+    T_CMD_COLDSTART();
     // Test also: DL_COLOR_RGB, DL_VERTEXII, DL_POINT_SIZE, DL_END,
     //     DL_LINE_WIDTH
     
@@ -86,6 +89,8 @@ void T_DL_PRIMITIVE_POINT()
 
 void T_DL_PRIMITIVE_LINE()
 {
+    T_CMD_COLDSTART();
+    
     DLStartList();                                      // Start the display list.
     DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
     DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
@@ -114,6 +119,8 @@ void T_DL_PRIMITIVE_LINE()
 
 void T_PRIMITIVE_EDGESTRIP()
 {
+    T_CMD_COLDSTART();
+    
     DLStartList();                                      // Start the display list.
     DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
     DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
@@ -145,6 +152,8 @@ void T_PRIMITIVE_EDGESTRIP()
 
 void T_PRIMITIVE_RECTANGLE()
 {
+    T_CMD_COLDSTART();
+    
     DLStartList();                                      // Start the display list.
     DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
     DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
@@ -164,6 +173,8 @@ void T_PRIMITIVE_RECTANGLE()
 void T_PRIMITIVE_BITMAP()
 {
     unsigned int loop, bitmaplength;
+    
+    T_CMD_COLDSTART();
     
     // Firt, copy the bitmap data from program memory to RAM_G (graphics RAM) of the 
     // EVE chip. Starting at address 0.
@@ -239,6 +250,70 @@ void T_PRIMITIVE_BITMAP()
     DLEndList();
 }
 
+void T_DL_B() // Test DL_COLOR_A, DL_BLEND_FUNC
+{
+    T_CMD_COLDSTART();
+    
+    DLStartList();                                      // Start the display list.
+    DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
+    DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
+        DLListNewItem(DLColorRGB(0xFF, 0x00, 0x00));         
+        DLListNewItem(DLLineWidth(1));
+    DLListNewItem(DLBegin(PRIMITIVE_RECTANGLE));         
+        DLListNewItem(DLVertex2II(20, 100, 0, 0));            
+        DLListNewItem(DLVertex2II(470, 150, 0, 0));   
+        DLListNewItem(DLColorRGB(0xFF, 0xFF, 0xFF));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(40, 100, 31, 0x47)); 
+        DLListNewItem(DLColorA(128));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(80, 100, 31, 0x47)); 
+        DLListNewItem(DLColorA(64));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(120, 100, 31, 0x47));    
+        DLListNewItem(DLColorA(255));
+    DLEndList();    
+    
+    CyDelay(3000);
+    
+    DLStartList();                                      // Start the display list.
+    DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
+    DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
+        DLListNewItem(DLColorRGB(0xFF, 0x00, 0x00));         
+        DLListNewItem(DLLineWidth(1));
+    DLListNewItem(DLBegin(PRIMITIVE_RECTANGLE));         
+        DLListNewItem(DLVertex2II(20, 100, 0, 0));            
+        DLListNewItem(DLVertex2II(470, 150, 0, 0));   
+        DLListNewItem(DLColorRGB(0xFF, 0xFF, 0xFF));
+        DLListNewItem(DLColorA(128));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(40, 100, 31, 0x47)); 
+        DLListNewItem(DLBlendFunc(BLEND_FUNC_SRC_ALPHA, BLEND_FUNC_ZERO));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(80, 100, 31, 0x47));
+        DLListNewItem(DLBlendFunc(BLEND_FUNC_ZERO, BLEND_FUNC_SRC_ALPHA));
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+        DLListNewItem(DLVertex2II(120, 100, 31, 0x47));    
+        DLListNewItem(DLColorA(255));
+    DLEndList();
+}
+
+void T_DL_SCISSOR()
+{
+    T_CMD_COLDSTART();
+    
+    DLStartList();                                      // Start the display list.
+    DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   
+    DLListNewItem(DLClear(1, 1, 1));                    // Clear all (color, stencil and tag buffer).
+    DLListNewItem(DLScissorXY(40, 30));         
+    DLListNewItem(DLScissorSize(80, 60));
+    DLListNewItem(DLClearColorRGB(0x00, 0x00, 0xFF));   
+    DLListNewItem(DLClear(1, 1, 1));      
+    DLListNewItem(DLBegin(PRIMITIVE_BITMAP));         
+    DLListNewItem(DLVertex2II(35, 20, 31, 0x47));
+    DLEndList();    
+}
+
 
 /*******************************************************************************
 ********************************************************************************
@@ -250,6 +325,8 @@ void T_PRIMITIVE_BITMAP()
 
 void T_CMD_GRADIENT()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));    
@@ -259,6 +336,8 @@ void T_CMD_GRADIENT()
 
 void T_CMD_TEXT()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList();
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -271,6 +350,8 @@ void T_CMD_TEXT()
 
 void T_CMD_BUTTON()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -283,6 +364,8 @@ void T_CMD_BUTTON()
 
 void T_CMD_KEYS()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));    
@@ -294,6 +377,8 @@ void T_CMD_KEYS()
 
 void T_CMD_PROGRESS()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList();
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -304,6 +389,8 @@ void T_CMD_PROGRESS()
 
 void T_CMD_SLIDER()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -318,6 +405,8 @@ void T_CMD_SLIDER()
 
 void T_CMD_SCROLLBAR()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -332,6 +421,8 @@ void T_CMD_SCROLLBAR()
 
 void T_CMD_TOGGLE()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));    
@@ -344,6 +435,8 @@ void T_CMD_TOGGLE()
 
 void T_CMD_GAUGE()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -360,6 +453,8 @@ void T_CMD_GAUGE()
 
 void T_CMD_CLOCK()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -371,6 +466,8 @@ void T_CMD_CLOCK()
 
 void T_CMD_CALIBRATE()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -382,6 +479,8 @@ void T_CMD_CALIBRATE()
 
 void T_CMD_SPINNER()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -398,6 +497,8 @@ void T_CMD_SPINNER()
 
 void T_CMD_DIAL()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList(); 
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -409,6 +510,8 @@ void T_CMD_DIAL()
 
 void T_CMD_NUMBER()
 {
+    T_CMD_COLDSTART();
+    
     CMDStartList();
     CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDInsertDLItem(DLClear(1, 1, 1));
@@ -423,6 +526,8 @@ void T_CMD_NUMBER()
 
 void T_CMD_SKETCH()
 {
+    T_CMD_COLDSTART();
+    
     // Draw rectangle.
 //    DLStartList();                                      // Start the display list.
 //    DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
@@ -467,5 +572,57 @@ void T_CMD_SKETCH()
     CMDListNewItem(CMDStop());
     CMDEndList(END_DL_SWAP);
 }
+
+void T_CMD_LOGO()
+{
+    T_CMD_COLDSTART();
+    
+    CMDStartList(); 
+    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDInsertDLItem(DLClear(1, 1, 1));
+    CMDListNewItem(CMDLogo());
+    CMDEndList(END_DL_SWAP);  
+    
+    while (!FTIsCoproccesorReady()) {}
+}
+
+void T_CMD_SCREENSAVER()
+{
+    unsigned int bitmaplength;
+    
+    T_CMD_COLDSTART();
+    
+    // Firt, copy the bitmap data from program memory to RAM_G (graphics RAM) of the 
+    // EVE chip. Starting at address 0.
+    bitmaplength = sizeof(testbitmap);
+    SPI_Transfer_Start(RAM_G | MEMORY_WRITE);
+    SPI_TransferL_Write_ByteArray(testbitmap, bitmaplength);
+    SPI_Transfer_End();
+        
+    CMDStartList(); 
+    CMDListNewItem(CMDScreenSaver());
+    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDInsertDLItem(DLClear(1, 1, 1));
+    CMDInsertDLItem(DLBegin(PRIMITIVE_BITMAP));        // Start new primitive (BITMAP.
+    CMDInsertDLItem(DLBitmapSource(0x00));             // Source address 0 in RAM_G.
+    CMDInsertDLItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
+    CMDInsertDLItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 40, 40)); 
+    CMDInsertDLItem(DLMacro(0));
+    CMDEndList(END_DL_SWAP);    
+    
+    CyDelay(10000); // Wait 10 seconds, then stop screensaver.
+    
+    CMDStartList();
+    CMDListNewItem(CMDStop());
+    CMDEndList(END_DL_SWAP);    
+}
+
+void T_CMD_COLDSTART()
+{
+    CMDStartList();
+    CMDListNewItem(CMDColdstart());
+    CMDEndList(END_DL_SWAP);    
+}
+
 
 /* [] END OF FILE */

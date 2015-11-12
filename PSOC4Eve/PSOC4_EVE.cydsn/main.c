@@ -79,11 +79,6 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 
   //  while (1);
     EVE_Touch_Enable();
-    //CurrentScreenTask = Screen_0_Create(Screen_0_TouchCallback);
-    //CyDelay(5000);
-    //CurrentScreenTask = Screen_1_Create(Screen_1_TouchCallback);
-    //CyDelay(5000);
-    //CurrentScreenTask = Screen_2_Create(Screen_2_TouchCallback);
     
     T_Init();
     
@@ -100,8 +95,10 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_PRIMITIVE_BITMAP();
 //    CyDelay(delayTime);
-//    
-//    while(1);
+    T_DL_B();
+    CyDelay(delayTime);
+    T_DL_SCISSOR();
+    while(1);
 //    /* *** COPROCESSOR *** */
 //    T_CMD_GRADIENT();
 //    CyDelay(delayTime);
@@ -123,52 +120,26 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_CMD_CLOCK();
 //    CyDelay(delayTime);
-    T_CMD_CALIBRATE();
-    CyDelay(delayTime);
+//    T_CMD_CALIBRATE();
+//    CyDelay(delayTime);
 //    T_CMD_SPINNER();
 //    CyDelay(delayTime);
 //    T_CMD_DIAL();
 //    CyDelay(delayTime);
 //    T_CMD_NUMBER();
 //    CyDelay(delayTime);
-    T_CMD_SKETCH();
-    
+//    T_CMD_SKETCH();
+//    CyDelay(delayTime);
+//    T_CMD_LOGO();
+//    CyDelay(delayTime);
+//    T_CMD_SCREENSAVER();
     
     while(1);
-    
-    
-    
-    
-    
-    
 
-    TestDL_ClearScreen();
-    
-    //CyDelay(delayTime);
-/*    
-    TestDL_Primitives_1();
-    
-    CyDelay(delayTime);
-    TestDL_Primitives_2();
-*/
-    TestCP_Widgets();
-    CyDelay(delayTime);
-    TestCP_Spinner_Logo();
-    CyDelay(delayTime);
- 
-    TestCP_Text_Number();
-    CyDelay(delayTime);
-    TestCP_Button_Keys();
-    CyDelay(delayTime);
-    TestCP_Gradient(); // *** revisar
-    CyDelay(delayTime);
-    TestCP_Toggle();
     
     while(1);
     // ************************************************************************
 
-    
-    while(1) ;
     
 
     /* CyGlobalIntEnable; */
