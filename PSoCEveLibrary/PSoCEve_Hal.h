@@ -27,7 +27,7 @@
 void SPI_Transfer_Start(unsigned long address);
 void SPI_Transfer_Write_Long(unsigned long data);
 void SPI_Transfer_End();    
-
+void EVE_Memory_Write_Byte(unsigned long address, uint8 data);
 
 void SPI_TransferL_Write_Byte(unsigned char data);
 void SPI_TransferL_Write_ByteArray(const unsigned char *data, unsigned long size);   

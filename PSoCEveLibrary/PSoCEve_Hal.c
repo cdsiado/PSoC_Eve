@@ -104,14 +104,14 @@ unsigned long SPI_TransferS_Read_Long(unsigned long address)
 {
     unsigned char tranferprogressflag = 0;
     uint32 data = 0x00000000;
-    unsigned char tobesent[7] = 
+    unsigned char tobesent[4] = 
          { (address >> 16), (address >> 8), address,  0x00 };;
         
     SPI_EVE_SS_Write(0);
     CyDelay(5);
 
     SPI_EVE_SpiUartClearTxBuffer();
-    SPI_EVE_SpiUartPutArray(tobesent, 7);
+    SPI_EVE_SpiUartPutArray(tobesent, 4);
     mSPI_EVE_WAIT_TXDONE();  
     
     SPI_EVE_SpiUartClearRxBuffer();
@@ -142,6 +142,23 @@ void FTCommandWrite(unsigned char command)
     SPI_EVE_SpiUartPutArray(tobesent, 3);
     
     mSPI_EVE_WAIT_TXDONE();
+    CyDelay(5);
+    SPI_EVE_SS_Write(1);
+}
+
+void EVE_Memory_Write_Byte(unsigned long address, uint8 data)
+{
+    unsigned char tranferprogressflag = 0;
+    unsigned char tobesent[4] = { (address >> 16) | MEMORY_WRITE, (address >> 8), address, data };
+    
+    SPI_EVE_SS_Write(0);
+    CyDelay(5);
+
+    SPI_EVE_SpiUartClearTxBuffer();
+    SPI_EVE_SpiUartPutArray(tobesent, 4);
+    
+    mSPI_EVE_WAIT_TXDONE();    
+
     CyDelay(5);
     SPI_EVE_SS_Write(1);
 }

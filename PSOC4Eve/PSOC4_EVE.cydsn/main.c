@@ -15,35 +15,15 @@
 *******************************************************************************/
 
 #include <project.h>
-//#include "..\..\EVE_Library.cylib\PSOC_EVE.h"
 
 #include "..\..\PSoCEveLibrary\PsoCEve.h"
 #include "Test.h"
-
-// AN_312 Colors - fully saturated colors defined here
-#define RED					0xFF0000UL													// Red
-#define GREEN				0x00FF00UL													// Green
-#define BLUE				0x0000FFUL													// Blue
-#define WHITE				0xFFFFFFUL													// White
-#define BLACK				0x000000UL
 
 #define delayTime 3000
 
 int main()
 {
-    unsigned int cmdBufferRd = 0x0000;
-    unsigned int cmdBufferWr = 0x0000;          // Used to navigate command ring buffer
-unsigned int cmdOffset = 0x0000;
-    unsigned long color;
-    unsigned int point_size = 0x0100;           // Define a default dot size
-unsigned long point_x = (96 * 16);              // Define a default point x-location (1/16 anti-aliased)
-unsigned long point_y = (136 * 16);             // Define a default point y-location (1/16 anti-aliased)
-	unsigned long ramDisplayList = RAM_DL;      // Set beginning of display list memory.
-    unsigned char gpio;
 
-
-    
-    int duty;
     /* Start SPI bus. */
     SPI_EVE_SS_Write(1);
     SPI_EVE_Start();
@@ -55,40 +35,44 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 	UART_UartPutString("*** EVE TEST ***\n\r");
 	UART_UartPutString("----------------\n\r");
 	UART_UartPutString("\n\r");
-    
-
-    
-    /* Initialize LCD Display. */
-    if (!EVE_Init_Display())
+        
+    /* Initialize LCD Display. If initialization fails, program gets locked. */
+    if (!FT_Init())
     {
-        // error.
+        while(1);
     }
+   
+    /* Initialize test. This enables display. */
+    T_Init();
     
-    //***************************************
-    // Configure Touch and Audio - not used in this example, so disable both
     
-    mEVE_Register_Write(REG_TOUCH_MODE, ZERO);        // Disable touch
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, ZERO);    // Eliminate any false touches
-
-    mEVE_Register_Write(REG_VOL_PB, ZERO);            // turn recorded audio volume down
-    mEVE_Register_Write(REG_VOL_SOUND, ZERO);         // turn synthesizer volume down
-    mEVE_Register_Write(REG_SOUND, 0x6000);           // set synthesizer to mute
-
-    // End of Configure Touch and Audio
-    //***************************************    
-
-  //  while (1);
-    //EVE_Touch_Enable();
+    /* About calibration and calibration values.
+       Every time the FT chip is powered on, default calibration values are not proper values so
+       it needs to be calibrated. And then, calibration values are lost when the FT chip is powered off.
+        
+       This is a test program during the library development, so, actually there is not a function that
+       store calibration values to flash rom.
+       First time i run the program, i commented line "FT_Touch_WriteCalibrationValues" and 
+       uncommented lines "FT_Touch_Calibrate" and "FT_Touch_ReadCalibrationValues".
+       Then, placed a breakpoint in line "while(1)"; and debbuged the program. After calibration, and
+       after line "FT_Touch_ReadCalibrationValues" i took calibration values by hand.
+       Those are the values i am using actually for "calibrationvalues" initialization.
     
-        T_Init();
+       Storing calibration values in flash rom is planned.
+    */
     
+    
+    
+    /* Initialize touch calibration values. */
     TouchCalibrationValues calibrationvalues = { .TouchTransform_Bytes = {0x2E, 0x83, 0x00, 0x00, 0x0D, 0x02, 0x00, 0x00, 0xF0, 0xDF, 0xE3, 0xFF,
                                                                           0x6E, 0x00, 0x00, 0x00, 0x66, 0xB3, 0xFF, 0xFF, 0x47, 0xE9, 0x1D, 0x01} };
-    
-    FT_Touch_Enable();
-    //FT_Touch_Calibrate();
-    //FT_Touch_ReadCalibrationValues(&calibrationvalues);
-    FT_Touch_WriteCalibrationValues(&calibrationvalues);
+
+    FT_Touch_Enable();                                      // Enable touch panel.
+    FT_Touch_WriteCalibrationValues(&calibrationvalues);    // Write calibration values to FT chip.   
+    //FT_Touch_Calibrate();                                   // Touch calibration procedure.                 
+    //FT_Touch_ReadCalibrationValues(&calibrationvalues);     // Read calibration values.
+    //while(1);
+
 
     
     /* *** DISPLAY LIST *** */
@@ -110,8 +94,9 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_CMD_CALIBRATE();
 //    CyDelay(delayTime);
-    T_DL_TAG_AND_MASK();
-    while(1);
+//    T_DL_TAG_AND_MASK();
+//    while(1);
+    
 //    /* *** COPROCESSOR *** */
 //    T_CMD_GRADIENT();
 //    CyDelay(delayTime);
@@ -145,9 +130,11 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_CMD_LOGO();
 //    CyDelay(delayTime);
-    T_CMD_SCREENSAVER();
-    CyDelay(delayTime);
+//    T_CMD_SCREENSAVER();
+//    CyDelay(delayTime);
     T_CMD_INFLATE();
+    CyDelay(delayTime);
+    T_SOUND();
     
     while(1);
 

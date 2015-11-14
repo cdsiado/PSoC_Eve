@@ -56,6 +56,11 @@
     #define LCDSWIZZLE  0					// Define RGB output pins
     #define LCDPCLKPOL  1					// Define active edge of PCLK    
 #endif
+
+/* Development modules from FTDI use GPIO1 as output to control the audio 
+   amplifier chip. If your design doesn´t use this, comment next line. 
+*/
+#define USE_GPIO1_AUDIO
     
 #endif /* End PSOC_EVE_CONFIG_H */ 
 

@@ -33,6 +33,333 @@ unsigned char EVE_CoPro_IsReady(unsigned int *newoffset);
 
 
 
+
+/*******************************************************************************
+*   General Functions.
+*******************************************************************************/
+
+/*******************************************************************************
+* Function Name: FT_Init
+********************************************************************************
+*
+* Summary:
+*  Initializes the FT chip with values from PSoCEve_Config.h file.
+*  After initialization, display is off, touch panel is disabled and audio
+*  is disabled.
+*  To enable display, touch panel and audio call proper functions.
+*  As stated in FT datasheet, until the FT chip is initializad, maximun SPI bus
+*  speed is 12Mhz. After initializacion, SPI bus speed can be incremented up to
+*  30Mhz. This functions doesn´t change the SPI bus communication speed. 
+*
+* Parameters:
+*  None
+*
+* Return:
+*  0 if initialization fails. 1 if initialization is OK.
+*
+*******************************************************************************/
+
+uint8 FT_Init()
+{
+    uint8 t = 0;
+    
+    // Force a hardware reset of EVE chip using PD_N pin.
+    PD_N_Write(0); CyDelay(10); PD_N_Write(1); CyDelay(20);
+    
+    // Initialize EVE chip. Max SPI speed before the chip is initialized is 11Mhz.
+    FTCommandWrite(FT800_ACTIVE);            // Start FT800
+    CyDelay(5);	
+    FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
+    CyDelay(5);	
+    FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
+    CyDelay(5);	
+    FTCommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
+    CyDelay(5);
+    
+    // Read ID register. If we don¨t get 0x7C something is bad.
+    //if (EVE_Memory_Read_Byte(REG_ID) != 0x7C) return 0;
+    if (FT_Register_Read(REG_ID) != 0x7C) return 0;
+    
+    // At startup, PCLK (pixel clock) and PWM_DUTY (used for backlight) are programmed to 0.
+    //      Display is off until user turns it on.
+    FT_Register_Write(REG_PCLK, 0);
+    FT_Register_Write(REG_PWM_DUTY, 0);	
+    
+    // Continue initializing registers with values from configuration header file.
+    FT_Register_Write(REG_HSIZE, LCDWIDTH);	
+    FT_Register_Write(REG_VSIZE, LCDHEIGHT);
+    FT_Register_Write(REG_HCYCLE, LCDHCYCLE);
+    FT_Register_Write(REG_HOFFSET, LCDHOFFSET);
+    FT_Register_Write(REG_HSYNC0, LCDHSYNC0);
+    FT_Register_Write(REG_HSYNC1, LCDHSYNC1);
+    FT_Register_Write(REG_VCYCLE, LCDVCYCLE);
+    FT_Register_Write(REG_VOFFSET, LCDVOFFSET);
+    FT_Register_Write(REG_VSYNC0, LCDVSYNC0);
+    FT_Register_Write(REG_VSYNC1, LCDVSYNC1);
+    FT_Register_Write(REG_SWIZZLE, LCDSWIZZLE);
+    FT_Register_Write(REG_PCLK_POL, LCDPCLKPOL);
+    
+    FT_Register_Write(REG_VOL_PB, 0);               // turn recorded audio volume down
+    FT_Register_Write(REG_VOL_SOUND, 0);            // turn synthesizer volume down
+    FT_Register_Write(REG_SOUND, 0x0060);           // set synthesizer to mute
+    
+    /* Configure GPIO1 to control audio amplifier chip. */
+    #ifdef USE_GPIO1_AUDIO
+        t = FT_Register_Read(REG_GPIO_DIR);   
+        t |= 0x02;                                  // GIPO1, as output.
+        FT_Register_Write(REG_GPIO_DIR, t);
+        
+        t = FT_Register_Read(REG_GPIO);             
+        t &= 0xFD;                                  // = 0, shutdown amplifier.
+        FT_Register_Write(REG_GPIO, t);
+    #endif
+              
+    return 1;
+}
+
+/*******************************************************************************
+* Function Name: FT_Display_ON
+********************************************************************************
+*
+* Summary:
+*  Enable display. Put DISP signal high and start the FT clock. 
+*
+* Parameters:
+*  None
+*
+* Return:
+*  None
+*
+*******************************************************************************/
+
+void FT_Display_ON()
+{
+    unsigned char gpio = FT_Register_Read(REG_GPIO);        // Read actual value of GPIO register.
+    //unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);  // Read actual value of GPIO register.
+
+    FT_Register_Write(REG_GPIO, (gpio | 0x80));			    // Set bit 7 of GPIO register (DISP signal).
+    FT_Register_Write(REG_PCLK, LCDPCLK);			        // Start clock.
+}
+
+/*******************************************************************************
+* Function Name: FT_Display_OFF
+********************************************************************************
+*
+* Summary:
+*  Disable display. Put DISP signal low and stop the FT clock. 
+*
+* Parameters:
+*  None
+*
+* Return:
+*  None
+*
+*******************************************************************************/
+
+void FT_Display_OFF()
+{
+    unsigned char gpio = FT_Register_Read(REG_GPIO);        // Read actual value of GPIO register.
+    
+    FT_Register_Write(REG_GPIO, (gpio & 0x70));			    // Clear bit 7 of GPIO register (DISP signal).
+    FT_Register_Write(REG_PCLK, LCDPCLK);			        // Stop clock.
+}
+
+/*******************************************************************************
+* Function Name: FT_Touch_Enable
+********************************************************************************
+*
+* Summary:
+*  Enable the touch panel.
+*  Value of REG_TOUCH_RZTHRESH depends on touch panel requirement and is derived 
+*  by experimentation.
+*
+* Parameters:
+*  None
+*
+* Return:
+*  None
+*
+*******************************************************************************/
+
+void FT_Touch_Enable()
+{
+    FT_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
+    FT_Register_Write(REG_TOUCH_RZTHRESH, 1200);    
+}
+
+/*******************************************************************************
+* Function Name: FT_Touch_Disable
+********************************************************************************
+*
+* Summary:
+*  Disable the touch panel. 
+*
+* Parameters:
+*  None
+*
+* Return:
+*  None
+*
+*******************************************************************************/
+
+void FT_Touch_Disable()
+{
+    FT_Register_Write(REG_TOUCH_MODE, 0);
+    FT_Register_Write(REG_TOUCH_RZTHRESH, 0);    
+}
+
+/*******************************************************************************
+* Function Name: FT_Touch_Calibrate
+********************************************************************************
+*
+* Summary:
+*  Start touch calibration procedure.
+*  FT chip doesn´t permanently store calibration values internally, so they are
+*  lost every time the FT chip is power cycle or reseted.
+*  Look at FT_Touch_ReadCalibrationValues and FT_Touch_WriteCalibrationValues.
+*
+* Parameters:
+*  None
+*
+* Return:
+*  0, if can not start calibration because there is a list (display or 
+*     coprocessor in progress).
+*  1, for successful calibration. 
+*
+*******************************************************************************/
+
+uint8 FT_Touch_Calibrate()
+{
+    if (listInProgress != NONE) return 0;
+    
+    CMDStartList(); 
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDCalibrate());
+    CMDEndList(END_DL_SWAP);  
+    
+    while (!FTIsCoproccesorReady()) {};
+    
+    return 1;
+}
+
+/*******************************************************************************
+* Function Name: FT_Touch_ReadCalibrationValues
+********************************************************************************
+*
+* Summary:
+*  This function reads touch calibration values from registers in FT chip.
+*  Then you can store those values in flash rom so they can be used in
+*  future.
+*  Until now, this library doesn´t store values in flash, you have to implement
+*  it by yourself.
+*
+* Parameters:
+*  values: pointer to variable where to store calibration values.
+*          Look at definition of "TouchCalibrationValues" enum in PSocEve.h
+*
+* Return:
+*  none
+*
+*******************************************************************************/
+
+void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values)
+{
+    uint8 loop;
+    uint32 ptr = REG_TOUCH_TRANSFORM_A;
+        
+    for (loop = 0; loop < 6; loop++)
+    {
+        values->TouchTransform_X[loop] = FTMemoryReadUint32(ptr);
+        ptr += 4;
+    }
+}
+
+/*******************************************************************************
+* Function Name: FT_Touch_WriteCalibrationValues
+********************************************************************************
+*
+* Summary:
+*  This function writes touch calibration values to registers in FT chip.
+*  Can be used to write previouly stored values.
+*  Until now, this library doesn´t store value in flash, you have to implement
+*  it by yourself.
+*
+* Parameters:
+*  values: pointer to variable where to calibration values are stored.
+*          Look at definition of "TouchCalibrationValues" enum in PSocEve.h
+*
+* Return:
+*  none
+*
+*******************************************************************************/
+
+void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
+{
+    uint8 loop;
+    uint32 ptr = REG_TOUCH_TRANSFORM_A;
+    
+    for (loop = 0; loop < 6; loop++)
+    {
+        FT_Register_Write(ptr, values->TouchTransform_X[loop]);
+        ptr += 4;
+    }
+}
+
+#ifdef USE_GPIO1_AUDIO
+    
+    void FT_AUDIO_MUTE()
+    {
+        uint8 t = 0;
+        
+        t = FT_Register_Read(REG_GPIO);             
+        t &= 0xFD;                                  
+        FT_Register_Write(REG_GPIO, t); 
+    }
+
+    void FT_AUDIO_UNMUTE()
+    {
+        uint8 t = 0;
+        
+        t = FT_Register_Read(REG_GPIO);             
+        t |= 0x02;                                  
+        FT_Register_Write(REG_GPIO, t);    
+    }
+    
+#endif
+
+void FT_Sound_Volume(uint8 volume)
+{
+    FT_Register_Write(REG_VOL_SOUND, volume);
+}
+
+void FT_Sound_Play(uint8 sound, uint8 pitch)
+{
+    FT_Register_Write(REG_SOUND, sound | (pitch << 16));
+    FT_Register_Write(REG_PLAY, 1);
+}
+
+void FT_Sound_Stop()
+{
+    FT_Register_Write(REG_SOUND, 0x60);
+    FT_Register_Write(REG_PLAY, 1);    
+}
+
+
+
+
+
+
+
+
+
+/* Re-enables the SCB IP. A clear enable bit has a different effect
+* on the scb IP depending on the version:
+*  CY_SCBIP_V0: resets state, status, TX and RX FIFOs.
+*  CY_SCBIP_V1 or later: resets state, status, TX and RX FIFOs and interrupt sources.
+*/
+
+
 uint8 FTIsCoproccesorReady()
 {
     return EVE_CoPro_IsReady(&ramCMDOffset);
@@ -57,7 +384,7 @@ void DLEndList()
 {
     SPI_Transfer_Write_Long(DL_DISPLAY);
     SPI_Transfer_End();
-    mEVE_Register_Write(REG_DLSWAP, DLSWAP_FRAME);
+    FT_Register_Write(REG_DLSWAP, DLSWAP_FRAME);
 }
 
 void CMDStartList()
@@ -186,176 +513,46 @@ unsigned int IncCMDOffset(unsigned int currentoffset, unsigned char commandsize)
 
 
 
-/*******************************************************************************
-*   General Functions.
-*******************************************************************************/
-
-unsigned char EVE_Init_Display()
-{
-
-    
-    
-    
-    
-    // Force a hardware reset of EVE chip using PD_N pin.
-    PD_N_Write(0); CyDelay(10); PD_N_Write(1); CyDelay(20);
-    
-    // Initialize EVE chip. Max SPI speed before the chip is initialized is 11Mhz.
-    FTCommandWrite(FT800_ACTIVE);            // Start FT800
-    CyDelay(5);	
-    FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
-    CyDelay(5);	
-    FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
-    CyDelay(5);	
-    FTCommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
-    CyDelay(5);
-    
-    // After initialization, EVE chip accept commands at up to 30Mhz clock on SPI bus.
-    
-    // Read ID register. If we don¨t get 0x7C something is bad.
-
-    if (EVE_Memory_Read_Byte(REG_ID) != 0x7C) return 0;
-    
-    // At startup, PCLK (pixel clock) and PWM_DUTY (used for backlight) are programmed to 0.
-    //      Display is off until user turns it on.
-    
-    mEVE_Register_Write(REG_PCLK, 0);
-    mEVE_Register_Write(REG_PWM_DUTY, 0);	
-    
-    // Continue initializing registers with values from configuration header file.
-    
-    mEVE_Register_Write(REG_HSIZE, LCDWIDTH);	
-    mEVE_Register_Write(REG_VSIZE, LCDHEIGHT);
-    mEVE_Register_Write(REG_HCYCLE, LCDHCYCLE);
-    mEVE_Register_Write(REG_HOFFSET, LCDHOFFSET);
-    mEVE_Register_Write(REG_HSYNC0, LCDHSYNC0);
-    mEVE_Register_Write(REG_HSYNC1, LCDHSYNC1);
-    mEVE_Register_Write(REG_VCYCLE, LCDVCYCLE);
-    mEVE_Register_Write(REG_VOFFSET, LCDVOFFSET);
-    mEVE_Register_Write(REG_VSYNC0, LCDVSYNC0);
-    mEVE_Register_Write(REG_VSYNC1, LCDVSYNC1);
-    mEVE_Register_Write(REG_SWIZZLE, LCDSWIZZLE);
-    mEVE_Register_Write(REG_PCLK_POL, LCDPCLKPOL);
-    
-    // Touch configuration - configure the resistance value to 1200 - this value is specific 
-    //      to customer requirement and derived by experimentation.
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);
-        
-    return 1;
-}
-
-void EVE_Display_ON()
-{
-    unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);    // Read actual value of GPIO register.
-
-    mEVE_Register_Write(REG_GPIO, (gpio | 0x80));			// Set bit 7 of GPIO register (DISP signal).
-    mEVE_Register_Write(REG_PCLK, LCDPCLK);			    // Start clock.
-}
-
-void EVE_Display_OFF()
-{
-    unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);    // Read actual value of GPIO register.
-
-    mEVE_Register_Write(REG_GPIO, (gpio & 0x70));			// Clear bit 7 of GPIO register (DISP signal).
-    mEVE_Register_Write(REG_PCLK, LCDPCLK);			    // Stop clock.
-}
 
 
 
 
+//void EVE_Touch_Enable()
+//{
+//    mEVE_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
+//    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);
+//}
+//
+//void EVE_Touch_Disable()
+//{
+//    mEVE_Register_Write(REG_TOUCH_MODE, 0);
+//    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 0);
+//}
 
-
-
-void FT_Touch_Enable()
-{
-    mEVE_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);    
-}
-
-void FT_Touch_Disable()
-{
-    mEVE_Register_Write(REG_TOUCH_MODE, 0);
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 0);    
-}
-
-void FT_Touch_Calibrate()
-{
-    CMDStartList(); 
-    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDListAddDLItem(DLClear(1, 1, 1));
-    CMDListAddItem(CMDCalibrate());
-    CMDEndList(END_DL_SWAP);  
-    
-    while (!FTIsCoproccesorReady()) {};
-}
-
-void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values)
-{
-    uint8 loop;
-    uint32 ptr = REG_TOUCH_TRANSFORM_A;
-        
-    for (loop = 0; loop < 6; loop++)
-    {
-        values->TouchTransform_X[loop] = FTMemoryReadUint32(ptr);
-        ptr += 4;
-    }
-}
-
-void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
-{
-    uint8 loop;
-    uint32 ptr = REG_TOUCH_TRANSFORM_A;
-    
-    for (loop = 0; loop < 6; loop++)
-    {
-        mEVE_Register_Write(ptr, values->TouchTransform_X[loop]);
-        ptr += 4;
-    }
-}
-
-
-
-
-
-
-
-
-void EVE_Touch_Enable()
-{
-    mEVE_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);
-}
-
-void EVE_Touch_Disable()
-{
-    mEVE_Register_Write(REG_TOUCH_MODE, 0);
-    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 0);
-}
-
-void EVE_Touch_Calibrate()
-{
-//    unsigned int cmdoffset;
-//    
-//    while (!EVE_Is_Copro_Ready(&cmdoffset)) {}
-//    
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_DLSTART));// Start the display list
-//	cmdoffset += 4;
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR_RGB | 0x0000FFUL));																									// Set the default clear color to black
-//    cmdoffset += 4;// Update the command pointer
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));																// Clear the screen - this and the previous prevent artifacts between lists
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_CALIBRATE));
-//    cmdoffset += 4;	
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_END));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_DISPLAY));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_SWAP));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Word(REG_CMD_WRITE, (cmdoffset));   
-//    
-//    EVE_Is_Copro_Ready(&cmdoffset);
-}
+//void EVE_Touch_Calibrate()
+//{
+////    unsigned int cmdoffset;
+////    
+////    while (!EVE_Is_Copro_Ready(&cmdoffset)) {}
+////    
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_DLSTART));// Start the display list
+////	cmdoffset += 4;
+//////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR_RGB | 0x0000FFUL));																									// Set the default clear color to black
+////    cmdoffset += 4;// Update the command pointer
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));																// Clear the screen - this and the previous prevent artifacts between lists
+////    cmdoffset += 4;
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_CALIBRATE));
+////    cmdoffset += 4;	
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_END));
+////    cmdoffset += 4;
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_DISPLAY));
+////    cmdoffset += 4;
+////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_SWAP));
+////    cmdoffset += 4;
+////    EVE_Memory_Write_Word(REG_CMD_WRITE, (cmdoffset));   
+////    
+////    EVE_Is_Copro_Ready(&cmdoffset);
+//}
 
 
 

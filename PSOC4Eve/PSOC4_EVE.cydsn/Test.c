@@ -29,8 +29,8 @@
 
 void T_Init()
 {
-    EVE_Display_ON();
-    mEVE_Register_Write(REG_PWM_DUTY, 128);
+    FT_Display_ON();
+    FT_Register_Write(REG_PWM_DUTY, 128);
 }
 
 /*******************************************************************************
@@ -172,7 +172,7 @@ void T_PRIMITIVE_RECTANGLE()
 
 void T_PRIMITIVE_BITMAP()
 {
-    unsigned int loop, bitmaplength;
+    unsigned int bitmaplength;
     
     T_CMD_COLDSTART();
     
@@ -716,5 +716,25 @@ void T_CMD_INFLATE()
     CMDEndList(END_DL_SWAP);     
 }
 
+/*******************************************************************************
+********************************************************************************
+********************************************************************************
+*   Test. Related to sound.
+*******************************************************************************
+********************************************************************************
+*******************************************************************************/
+
+void T_SOUND()
+{
+    FT_AUDIO_UNMUTE();
+    
+    FT_Sound_Volume(0x80);      // Medium volume.
+    FT_Sound_Play(0x06, 0);     // Play sound 19.
+    
+    CyDelay(3000);
+    
+    FT_AUDIO_MUTE();
+    FT_Sound_Stop();
+}
 
 /* [] END OF FILE */

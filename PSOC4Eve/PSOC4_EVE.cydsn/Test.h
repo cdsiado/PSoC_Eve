@@ -55,6 +55,10 @@ void T_CMD_LOGO();
 void T_CMD_SCREENSAVER();
 void T_CMD_COLDSTART();
 void T_CMD_INFLATE();
+
+/* *** SOUND *** */
+
+void T_SOUND();
     
 #endif /* End TEST_H */    
 

@@ -158,18 +158,10 @@
 *******************************************************************************/    
     
 /* Write value to EVE register. */
-#define mEVE_Register_Write(everegister, value) SPI_TransferS_Write_Long(everegister | MEMORY_WRITE, value)
+#define FT_Register_Write(everegister, value) SPI_TransferS_Write_Long(everegister | MEMORY_WRITE, value)
     
 /* Read value from EVE register. */
-#define mEVE_Register_Read(everegister) SPI_TransferS_Read_Long(everegister | MEMORY_READ)      
-    
-        /* Write value to EVE register. */
-//#define mEVE_Register_Write(everegister, value) \
-  //  SPI_TransferS_Write_Long(everegister, value)
-    
-    /* Read value from EVE register. */
-//#define mEVE_Register_Read(everegister) \
-  //  SPI_TransferS_Read_Long(everegister)  
+#define FT_Register_Read(everegister) SPI_TransferS_Read_Long(everegister | MEMORY_READ)      
     
     
 //**********************************************************************************    
@@ -626,13 +618,53 @@ void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned 
 
 
 /*******************************************************************************
-*   Coprocesor function prototypes.
+*   Function prototypes.
 *******************************************************************************/
 
+typedef union
+{
+    uint8 TouchTransform_Bytes[24] ;
+    uint32 TouchTransform_X[6];
+} TouchCalibrationValues;
 
 typedef enum { NONE, DISPLAY, COPROCESSOR } LISTTYPE;
     
-void CMDStartList();
+/*******************************************************************************
+*   Function prototypes.
+*******************************************************************************/
+
+/* Related to display. */
+uint8 FT_Init();
+void FT_Display_ON();
+void FT_Display_OFF();
+
+/* Related to touch panel. */
+void FT_Touch_Enable();
+void FT_Touch_Disable();
+uint8 FT_Touch_Calibrate();
+void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values);
+void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values);
+
+/* Related to sound. */
+#ifdef USE_GPIO1_AUDIO
+    void FT_AUDIO_MUTE();
+    void FT_AUDIO_UNMUTE();
+#endif
+
+void FT_Sound_Volume(uint8 volume);
+void FT_Sound_Play(uint8 sound, uint8 pitch);
+void FT_Sound_Stop();
+
+/* Other. */
+uint8 FTIsCoproccesorReady();
+//void FT_Touch_Enable();
+//void FT_Touch_Disable();
+//void FT_Touch_Calibrate();
+
+
+
+
+    void CMDStartList();
 void CMDEndList(unsigned char swap);  
 void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char *string);
 void CMDListAddDLItem(unsigned long item);
@@ -645,30 +677,11 @@ void EVE_RegisterWrite(unsigned long everegister, unsigned long data);
 unsigned char EVE_RegisterRead(unsigned long everegister);
 void EVE_CommandWrite(unsigned char command);
 void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length);
-unsigned char EVE_Init_Display();
-void EVE_Display_ON();
-void EVE_Display_OFF();
-void EVE_Touch_Enable();
-void EVE_Touch_Disable();
-void EVE_Touch_Calibrate();
 
 
 
-uint8 FTIsCoproccesorReady();
-    
 
 
-typedef union
-{
-    uint8 TouchTransform_Bytes[24] ;
-    uint32 TouchTransform_X[6];
-} TouchCalibrationValues;
-
-void FT_Touch_Enable();
-void FT_Touch_Disable();
-void FT_Touch_Calibrate();
-void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values);
-void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values);
 
 
 
