@@ -189,10 +189,10 @@ void T_PRIMITIVE_BITMAP()
     
     DLListNewItem(DLBegin(PRIMITIVE_BITMAP));            // Start new primitive (BITMAP.
         DLListNewItem(DLBitmapSource(0x00));             // Source address 0 in RAM_G.
-        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
-        DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 40, 40)); 
+        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
+        DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64)); 
         DLListNewItem(DLVertex2II(10, 10, 0, 0));        // Place the bitmap at 10, 10.
-        DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 20, 20)); 
+        DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 32, 32)); 
         DLListNewItem(DLVertex2II(100, 10, 0, 0));       // Place, only a piece of the bitmap.
     DLEndList();
     
@@ -206,7 +206,7 @@ void T_PRIMITIVE_BITMAP()
     
     DLListNewItem(DLBegin(PRIMITIVE_BITMAP));            // Start new primitive (BITMAP.
         DLListNewItem(DLBitmapSource(0x00));             // Source address 0 in RAM_G.
-        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
+        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
         DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_REPEAT, BITMAP_SIZE_WRAP_REPEAT, 480, 272)); 
         DLListNewItem(DLVertex2II(0, 0, 0, 0));          // Place the bitmap at 0, 0.
                                                         // Fill display.
@@ -222,7 +222,7 @@ void T_PRIMITIVE_BITMAP()
     
     DLListNewItem(DLBegin(PRIMITIVE_BITMAP));           // Start new primitive (BITMAP.
         DLListNewItem(DLBitmapSource(0x00));            // Source address 0 in RAM_G.
-        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
+        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
         DLListNewItem(DLBitmapTransformA(120));
         DLListNewItem(DLBitmapTransformE(120));
         DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 120, 120)); 
@@ -241,7 +241,7 @@ void T_PRIMITIVE_BITMAP()
     
     DLListNewItem(DLBegin(PRIMITIVE_BITMAP));           // Start new primitive (BITMAP.
         DLListNewItem(DLBitmapSource(0x00));            // Source address 0 in RAM_G.
-        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
+        DLListNewItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
         DLListNewItem(DLBitmapTransformA(160));
         DLListNewItem(DLBitmapTransformE(160));
         DLListNewItem(DLBitmapSize(BITMAP_SIZE_FILTER_BILINEAR, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 240, 240)); 
@@ -314,6 +314,75 @@ void T_DL_SCISSOR()
     DLEndList();    
 }
 
+void T_DL_TAG_AND_MASK()
+{
+    uint32 firstrectanglecolor = 0x00FF00FF;
+    uint32 secondrectanglecolor = 0xFF00FF00;
+    
+    uint8 exit = 0;
+    
+    uint8 readedtag = 0;
+    
+    T_CMD_COLDSTART();
+    
+    // Draw tree rectangles. 
+    // First will have tag = 1. Second, tag = 2; Third, no tag.
+    // Draw a button for exit, tag = 3.
+    
+    while (!exit)   // TODO: revisar, no funciona antes de calibrate, mal cambio colores.
+    {
+        CMDStartList(); 
+        CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+        CMDListAddDLItem(DLClear(1, 1, 1));
+        
+        CMDListAddDLItem(DLTagMask(1));
+        
+        CMDListAddDLItem(DLTag(1));
+        CMDListAddDLItem(DLColorRGB((uint8)(firstrectanglecolor >> 16), (uint8)(firstrectanglecolor >> 8), (uint8)(firstrectanglecolor)));
+        CMDListAddDLItem(DLBegin(PRIMITIVE_RECTANGLE));         
+        CMDListAddDLItem(DLVertex2II(50, 50, 0, 0));            
+        CMDListAddDLItem(DLVertex2II(100, 100, 0, 0));    
+
+        CMDListAddDLItem(DLTag(2));
+        CMDListAddDLItem(DLColorRGB((uint8)(secondrectanglecolor >> 16), (uint8)(secondrectanglecolor >> 8), (uint8)(secondrectanglecolor)));
+        CMDListAddDLItem(DLBegin(PRIMITIVE_RECTANGLE));         
+        CMDListAddDLItem(DLVertex2II(150, 50, 0, 0));            
+        CMDListAddDLItem(DLVertex2II(200, 100, 0, 0));   
+        
+        CMDListAddDLItem(DLTagMask(0));
+        CMDListAddDLItem(DLColorRGB(0xFF, 0xFF, 0xFF));
+        CMDListAddDLItem(DLBegin(PRIMITIVE_RECTANGLE));         
+        CMDListAddDLItem(DLVertex2II(250, 50, 0, 0));            
+        CMDListAddDLItem(DLVertex2II(300, 100, 0, 0));      
+        
+        CMDListAddDLItem(DLTagMask(1));
+        
+        CMDListAddDLItem(DLTag(3));
+        CMDListAddItem(CMDFgcolor(0xFF, 0xFF, 0x00));
+        CMDListAddItem(CMDButton(50, 200, 100, 50, 28, OPT_3D, (unsigned char*)"EXIT"));
+        CMDEndList(END_DL_SWAP);
+        
+        while (readedtag == 0)
+        {
+            readedtag = EVE_Memory_Read_Byte(REG_TOUCH_TAG);
+            
+            if (readedtag == 1) 
+            {
+                firstrectanglecolor = ~firstrectanglecolor;
+            }
+            else if (readedtag == 2) 
+            {
+                secondrectanglecolor = ~secondrectanglecolor;
+            }
+            else if (readedtag == 3) exit = 1;
+            
+            readedtag = readedtag;
+        }
+                    
+        readedtag = 0;
+    }
+}
+
 
 /*******************************************************************************
 ********************************************************************************
@@ -328,9 +397,9 @@ void T_CMD_GRADIENT()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));    
-    CMDListNewItem(CMDGradient(10, 10, 0, 0, 0xFF, 470, 262, 0xFF, 0x0, 0x0));   // TODO: verificar coordenadas
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));    
+    CMDListAddItem(CMDGradient(10, 10, 0, 0, 0xFF, 470, 262, 0xFF, 0x0, 0x0));   // TODO: verificar coordenadas
     CMDEndList(END_DL_SWAP);     
 }
 
@@ -339,12 +408,12 @@ void T_CMD_TEXT()
     T_CMD_COLDSTART();
     
     CMDStartList();
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDInsertDLItem(DLColorRGB(0xFF, 0x00, 0xFF));
-    CMDListNewItem(CMDTextNew( 10, 10, 30, 0, "!Hello"));
-    CMDInsertDLItem(DLColorRGB(0x00, 0x00, 0xFF));
-    CMDListNewItem(CMDTextNew( 150, 150, 30, 0, "JESUSS25"));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddDLItem(DLColorRGB(0xFF, 0x00, 0xFF));
+    CMDListAddItem(CMDTextNew( 10, 10, 30, 0, "!Hello"));
+    CMDListAddDLItem(DLColorRGB(0x00, 0x00, 0xFF));
+    CMDListAddItem(CMDTextNew( 150, 150, 30, 0, "JESUSS25"));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -353,12 +422,12 @@ void T_CMD_BUTTON()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDFgcolor(0xFF, 0xFF, 0x00));
-    CMDListNewItem(CMDButton(20, 20, 100, 50, 28, OPT_3D, (unsigned char*)"3d"));
-    CMDListNewItem(CMDGradcolor(0xFF, 0x00, 0x00)); // TODO: verificar.
-    CMDListNewItem(CMDButton(50, 150, 100, 50, 28, OPT_FLAT, (unsigned char*)"flat"));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDFgcolor(0xFF, 0xFF, 0x00));
+    CMDListAddItem(CMDButton(20, 20, 100, 50, 28, OPT_3D, (unsigned char*)"3d"));
+    CMDListAddItem(CMDGradcolor(0xFF, 0x00, 0x00)); // TODO: verificar.
+    CMDListAddItem(CMDButton(50, 150, 100, 50, 28, OPT_FLAT, (unsigned char*)"flat"));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -367,11 +436,11 @@ void T_CMD_KEYS()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));    
-    CMDListNewItem(CMDFgcolor(0xFF, 0xFF, 0x00));
-    CMDListNewItem(CMDKeys(20, 20, 100, 50, 28, OPT_3D, (unsigned char*)"3d"));
-    CMDListNewItem(CMDKeys(50, 150, 100, 50, 28, OPT_FLAT, (unsigned char*)"flat"));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));    
+    CMDListAddItem(CMDFgcolor(0xFF, 0xFF, 0x00));
+    CMDListAddItem(CMDKeys(20, 20, 100, 50, 28, OPT_3D, (unsigned char*)"3d"));
+    CMDListAddItem(CMDKeys(50, 150, 100, 50, 28, OPT_FLAT, (unsigned char*)"flat"));
     CMDEndList(END_DL_SWAP);  
 }
 
@@ -380,10 +449,10 @@ void T_CMD_PROGRESS()
     T_CMD_COLDSTART();
     
     CMDStartList();
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDBgcolor(0xFF, 0x00, 0x00));
-    CMDListNewItem(CMDProgressBar(10, 10, 150, 20, OPT_3D, 50, 100)); // TODO: Coordenadas?
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDBgcolor(0xFF, 0x00, 0x00));
+    CMDListAddItem(CMDProgressBar(10, 10, 150, 20, OPT_3D, 50, 100)); // TODO: Coordenadas?
     CMDEndList(END_DL_SWAP);
 }
 
@@ -392,14 +461,14 @@ void T_CMD_SLIDER()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDFgcolor(0x00, 0xFF, 0x00));
-    CMDListNewItem(CMDBgcolor(0xFF, 0x00, 0x00));
-    CMDListNewItem(CMDSlider(10, 10, 150, 20, OPT_3D, 50, 100));
-    CMDListNewItem(CMDSlider(10, 100, 200, 20, OPT_FLAT, 50, 200));  
-    CMDListNewItem(CMDSlider(250, 10, 20, 150, OPT_3D, 50, 100));
-    CMDListNewItem(CMDSlider(300, 10, 20, 200, OPT_FLAT, 50, 200));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDFgcolor(0x00, 0xFF, 0x00));
+    CMDListAddItem(CMDBgcolor(0xFF, 0x00, 0x00));
+    CMDListAddItem(CMDSlider(10, 10, 150, 20, OPT_3D, 50, 100));
+    CMDListAddItem(CMDSlider(10, 100, 200, 20, OPT_FLAT, 50, 200));  
+    CMDListAddItem(CMDSlider(250, 10, 20, 150, OPT_3D, 50, 100));
+    CMDListAddItem(CMDSlider(300, 10, 20, 200, OPT_FLAT, 50, 200));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -408,14 +477,14 @@ void T_CMD_SCROLLBAR()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDFgcolor(0xFF, 0x00, 0x00));
-    CMDListNewItem(CMDBgcolor(0x00, 0xFF, 0x00)); // <<<<< REVISAR
-    CMDListNewItem(CMDScrollBar(10, 10, 150, 20, OPT_3D, 10, 40, 100));
-    CMDListNewItem(CMDScrollBar(10, 100, 200, 20, OPT_FLAT, 10, 40, 100));  
-    CMDListNewItem(CMDScrollBar(250, 10, 20, 150, OPT_3D, 10, 40, 200));
-    CMDListNewItem(CMDScrollBar(300, 10, 20, 200, OPT_FLAT, 10, 40, 200));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDFgcolor(0xFF, 0x00, 0x00));
+    CMDListAddItem(CMDBgcolor(0x00, 0xFF, 0x00)); // <<<<< REVISAR
+    CMDListAddItem(CMDScrollBar(10, 10, 150, 20, OPT_3D, 10, 40, 100));
+    CMDListAddItem(CMDScrollBar(10, 100, 200, 20, OPT_FLAT, 10, 40, 100));  
+    CMDListAddItem(CMDScrollBar(250, 10, 20, 150, OPT_3D, 10, 40, 200));
+    CMDListAddItem(CMDScrollBar(300, 10, 20, 200, OPT_FLAT, 10, 40, 200));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -424,12 +493,12 @@ void T_CMD_TOGGLE()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));    
-    CMDListNewItem(CMDFgcolor(0xFF, 0xFF, 0x00));
-    CMDListNewItem(CMDBgcolor(0x00, 0x00, 0xFF));
-    CMDListNewItem(CMDToggle(50, 50, 200, 28, 0, TOGGLE_STATE_ON, (unsigned char*)"ON\xffOFF"));
-    CMDListNewItem(CMDToggle(100, 100, 200, 28, 0, TOGGLE_STATE_OFF, (unsigned char*)"ON\xffOFF"));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));    
+    CMDListAddItem(CMDFgcolor(0xFF, 0xFF, 0x00));
+    CMDListAddItem(CMDBgcolor(0x00, 0x00, 0xFF));
+    CMDListAddItem(CMDToggle(50, 50, 200, 28, 0, TOGGLE_STATE_ON, (unsigned char*)"ON\xffOFF"));
+    CMDListAddItem(CMDToggle(100, 100, 200, 28, 0, TOGGLE_STATE_OFF, (unsigned char*)"ON\xffOFF"));
     CMDEndList(END_DL_SWAP);    
 }
 
@@ -438,16 +507,16 @@ void T_CMD_GAUGE()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDBgcolor(0x00, 0x00, 0xFF));
-    CMDListNewItem(CMDGauge(70, 70, 50, OPT_3D, 5, 4, 30, 100));
-    CMDListNewItem(CMDGauge(180, 70, 50, OPT_FLAT, 5, 4, 30, 100)); 
-    CMDListNewItem(CMDGauge(290, 70, 50, OPT_3D, 10, 2, 30, 100));
-    CMDListNewItem(CMDGauge(400, 70, 50, OPT_3D, 10, 1, 30, 100));
-    CMDListNewItem(CMDGauge(70, 180, 50, OPT_3D, 1, 10, 30, 100));
-    CMDListNewItem(CMDBgcolor(0x40, 0x20, 0x00));
-    CMDListNewItem(CMDGauge(180, 180, 50, OPT_3D, 5, 4, 30, 100));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDBgcolor(0x00, 0x00, 0xFF));
+    CMDListAddItem(CMDGauge(70, 70, 50, OPT_3D, 5, 4, 30, 100));
+    CMDListAddItem(CMDGauge(180, 70, 50, OPT_FLAT, 5, 4, 30, 100)); 
+    CMDListAddItem(CMDGauge(290, 70, 50, OPT_3D, 10, 2, 30, 100));
+    CMDListAddItem(CMDGauge(400, 70, 50, OPT_3D, 10, 1, 30, 100));
+    CMDListAddItem(CMDGauge(70, 180, 50, OPT_3D, 1, 10, 30, 100));
+    CMDListAddItem(CMDBgcolor(0x40, 0x20, 0x00));
+    CMDListAddItem(CMDGauge(180, 180, 50, OPT_3D, 5, 4, 30, 100));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -456,11 +525,11 @@ void T_CMD_CLOCK()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDBgcolor(0x00, 0x00, 0xFF)); // <<<<< REVISAR
-    CMDListNewItem(CMDClock(70, 70, 50, OPT_3D, 15, 30, 42, 100));
-    CMDListNewItem(CMDClock(180, 70, 50, OPT_FLAT, 2, 45, 53, 100));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDBgcolor(0x00, 0x00, 0xFF)); // <<<<< REVISAR
+    CMDListAddItem(CMDClock(70, 70, 50, OPT_3D, 15, 30, 42, 100));
+    CMDListAddItem(CMDClock(180, 70, 50, OPT_FLAT, 2, 45, 53, 100));
     CMDEndList(END_DL_SWAP); 
 }
 
@@ -469,9 +538,9 @@ void T_CMD_CALIBRATE()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDCalibrate());
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDCalibrate());
     CMDEndList(END_DL_SWAP);  
     
     while (!FTIsCoproccesorReady()) {}
@@ -482,16 +551,16 @@ void T_CMD_SPINNER()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDInsertDLItem(DLColorRGB(0x55, 0xFF, 0x55));
-    CMDListNewItem(CMDSpinner(240, 136, SPINNER_ROUND, 0));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddDLItem(DLColorRGB(0x55, 0xFF, 0x55));
+    CMDListAddItem(CMDSpinner(240, 136, SPINNER_ROUND, 0));
     CMDEndList(END_DL_NOSWAP);
     
     CyDelay(5000);
     
     CMDStartList();
-    CMDListNewItem(CMDStop());
+    CMDListAddItem(CMDStop());
     CMDEndList(END_DL_SWAP);
 }
 
@@ -500,11 +569,11 @@ void T_CMD_DIAL()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDFgcolor(0xFF, 0xFF, 0x00));
-    CMDListNewItem(CMDDial(70, 70, 50, OPT_3D, 30000));
-    CMDListNewItem(CMDDial(180, 70, 50, OPT_FLAT, 40000));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDFgcolor(0xFF, 0xFF, 0x00));
+    CMDListAddItem(CMDDial(70, 70, 50, OPT_3D, 30000));
+    CMDListAddItem(CMDDial(180, 70, 50, OPT_FLAT, 40000));
     CMDEndList(END_DL_SWAP); 
 }
 
@@ -513,14 +582,14 @@ void T_CMD_NUMBER()
     T_CMD_COLDSTART();
     
     CMDStartList();
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDInsertDLItem(DLColorRGB(0xFF, 0x00, 0x00));
-    CMDListNewItem(CMDNumber(10, 10, 28, 0, 100));
-    CMDInsertDLItem(DLColorRGB(0x00, 0xFF, 0x00));
-    CMDListNewItem(CMDNumber(40, 40, 30, OPT_SIGNED, -100));
-    CMDInsertDLItem(DLColorRGB(0x00, 0x00, 0xFF));
-    CMDListNewItem(CMDNumber(80, 80,30,0, 200));
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddDLItem(DLColorRGB(0xFF, 0x00, 0x00));
+    CMDListAddItem(CMDNumber(10, 10, 28, 0, 100));
+    CMDListAddDLItem(DLColorRGB(0x00, 0xFF, 0x00));
+    CMDListAddItem(CMDNumber(40, 40, 30, OPT_SIGNED, -100));
+    CMDListAddDLItem(DLColorRGB(0x00, 0x00, 0xFF));
+    CMDListAddItem(CMDNumber(80, 80,30,0, 200));
     CMDEndList(END_DL_SWAP);
 }
 
@@ -545,31 +614,31 @@ void T_CMD_SKETCH()
     // Skecth
     CMDStartList();
     
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));     // Set red color for background. 
-    CMDInsertDLItem(DLClear(1, 1, 1));                      // Clear all (color, stencil and tag buffer).
-    CMDInsertDLItem(DLColorRGB(0x00, 0xFF, 0x00));          // Red color. 
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));     // Set red color for background. 
+    CMDListAddDLItem(DLClear(1, 1, 1));                      // Clear all (color, stencil and tag buffer).
+    CMDListAddDLItem(DLColorRGB(0x00, 0xFF, 0x00));          // Red color. 
     
-        CMDInsertDLItem(DLLineWidth(1));                    // Draw green rectangle as sketching area.
-    CMDInsertDLItem(DLBegin(PRIMITIVE_LINE_STRIP));        
-        CMDInsertDLItem(DLVertex2II(20, 20, 0, 0));          
-        CMDInsertDLItem(DLVertex2II(300, 20, 0, 0));           
-        CMDInsertDLItem(DLVertex2II(300, 250, 0, 0));           
-        CMDInsertDLItem(DLVertex2II(20, 250, 0, 0));
-        CMDInsertDLItem(DLVertex2II(20, 20, 0, 0));
+        CMDListAddDLItem(DLLineWidth(1));                    // Draw green rectangle as sketching area.
+    CMDListAddDLItem(DLBegin(PRIMITIVE_LINE_STRIP));        
+        CMDListAddDLItem(DLVertex2II(20, 20, 0, 0));          
+        CMDListAddDLItem(DLVertex2II(300, 20, 0, 0));           
+        CMDListAddDLItem(DLVertex2II(300, 250, 0, 0));           
+        CMDListAddDLItem(DLVertex2II(20, 250, 0, 0));
+        CMDListAddDLItem(DLVertex2II(20, 20, 0, 0));
         
-    CMDInsertDLItem(DLTag(1));                              // Place "exit" button with tag=1 for touches.
-    CMDListNewItem(CMDButton(350, 50, 100, 50, 28, OPT_3D, (unsigned char*)"Exit"));
-    CMDInsertDLItem(DLTagMask(0));
+    CMDListAddDLItem(DLTag(1));                              // Place "exit" button with tag=1 for touches.
+    CMDListAddItem(CMDButton(350, 50, 100, 50, 28, OPT_3D, (unsigned char*)"Exit"));
+    CMDListAddDLItem(DLTagMask(0));
     
-    CMDInsertDLItem(DLColorRGB(0xFF, 0xFF, 0xFF));
-    CMDListNewItem(CMDMemZero(0, (LCDWIDTH * LCDHEIGHT / 8)));  // Fill with zeroes area used to store the sketch
-    CMDListNewItem(CMDSketch(21, 21, 299, 249, 0, L1));         // Start sketch
+    CMDListAddDLItem(DLColorRGB(0xFF, 0xFF, 0xFF));
+    CMDListAddItem(CMDMemZero(0, (LCDWIDTH * LCDHEIGHT / 8)));  // Fill with zeroes area used to store the sketch
+    CMDListAddItem(CMDSketch(21, 21, 299, 249, 0, L1));         // Start sketch
     CMDEndList(END_DL_SWAP);
     
     CyDelay(20000); // 20 seconds to draw
     
     CMDStartList();
-    CMDListNewItem(CMDStop());
+    CMDListAddItem(CMDStop());
     CMDEndList(END_DL_SWAP);
 }
 
@@ -578,9 +647,9 @@ void T_CMD_LOGO()
     T_CMD_COLDSTART();
     
     CMDStartList(); 
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDListNewItem(CMDLogo());
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDLogo());
     CMDEndList(END_DL_SWAP);  
     
     while (!FTIsCoproccesorReady()) {}
@@ -596,32 +665,55 @@ void T_CMD_SCREENSAVER()
     // EVE chip. Starting at address 0.
     bitmaplength = sizeof(testbitmap);
     SPI_Transfer_Start(RAM_G | MEMORY_WRITE);
-    SPI_TransferL_Write_ByteArray(testbitmap, bitmaplength);
+    //SPI_TransferL_Write_ByteArray(testbitmap, bitmaplength);
+    FT_Write_ByteArray_4(testbitmap, bitmaplength);
     SPI_Transfer_End();
         
     CMDStartList(); 
-    CMDListNewItem(CMDScreenSaver());
-    CMDInsertDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
-    CMDInsertDLItem(DLClear(1, 1, 1));
-    CMDInsertDLItem(DLBegin(PRIMITIVE_BITMAP));        // Start new primitive (BITMAP.
-    CMDInsertDLItem(DLBitmapSource(0x00));             // Source address 0 in RAM_G.
-    CMDInsertDLItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 40*2,40));
-    CMDInsertDLItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 40, 40)); 
-    CMDInsertDLItem(DLMacro(0));
+    CMDListAddItem(CMDScreenSaver());
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddDLItem(DLBegin(PRIMITIVE_BITMAP));        // Start new primitive (BITMAP.
+    CMDListAddDLItem(DLBitmapSource(0x00));             // Source address 0 in RAM_G.
+    CMDListAddDLItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
+    CMDListAddDLItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64)); 
+    CMDListAddDLItem(DLMacro(0));
     CMDEndList(END_DL_SWAP);    
     
     CyDelay(10000); // Wait 10 seconds, then stop screensaver.
     
     CMDStartList();
-    CMDListNewItem(CMDStop());
+    CMDListAddItem(CMDStop());
     CMDEndList(END_DL_SWAP);    
 }
 
 void T_CMD_COLDSTART()
 {
     CMDStartList();
-    CMDListNewItem(CMDColdstart());
+    CMDListAddItem(CMDColdstart());
     CMDEndList(END_DL_SWAP);    
+}
+
+void T_CMD_INFLATE()
+{
+    unsigned int bitmaplength;
+    
+    T_CMD_COLDSTART();    
+    
+    bitmaplength = sizeof(testbitmapzlib);
+    
+    CMDStartList(); 
+    CMDListAddItem(CMDInflate(RAM_G));                     // Inflate data in RAM_G memory.
+    FT_Write_ByteArray_4(testbitmapzlib, bitmaplength);    // Send Zlib data. 
+    
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddDLItem(DLBegin(PRIMITIVE_BITMAP));             // Start new primitive (BITMAP.
+    CMDListAddDLItem(DLBitmapSource(0x00));                  // Source address 0 in RAM_G.
+    CMDListAddDLItem(DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64));
+    CMDListAddDLItem(DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64)); 
+    CMDListAddDLItem(DLVertex2F(100, 100));
+    CMDEndList(END_DL_SWAP);     
 }
 
 

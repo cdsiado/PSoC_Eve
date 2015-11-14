@@ -26,8 +26,17 @@
 unsigned int ramPtr;
 unsigned int ramCMDOffset;
 
+uint8 listInProgress = NONE;
+
 
 unsigned char EVE_CoPro_IsReady(unsigned int *newoffset);
+
+
+
+uint8 FTIsCoproccesorReady()
+{
+    return EVE_CoPro_IsReady(&ramCMDOffset);
+}
 
 /*******************************************************************************
 *   Display list functions.
@@ -60,10 +69,7 @@ void CMDStartList()
     ramCMDOffset += 4;
 }
 
-uint8 FTIsCoproccesorReady()
-{
-    return EVE_CoPro_IsReady(&ramCMDOffset);
-}
+
 
 void CMDEndList(unsigned char swap)
 {
@@ -79,7 +85,7 @@ void CMDEndList(unsigned char swap)
     EVE_Memory_Write_Word(REG_CMD_WRITE, (ramCMDOffset));
 }
 
-void CMDListNewItem(unsigned char *tobesent, unsigned int length, unsigned char *string)
+void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char *string)
 {
     unsigned char *cptr = string;
     
@@ -106,7 +112,19 @@ void CMDListNewItem(unsigned char *tobesent, unsigned int length, unsigned char 
     }
 }
 
-void CMDInsertDLItem(unsigned long item)
+void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length)
+{
+    SPI_TransferL_Write_ByteArray(data, length);
+    ramCMDOffset += length;
+    
+    while ((ramCMDOffset % 4) != 0)
+    {
+        SPI_TransferL_Write_Byte(0);
+        ramCMDOffset++;
+    }
+}
+
+void CMDListAddDLItem(unsigned long item)
 {
     SPI_Transfer_Write_Long(item); 
     ramCMDOffset += 4;
@@ -241,6 +259,66 @@ void EVE_Display_OFF()
     mEVE_Register_Write(REG_GPIO, (gpio & 0x70));			// Clear bit 7 of GPIO register (DISP signal).
     mEVE_Register_Write(REG_PCLK, LCDPCLK);			    // Stop clock.
 }
+
+
+
+
+
+
+
+void FT_Touch_Enable()
+{
+    mEVE_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
+    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);    
+}
+
+void FT_Touch_Disable()
+{
+    mEVE_Register_Write(REG_TOUCH_MODE, 0);
+    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 0);    
+}
+
+void FT_Touch_Calibrate()
+{
+    CMDStartList(); 
+    CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
+    CMDListAddDLItem(DLClear(1, 1, 1));
+    CMDListAddItem(CMDCalibrate());
+    CMDEndList(END_DL_SWAP);  
+    
+    while (!FTIsCoproccesorReady()) {};
+}
+
+void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values)
+{
+    uint8 loop;
+    uint32 ptr = REG_TOUCH_TRANSFORM_A;
+        
+    for (loop = 0; loop < 6; loop++)
+    {
+        values->TouchTransform_X[loop] = FTMemoryReadUint32(ptr);
+        ptr += 4;
+    }
+}
+
+void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
+{
+    uint8 loop;
+    uint32 ptr = REG_TOUCH_TRANSFORM_A;
+    
+    for (loop = 0; loop < 6; loop++)
+    {
+        mEVE_Register_Write(ptr, values->TouchTransform_X[loop]);
+        ptr += 4;
+    }
+}
+
+
+
+
+
+
+
 
 void EVE_Touch_Enable()
 {

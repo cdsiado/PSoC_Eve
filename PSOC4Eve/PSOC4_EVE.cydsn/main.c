@@ -78,9 +78,18 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
     //***************************************    
 
   //  while (1);
-    EVE_Touch_Enable();
+    //EVE_Touch_Enable();
     
-    T_Init();
+        T_Init();
+    
+    TouchCalibrationValues calibrationvalues = { .TouchTransform_Bytes = {0x2E, 0x83, 0x00, 0x00, 0x0D, 0x02, 0x00, 0x00, 0xF0, 0xDF, 0xE3, 0xFF,
+                                                                          0x6E, 0x00, 0x00, 0x00, 0x66, 0xB3, 0xFF, 0xFF, 0x47, 0xE9, 0x1D, 0x01} };
+    
+    FT_Touch_Enable();
+    //FT_Touch_Calibrate();
+    //FT_Touch_ReadCalibrationValues(&calibrationvalues);
+    FT_Touch_WriteCalibrationValues(&calibrationvalues);
+
     
     /* *** DISPLAY LIST *** */
 //    T_DL_A();
@@ -95,9 +104,13 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_PRIMITIVE_BITMAP();
 //    CyDelay(delayTime);
-    T_DL_B();
-    CyDelay(delayTime);
-    T_DL_SCISSOR();
+//    T_DL_B();
+//    CyDelay(delayTime);
+//    T_DL_SCISSOR();
+//    CyDelay(delayTime);
+//    T_CMD_CALIBRATE();
+//    CyDelay(delayTime);
+    T_DL_TAG_AND_MASK();
     while(1);
 //    /* *** COPROCESSOR *** */
 //    T_CMD_GRADIENT();
@@ -132,12 +145,12 @@ unsigned long point_y = (136 * 16);             // Define a default point y-loca
 //    CyDelay(delayTime);
 //    T_CMD_LOGO();
 //    CyDelay(delayTime);
-//    T_CMD_SCREENSAVER();
+    T_CMD_SCREENSAVER();
+    CyDelay(delayTime);
+    T_CMD_INFLATE();
     
     while(1);
 
-    
-    while(1);
     // ************************************************************************
 
     

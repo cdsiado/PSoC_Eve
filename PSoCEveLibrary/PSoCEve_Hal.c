@@ -218,6 +218,32 @@ unsigned int EVE_Memory_Read_Word(unsigned long address)
     return data;
 }
 
+uint32 FTMemoryReadUint32(uint32 address)
+{
+    uint32 data = 0x0000;
+    unsigned char tobesent[4] = { (address >> 16) | MEMORY_READ, (address >> 8), address,  0x00 };
+    
+    SPI_EVE_SS_Write(0);
+    CyDelay(5);
+
+    SPI_EVE_SpiUartClearTxBuffer();
+    SPI_EVE_SpiUartPutArray(tobesent, 4);
+    mSPI_EVE_WAIT_TXDONE();  
+    
+    SPI_EVE_SpiUartClearRxBuffer();
+    SPI_EVE_SpiUartWriteTxData(0x00);
+    SPI_EVE_SpiUartWriteTxData(0x00);
+    SPI_EVE_SpiUartWriteTxData(0x00);
+    SPI_EVE_SpiUartWriteTxData(0x00);    
+    mSPI_EVE_WAIT_TXDONE();  
+    CyDelay(5);
+    SPI_EVE_SS_Write(1);
+
+    data = SPI_EVE_SpiUartReadRxData() | (SPI_EVE_SpiUartReadRxData() << 8) | (SPI_EVE_SpiUartReadRxData() << 16) | (SPI_EVE_SpiUartReadRxData() << 24);
+    
+    return data;    
+}
+
 
 
 

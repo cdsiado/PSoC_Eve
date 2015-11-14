@@ -566,6 +566,8 @@ void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned 
     ((unsigned char*)&(CINT32_CINT32){CMD_SNAPSHOT, ptr}), sizeof(CMD_SNAPSHOT), 0
 // ---------------------------------------
 #define CMD_INFLATE             0xffffff22
+#define CMDInflate(ptr) \
+    ((unsigned char*)&(CINT32_CINT32){CMD_INFLATE, ptr}), sizeof(CINT32_CINT32), 0
 // ---------------------------------------
 #define CMD_GETPTR              0xffffff23
 // ---------------------------------------
@@ -626,16 +628,23 @@ void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned 
 /*******************************************************************************
 *   Coprocesor function prototypes.
 *******************************************************************************/
+
+
+typedef enum { NONE, DISPLAY, COPROCESSOR } LISTTYPE;
     
 void CMDStartList();
 void CMDEndList(unsigned char swap);  
-void CMDListNewItem(unsigned char *tobesent, unsigned int length, unsigned char *string);
-void CMDInsertDLItem(unsigned long item);
+void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char *string);
+void CMDListAddDLItem(unsigned long item);
+
+
+
+
 
 void EVE_RegisterWrite(unsigned long everegister, unsigned long data);
 unsigned char EVE_RegisterRead(unsigned long everegister);
 void EVE_CommandWrite(unsigned char command);
-
+void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length);
 unsigned char EVE_Init_Display();
 void EVE_Display_ON();
 void EVE_Display_OFF();
@@ -649,8 +658,17 @@ uint8 FTIsCoproccesorReady();
     
 
 
+typedef union
+{
+    uint8 TouchTransform_Bytes[24] ;
+    uint32 TouchTransform_X[6];
+} TouchCalibrationValues;
 
-
+void FT_Touch_Enable();
+void FT_Touch_Disable();
+void FT_Touch_Calibrate();
+void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values);
+void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values);
 
 
 

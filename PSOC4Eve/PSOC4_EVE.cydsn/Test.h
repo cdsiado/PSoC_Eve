@@ -32,6 +32,7 @@ void T_PRIMITIVE_RECTANGLE();
 void T_PRIMITIVE_BITMAP();
 void T_DL_B();
 void T_DL_SCISSOR();
+void T_DL_TAG_AND_MASK();
 
 /* *** COPROCESSOR *** */
 
@@ -53,6 +54,7 @@ void T_CMD_SKETCH();
 void T_CMD_LOGO();
 void T_CMD_SCREENSAVER();
 void T_CMD_COLDSTART();
+void T_CMD_INFLATE();
     
 #endif /* End TEST_H */    
 
