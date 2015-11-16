@@ -647,8 +647,8 @@ void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values);
 
 /* Related to sound. */
 #ifdef USE_GPIO1_AUDIO
-    void FT_AUDIO_MUTE();
-    void FT_AUDIO_UNMUTE();
+    void FT_Audio_Mute();
+    void FT_Audio_Unmute();
 #endif
 
 void FT_Sound_Volume(uint8 volume);

@@ -726,14 +726,14 @@ void T_CMD_INFLATE()
 
 void T_SOUND()
 {
-    FT_AUDIO_UNMUTE();
+    FT_Audio_Unmute();
     
     FT_Sound_Volume(0x80);      // Medium volume.
     FT_Sound_Play(0x06, 0);     // Play sound 19.
     
     CyDelay(3000);
     
-    FT_AUDIO_MUTE();
+    FT_Audio_Mute();
     FT_Sound_Stop();
 }
 

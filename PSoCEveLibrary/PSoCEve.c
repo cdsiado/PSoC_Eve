@@ -306,9 +306,26 @@ void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
     }
 }
 
+    /* Conditional compilation. For more info look at PSoCEve_config.h */
 #ifdef USE_GPIO1_AUDIO
     
-    void FT_AUDIO_MUTE()
+    
+    /*******************************************************************************
+    * Function Name: FT_Audio_Mute
+    ********************************************************************************
+    *
+    * Summary:
+    *  Put GPIO1 pin of FT chip to low state. This puts the audio amplifier in FTDI
+    *  development kits in shutdown condition.
+    *
+    * Parameters:
+    *  none
+    *
+    * Return:
+    *  none
+    *
+    *******************************************************************************/    
+    void FT_Audio_Mute()
     {
         uint8 t = 0;
         
@@ -316,8 +333,23 @@ void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
         t &= 0xFD;                                  
         FT_Register_Write(REG_GPIO, t); 
     }
-
-    void FT_AUDIO_UNMUTE()
+    
+    /*******************************************************************************
+    * Function Name: FT_Audio_Unmute
+    ********************************************************************************
+    *
+    * Summary:
+    *  Put GPIO1 pin of FT chip to high state. This puts the audio amplifier in FTDI
+    *  development kits in poer on  condition.
+    *
+    * Parameters:
+    *  none
+    *
+    * Return:
+    *  none
+    *
+    *******************************************************************************/      
+    void FT_Audio_Unmute()
     {
         uint8 t = 0;
         
@@ -328,17 +360,61 @@ void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values)
     
 #endif
 
+/*******************************************************************************
+* Function Name: FT_Sound_Volume
+********************************************************************************
+*
+* Summary:
+*  Set volume level for sounds.
+*
+* Parameters:
+*  volume:  volume level. Maximun 255.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void FT_Sound_Volume(uint8 volume)
 {
     FT_Register_Write(REG_VOL_SOUND, volume);
 }
 
+/*******************************************************************************
+* Function Name: FT_Sound_Play
+********************************************************************************
+*
+* Summary:
+*  Play sound.
+*
+* Parameters:
+*  sound:   sound to be played.
+*  pitch:   pitch. 
+*  Look at FT datsheet for more info.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void FT_Sound_Play(uint8 sound, uint8 pitch)
 {
     FT_Register_Write(REG_SOUND, sound | (pitch << 16));
     FT_Register_Write(REG_PLAY, 1);
 }
 
+/*******************************************************************************
+* Function Name: FT_Sound_Stop
+********************************************************************************
+*
+* Summary:
+*  Stops sound.
+*
+* Parameters:
+*  none
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void FT_Sound_Stop()
 {
     FT_Register_Write(REG_SOUND, 0x60);
@@ -365,39 +441,127 @@ uint8 FTIsCoproccesorReady()
     return EVE_CoPro_IsReady(&ramCMDOffset);
 }
 
-/*******************************************************************************
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
 *   Display list functions.
-*******************************************************************************/ 
+*******************************************************************************
+*******************************************************************************
+*******************************************************************************/
     
+/*******************************************************************************
+* Function Name: DLStartList
+********************************************************************************
+*
+* Summary:
+*  Function used to start a new "Display" list.
+*
+* Parameters:
+*  none
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void DLStartList()
 {
-    ramPtr = RAM_DL;
+    ramPtr = RAM_DL;                                // Display list ram in FT chip.
     SPI_Transfer_Start(ramPtr  | MEMORY_WRITE);
 }
 
+/*******************************************************************************
+* Function Name: DLListNewItem
+********************************************************************************
+*
+* Summary:
+*  Put new item (new command) inside current display list.
+*  During display list, pointer to FT ram is not incremented in software.
+*  It is incremnted inside FT chip.
+*
+* Parameters:
+*  item:    command to be inserted in the list.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void DLListNewItem(unsigned long item)
 {
-    SPI_Transfer_Write_Long(item);
+    SPI_Transfer_Write_Long(item);                  // All display list commands are 32 bits long.
 }
 
+/*******************************************************************************
+* Function Name: DLEndList
+********************************************************************************
+*
+* Summary:
+*  Finish a display list.
+*
+* Parameters:
+*  none
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void DLEndList()
 {
-    SPI_Transfer_Write_Long(DL_DISPLAY);
-    SPI_Transfer_End();
-    FT_Register_Write(REG_DLSWAP, DLSWAP_FRAME);
+    SPI_Transfer_Write_Long(DL_DISPLAY);            // Send "DL_DISPLAY" command to finish the list.
+    SPI_Transfer_End();                             // Finish SPI communications.
+    FT_Register_Write(REG_DLSWAP, DLSWAP_FRAME);    // Make the list visible in display.
 }
 
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+*   Coprocessor list functions.
+*******************************************************************************
+*******************************************************************************
+*******************************************************************************/
+
+/*******************************************************************************
+* Function Name: CMDStartList
+********************************************************************************
+*
+* Summary:
+*  Function used to start a new "Coproccesor" list.
+*
+* Parameters:
+*  none
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void CMDStartList()
 {
+    /* Fist wait until the coproccesor is ready. It have finished proccesing 
+       previous commands. */
     while (!EVE_CoPro_IsReady(&ramCMDOffset)) {}
     
-    SPI_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE); // Start the display list
+    SPI_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
     SPI_Transfer_Write_Long(CMD_DLSTART);
-    ramCMDOffset += 4;
+    ramCMDOffset += 4;                                              // Manage offset to FT RAM.
 }
 
-
-
+/*******************************************************************************
+* Function Name: CMDEndList
+********************************************************************************
+*
+* Summary:
+*  Function used to start a new "Coproccesor" list.
+*
+* Parameters:
+*  swap:    if = 1, then sends command CMD_SWAP.
+*           if = 0, do not send command CMD_SWAP.
+*      Sending CMD_SWAP is the usual way of finishing a coproccesor list, but 
+*  sometimes we can not send CMD_SWAP command so the command sent previously to
+*  FT chip can work properly (ex: CMD_SPINNER).
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void CMDEndList(unsigned char swap)
 {
     if (swap)
@@ -412,15 +576,36 @@ void CMDEndList(unsigned char swap)
     EVE_Memory_Write_Word(REG_CMD_WRITE, (ramCMDOffset));
 }
 
+/*******************************************************************************
+* Function Name: CMDListAddItem
+********************************************************************************
+*
+* Summary:
+*  Put new item inside current coproccesor list.
+*
+* Parameters:
+*  tobesent:    pointer to the item to be sent to FT chip.
+*  length:      length (in bytes) to be sent.
+*  string:      for commands with strings (like CMD_BUTTON or CMD_TEXT) this is
+*               a pointer to the string. For command that don´t use strings this
+*               have to take value 0.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char *string)
 {
     unsigned char *cptr = string;
     
-    SPI_TransferL_Write_ByteArray(tobesent, length);
-    ramCMDOffset += length;
+    SPI_TransferL_Write_ByteArray(tobesent, length);    // Send all command parameters. 
+    ramCMDOffset += length;                             // Adjust offset to command RAM in FT chip.
     
-    if (string != 0)
+    // Send the string if pointer to string is not zero.
+    if (string != 0)                            
     {
+        // Last byte of the string to be sent have to be equal to 0.
+        // So, send bytes until we find byte = 0. 
         while (*cptr != 0)
         {
             SPI_TransferL_Write_Byte(*cptr);
@@ -428,9 +613,13 @@ void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char 
             cptr++;
         } 
     
+        // Send last byte (byte = 0) to FT chip.
         SPI_TransferL_Write_Byte(0);
         ramCMDOffset++;
     
+        // Every time we send a string to FT chip, its lenght have be multiple of 4.
+        // If the length of the string is shorter than that, the we send 0 bytes until it is
+        // a multiple of 4.
         while ((ramCMDOffset % 4) != 0)
         {
             SPI_TransferL_Write_Byte(0);
@@ -439,6 +628,44 @@ void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char 
     }
 }
 
+/*******************************************************************************
+* Function Name: CMDListAddDLItem
+********************************************************************************
+*
+* Summary:
+*  Put a "Display" list item in a coproccesor command list.
+*
+* Parameters:
+*  item:    display list item.    
+*
+* Return:
+*  none
+*
+*******************************************************************************/
+void CMDListAddDLItem(unsigned long item)
+{
+    SPI_Transfer_Write_Long(item); 
+    ramCMDOffset += 4;
+}
+
+/*******************************************************************************
+* Function Name: FT_Write_ByteArray_4
+********************************************************************************
+*
+* Summary:
+*  Send an array of bytes to FT chip.
+*  Used when bytes to sent have to be multiple of four but possibly they are not.
+*  This functions, if the array to be sent is not multiple of 4; sends 0 bytes
+*  until it is multiple.
+*
+* Parameters:
+*  data:    pointer to array of bytes to be sent.
+*  length:  length of the array.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
 void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length)
 {
     SPI_TransferL_Write_ByteArray(data, length);
@@ -451,11 +678,7 @@ void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length)
     }
 }
 
-void CMDListAddDLItem(unsigned long item)
-{
-    SPI_Transfer_Write_Long(item); 
-    ramCMDOffset += 4;
-}
+
 
 
 
