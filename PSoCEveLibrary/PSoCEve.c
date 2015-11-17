@@ -279,7 +279,7 @@ void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values)
         
     for (loop = 0; loop < 6; loop++)
     {
-        values->TouchTransform_X[loop] = FTMemoryReadUint32(ptr);
+        values->TouchTransform_X[loop] = FT_Read_UINT32(ptr | MEMORY_READ);
         ptr += 4;
     }
 }

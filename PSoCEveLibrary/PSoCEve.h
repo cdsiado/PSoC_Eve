@@ -602,6 +602,7 @@ typedef struct { int32 Command;} CINT32;
 typedef struct { int32 Command; int8 v0; int8 v1; int8 v2; int8 v3; } CINT32_4INT8;
 typedef struct { int32 Command; int32 v0; } CINT32_CINT32;
 typedef struct { int32 Command; int32 v0; int32 v1; } CINT32_2CINT32;
+typedef struct { int32 Command; int32 v0; int32 v1; int32 v2; } CINT32_3CINT32;
 typedef struct { int32 Command; int16 v0; int16 v1; int8 v2; int8 v3; int8 v4; int8 v5; int16 v6; int16 v7; int8 v8; int8 v9; int8 v10; int8 v11; } CINT32_2INT16_4INT8_X2;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; } CINT32_4INT16;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int32 v4; } CINT32_4INT16_CINT32;
@@ -644,13 +645,17 @@ typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int16 v4
 *   EVE Coprocesor Commands & related macros.
 *******************************************************************************/
 
+/* Macro name : CMDDLStart
+   Description: Wrapper to CMD_DLSTART command.
+*/ 
 #define CMD_DLSTART             0xffffff00
-#define mEVE_CoPro_StartDisplayList() \
-    SPI_TransferL_Write_Long(CMD_DLSTART); ramCMDOffset += 4
-// ---------------------------------------
+#define CMDDLStart() ((uint8*)&(CINT32){CMD_DLSTART}), sizeof(CINT32), 0
+
+/* Macro name : CMDSwap
+   Description: Wrapper to CMD_Swap command.
+*/ 
 #define CMD_SWAP                0xffffff01
-#define mEVE_CoPro_Swap() \
-    SPI_TransferL_Write_Long(CMD_SWAP); ramCMDOffset += 4    
+#define CMDSwap() ((uint8*)&(CINT32){CMD_SWAP}), sizeof(CINT32), 0   
 
 /* Macro name : CMDInterrupt
    Description: Wrapper to CMD_INTERRUPT command.
@@ -808,15 +813,24 @@ typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int16 v4
 */
 #define CMD_STOP                0xffffff17
 #define CMDStop() ((uint8*)&(CINT32){CMD_STOP}), sizeof(CINT32), 0
-// ---------------------------------------
+
+/*****/
 #define CMD_MEMCRC              0xffffff18
-// ---------------------------------------
+
+/*****/
 #define CMD_REGREAD             0xffffff19
-// ---------------------------------------
+
+/*****/
 #define CMD_MEMWRITE            0xffffff1a
-// ---------------------------------------
+
+/* Macro name : CMDMemSet
+   Description: Wrapper to CMD_MEMSET command.
+   Parameters:
+        ptr: int32; value: int32; size: int32
+*/
 #define CMD_MEMSET              0xffffff1b
-void EVE_CoPro_MemorySet(unsigned long ptr, unsigned long value, unsigned long num);
+#define CMDMemSet(ptr, value, size) \
+    ((uint8*)&(CINT32_3CINT32){CMD_MEMSET, ptr, value, size}), sizeof(CINT32_3CINT32), 0
 
 /* Macro name : CMDMemZero
    Description: Wrapper to CMD_MEMZERO command.
@@ -826,13 +840,24 @@ void EVE_CoPro_MemorySet(unsigned long ptr, unsigned long value, unsigned long n
 #define CMD_MEMZERO             0xffffff1c
 #define CMDMemZero(ptr, size) \
     ((uint8*)&(CINT32_2CINT32){CMD_MEMZERO, ptr, size}), sizeof(CINT32_2CINT32), 0
-// ---------------------------------------
+
+/* Macro name : CMDMemCopy
+   Description: Wrapper to CMD_MEMCPY command.
+   Parameters:
+        dest: int32; src: int32; size: int32
+*/
 #define CMD_MEMCPY              0xffffff1d
-void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned long num);
-// ---------------------------------------
+#define CMDMemCopy(dest, src, size) \
+    ((uint8*)&(CINT32_3CINT32){CMD_MEMCPY, dest, src, size}), sizeof(CINT32_3CINT32), 0
+
+/* Macro name : CMDAppend
+   Description: Wrapper to CMD_APPEND command.
+   Parameters:
+        ptr: int32; size: int32
+*/
 #define CMD_APPEND              0xffffff1e
-#define mEVE_CoPro_Append(ptr, size) \
-    EVE_CoPro_Send_UlongUlong(CMD_APPEND, ptr, size)
+#define CMDAppend(ptr, size) \
+    ((uint8*)&(CINT32_2CINT32){CMD_APPEND, ptr, size}), sizeof(CINT32_2CINT32), 0
 
 /* Macro name : CMDSnapshot
    Description: Wrapper to CMD_SNAPSHOT command.
@@ -851,14 +876,28 @@ void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned 
 #define CMD_INFLATE             0xffffff22
 #define CMDInflate(ptr) \
     ((uint8*)&(CINT32_CINT32){CMD_INFLATE, ptr}), sizeof(CINT32_CINT32), 0
-// ---------------------------------------
+
+/*****/
 #define CMD_GETPTR              0xffffff23
-// ---------------------------------------
+
+/*****/
 #define CMD_LOADIMAGE           0xffffff24
-// ---------------------------------------
+
+/* Macro name : CMDLoadIdentity
+   Description: Wrapper to CMD_LOADIDENTITY command.
+*/
 #define CMD_LOADIDENTITY        0xffffff26
-// ---------------------------------------
+#define CMDLoadIdentity() ((uint8*)&(CINT32){CMD_LOADIDENTITY}), sizeof(CINT32), 0
+
+/* Macro name : CMDTranslate
+   Description: Wrapper to CMD_TRANSLATE command.
+   Parameters:
+        tx: int32; ty: int32
+        Parameters are multiplied by 65536
+*/
 #define CMD_TRANSLATE           0xffffff27
+#define CMDTranslate(tx, ty) \
+    ((uint8*)&(CINT32_2CINT32){CMD_TRANSLATE, tx * 65536, ty * 65536}), sizeof(CINT32_2CINT32), 0
     
 /* Macro name : CMDScale
    Description: Wrapper to CMD_SCALE command.
@@ -950,7 +989,8 @@ void EVE_CoPro_MemoryCopy(unsigned long source, unsigned long destiny, unsigned 
 */
 #define CMD_COLDSTART           0xffffff32
 #define CMDColdstart() ((uint8*)&(CINT32){CMD_COLDSTART}), sizeof(CINT32), 0 
-// ---------------------------------------
+
+/*****/
 #define CMD_GETMATRIX           0xffffff33
 
 /* Macro name : CMDGradcolor

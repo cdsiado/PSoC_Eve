@@ -36,7 +36,7 @@ void FT_Send_Byte(uint8 data);
 void FT_Send_ByteArray(const uint8 *data, uint32 size);
 void FT_Send_UINT32(uint32 data);
 
-uint32 FTMemoryReadUint32(uint32 address);
+//uint32 FTMemoryReadUint32(uint32 address);
 
     
 #endif /* End PSOC_EVE_HAL_H */    
