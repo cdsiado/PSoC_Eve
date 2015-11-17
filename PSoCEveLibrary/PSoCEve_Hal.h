@@ -21,23 +21,20 @@
 #if !defined(PSOC_EVE_HAL_H)
 #define PSOC_EVE_HAL_H
     
-#include <cytypes.h>    
+#include <cytypes.h>  
+    
+void FTCommandWrite(uint8 command);   
+void FT_Write_Byte(uint32 address, uint8 data);
+uint8 FT_Read_Byte(uint32 address);
+void FT_Write_UINT32(uint32 address, uint32 data);    
+uint32 FT_Read_UINT32(uint32 address);
     
     
-void SPI_Transfer_Start(unsigned long address);
-void SPI_Transfer_Write_Long(unsigned long data);
-void SPI_Transfer_End();    
-void EVE_Memory_Write_Byte(unsigned long address, uint8 data);
-
-void SPI_TransferL_Write_Byte(unsigned char data);
-void SPI_TransferL_Write_ByteArray(const unsigned char *data, unsigned long size);   
-void SPI_Write_ByteArray_4(const unsigned char *data, unsigned long size);
-void SPI_TransferS_Write_Long(unsigned long address, unsigned long data);    
-unsigned long SPI_TransferS_Read_Long(unsigned long address);    
-void FTCommandWrite(unsigned char command);    
-void EVE_Memory_Write_Word(unsigned long address, unsigned int data);
-unsigned char EVE_Memory_Read_Byte(unsigned long address);
-unsigned int EVE_Memory_Read_Word(unsigned long address); 
+void FT_Transfer_Start(uint32 address);
+void FT_Transfer_End();
+void FT_Send_Byte(uint8 data);
+void FT_Send_ByteArray(const uint8 *data, uint32 size);
+void FT_Send_UINT32(uint32 data);
 
 uint32 FTMemoryReadUint32(uint32 address);
 

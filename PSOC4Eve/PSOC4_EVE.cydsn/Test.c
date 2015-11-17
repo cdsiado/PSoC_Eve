@@ -179,9 +179,9 @@ void T_PRIMITIVE_BITMAP()
     // Firt, copy the bitmap data from program memory to RAM_G (graphics RAM) of the 
     // EVE chip. Starting at address 0.
     bitmaplength = sizeof(testbitmap);
-    SPI_Transfer_Start(RAM_G | MEMORY_WRITE);
-    SPI_TransferL_Write_ByteArray(testbitmap, bitmaplength);
-    SPI_Transfer_End();
+    FT_Transfer_Start(RAM_G | MEMORY_WRITE);
+    FT_Send_ByteArray(testbitmap, bitmaplength);
+    FT_Transfer_End();
     
     DLStartList();                                      // Start the display list.
     DLListNewItem(DLClearColorRGB(0x00, 0x00, 0x00));   // Set red color for background. 
@@ -364,7 +364,7 @@ void T_DL_TAG_AND_MASK()
         
         while (readedtag == 0)
         {
-            readedtag = EVE_Memory_Read_Byte(REG_TOUCH_TAG);
+            readedtag = FT_Read_Byte(REG_TOUCH_TAG);
             
             if (readedtag == 1) 
             {
@@ -399,7 +399,7 @@ void T_CMD_GRADIENT()
     CMDStartList(); 
     CMDListAddDLItem(DLClearColorRGB(0x00, 0x00, 0x00));
     CMDListAddDLItem(DLClear(1, 1, 1));    
-    CMDListAddItem(CMDGradient(10, 10, 0, 0, 0xFF, 470, 262, 0xFF, 0x0, 0x0));   // TODO: verificar coordenadas
+    CMDListAddItem(CMDGradient(0, 0, 0, 0, 0xFF, 160, 0, 0xFF, 0x0, 0x0));
     CMDEndList(END_DL_SWAP);     
 }
 
@@ -631,8 +631,8 @@ void T_CMD_SKETCH()
     CMDListAddDLItem(DLTagMask(0));
     
     CMDListAddDLItem(DLColorRGB(0xFF, 0xFF, 0xFF));
-    CMDListAddItem(CMDMemZero(0, (LCDWIDTH * LCDHEIGHT / 8)));  // Fill with zeroes area used to store the sketch
-    CMDListAddItem(CMDSketch(21, 21, 299, 249, 0, L1));         // Start sketch
+    CMDListAddItem(CMDMemZero(0, (LCDWIDTH * LCDHEIGHT / 8)));          // Fill with zeroes area used to store the sketch
+    CMDListAddItem(CMDSketch(21, 21, 299, 249, 0, BITMAP_LAYOUT_L1));   // Start sketch
     CMDEndList(END_DL_SWAP);
     
     CyDelay(20000); // 20 seconds to draw
@@ -664,10 +664,9 @@ void T_CMD_SCREENSAVER()
     // Firt, copy the bitmap data from program memory to RAM_G (graphics RAM) of the 
     // EVE chip. Starting at address 0.
     bitmaplength = sizeof(testbitmap);
-    SPI_Transfer_Start(RAM_G | MEMORY_WRITE);
-    //SPI_TransferL_Write_ByteArray(testbitmap, bitmaplength);
+    FT_Transfer_Start(RAM_G | MEMORY_WRITE);
     FT_Write_ByteArray_4(testbitmap, bitmaplength);
-    SPI_Transfer_End();
+    FT_Transfer_End();
         
     CMDStartList(); 
     CMDListAddItem(CMDScreenSaver());
@@ -691,7 +690,9 @@ void T_CMD_COLDSTART()
 {
     CMDStartList();
     CMDListAddItem(CMDColdstart());
-    CMDEndList(END_DL_SWAP);    
+    CMDEndList(END_DL_SWAP); 
+    
+    CyDelay(5);
 }
 
 void T_CMD_INFLATE()

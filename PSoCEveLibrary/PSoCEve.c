@@ -23,20 +23,30 @@
 #include "PSoCEve_Hal.h"
 
 //enum LISTTYPE listInProgress = NONE;
-unsigned int ramPtr;
-unsigned int ramCMDOffset;
+uint32 ramPtr;
+uint16 ramCMDOffset;
 
 uint8 listInProgress = NONE;
 
+/*******************************************************************************
+*   Macros.
+*******************************************************************************/
 
-unsigned char EVE_CoPro_IsReady(unsigned int *newoffset);
-
-
-
+/* Macro name : CheckCMDOffset
+   Description: Control roll-over to command list ram in FT chip.
+*/
+#define CheckCMDOffset() if (ramCMDOffset > 4095) { ramCMDOffset = (ramCMDOffset - 4096); }
 
 /*******************************************************************************
-*   General Functions.
+*   Function prototypes.
 *******************************************************************************/
+
+uint8 FTIsCoproReady(uint16 *newoffset);
+
+// *****************************************************************************
+// *****************************************************************************
+// *****************************************************************************
+// *****************************************************************************
 
 /*******************************************************************************
 * Function Name: FT_Init
@@ -135,7 +145,6 @@ uint8 FT_Init()
 void FT_Display_ON()
 {
     unsigned char gpio = FT_Register_Read(REG_GPIO);        // Read actual value of GPIO register.
-    //unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);  // Read actual value of GPIO register.
 
     FT_Register_Write(REG_GPIO, (gpio | 0x80));			    // Set bit 7 of GPIO register (DISP signal).
     FT_Register_Write(REG_PCLK, LCDPCLK);			        // Start clock.
@@ -420,34 +429,6 @@ void FT_Sound_Stop()
     FT_Register_Write(REG_SOUND, 0x60);
     FT_Register_Write(REG_PLAY, 1);    
 }
-
-
-
-
-
-
-
-
-
-/* Re-enables the SCB IP. A clear enable bit has a different effect
-* on the scb IP depending on the version:
-*  CY_SCBIP_V0: resets state, status, TX and RX FIFOs.
-*  CY_SCBIP_V1 or later: resets state, status, TX and RX FIFOs and interrupt sources.
-*/
-
-
-uint8 FTIsCoproccesorReady()
-{
-    return EVE_CoPro_IsReady(&ramCMDOffset);
-}
-
-/******************************************************************************
-*******************************************************************************
-*******************************************************************************
-*   Display list functions.
-*******************************************************************************
-*******************************************************************************
-*******************************************************************************/
     
 /*******************************************************************************
 * Function Name: DLStartList
@@ -466,7 +447,7 @@ uint8 FTIsCoproccesorReady()
 void DLStartList()
 {
     ramPtr = RAM_DL;                                // Display list ram in FT chip.
-    SPI_Transfer_Start(ramPtr  | MEMORY_WRITE);
+    FT_Transfer_Start(ramPtr  | MEMORY_WRITE);
 }
 
 /*******************************************************************************
@@ -487,7 +468,7 @@ void DLStartList()
 *******************************************************************************/
 void DLListNewItem(unsigned long item)
 {
-    SPI_Transfer_Write_Long(item);                  // All display list commands are 32 bits long.
+    FT_Send_UINT32(item);                  // All display list commands are 32 bits long.
 }
 
 /*******************************************************************************
@@ -506,18 +487,10 @@ void DLListNewItem(unsigned long item)
 *******************************************************************************/
 void DLEndList()
 {
-    SPI_Transfer_Write_Long(DL_DISPLAY);            // Send "DL_DISPLAY" command to finish the list.
-    SPI_Transfer_End();                             // Finish SPI communications.
+    FT_Send_UINT32(DL_DISPLAY);            // Send "DL_DISPLAY" command to finish the list.
+    FT_Transfer_End();                             // Finish SPI communications.
     FT_Register_Write(REG_DLSWAP, DLSWAP_FRAME);    // Make the list visible in display.
 }
-
-/******************************************************************************
-*******************************************************************************
-*******************************************************************************
-*   Coprocessor list functions.
-*******************************************************************************
-*******************************************************************************
-*******************************************************************************/
 
 /*******************************************************************************
 * Function Name: CMDStartList
@@ -537,11 +510,11 @@ void CMDStartList()
 {
     /* Fist wait until the coproccesor is ready. It have finished proccesing 
        previous commands. */
-    while (!EVE_CoPro_IsReady(&ramCMDOffset)) {}
+    while (!FTIsCoproReady(&ramCMDOffset)) {}
     
-    SPI_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
-    SPI_Transfer_Write_Long(CMD_DLSTART);
-    ramCMDOffset += 4;                                              // Manage offset to FT RAM.
+    FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
+    FT_Send_UINT32(CMD_DLSTART);
+    ramCMDOffset += 4; CheckCMDOffset();                            // Manage offset to FT RAM.
 }
 
 /*******************************************************************************
@@ -555,8 +528,8 @@ void CMDStartList()
 *  swap:    if = 1, then sends command CMD_SWAP.
 *           if = 0, do not send command CMD_SWAP.
 *      Sending CMD_SWAP is the usual way of finishing a coproccesor list, but 
-*  sometimes we can not send CMD_SWAP command so the command sent previously to
-*  FT chip can work properly (ex: CMD_SPINNER).
+*  sometimes we can not send CMD_SWAP command because the command sent 
+*  previously to FT chip can work properly (ex: CMD_SPINNER).
 *
 * Return:
 *  none
@@ -566,14 +539,14 @@ void CMDEndList(unsigned char swap)
 {
     if (swap)
     {
-        SPI_Transfer_Write_Long(DL_DISPLAY); 
-        ramCMDOffset += 4;
-        SPI_Transfer_Write_Long(CMD_SWAP); 
-        ramCMDOffset += 4;
+        FT_Send_UINT32(DL_DISPLAY); 
+        ramCMDOffset += 4; CheckCMDOffset();                            // Manage offset to FT RAM.
+        FT_Send_UINT32(CMD_SWAP); 
+        ramCMDOffset += 4; CheckCMDOffset();                            // Manage offset to FT RAM.
     }
     
-    SPI_Transfer_End();
-    EVE_Memory_Write_Word(REG_CMD_WRITE, (ramCMDOffset));
+    FT_Transfer_End();
+    FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
 }
 
 /*******************************************************************************
@@ -594,12 +567,12 @@ void CMDEndList(unsigned char swap)
 *  none
 *
 *******************************************************************************/
-void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char *string)
+void CMDListAddItem(uint8 *tobesent, uint8 length, unsigned char *string)
 {
     unsigned char *cptr = string;
     
-    SPI_TransferL_Write_ByteArray(tobesent, length);    // Send all command parameters. 
-    ramCMDOffset += length;                             // Adjust offset to command RAM in FT chip.
+    FT_Send_ByteArray(tobesent, length);                // Send all command parameters. 
+    ramCMDOffset += length; CheckCMDOffset();           // Manage offset to FT RAM. 
     
     // Send the string if pointer to string is not zero.
     if (string != 0)                            
@@ -608,22 +581,22 @@ void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char 
         // So, send bytes until we find byte = 0. 
         while (*cptr != 0)
         {
-            SPI_TransferL_Write_Byte(*cptr);
-            ramCMDOffset++;
+            FT_Send_Byte(*cptr);
+            ramCMDOffset++;  CheckCMDOffset();          // Manage offset to FT RAM.
             cptr++;
         } 
     
         // Send last byte (byte = 0) to FT chip.
-        SPI_TransferL_Write_Byte(0);
-        ramCMDOffset++;
+        FT_Send_Byte(0);
+        ramCMDOffset++; CheckCMDOffset();               // Manage offset to FT RAM.
     
         // Every time we send a string to FT chip, its lenght have be multiple of 4.
         // If the length of the string is shorter than that, the we send 0 bytes until it is
         // a multiple of 4.
         while ((ramCMDOffset % 4) != 0)
         {
-            SPI_TransferL_Write_Byte(0);
-            ramCMDOffset++;
+            FT_Send_Byte(0);
+            ramCMDOffset++; CheckCMDOffset();           // Manage offset to FT RAM.
         }
     }
 }
@@ -642,10 +615,62 @@ void CMDListAddItem(unsigned char *tobesent, unsigned int length, unsigned char 
 *  none
 *
 *******************************************************************************/
-void CMDListAddDLItem(unsigned long item)
+void CMDListAddDLItem(uint32 item)
 {
-    SPI_Transfer_Write_Long(item); 
-    ramCMDOffset += 4;
+    FT_Send_UINT32(item); 
+    ramCMDOffset += 4; CheckCMDOffset();                // Manage offset to FT RAM.
+}
+
+/*******************************************************************************
+* Function Name: FTIsCoproccesorReady
+********************************************************************************
+*
+* Summary:
+*  Wrapper to FTIsCoproReady function.
+*  Used with commands like CMD_CALIBRATE to know when command work have finished.
+*
+* Parameters:
+*  none
+*
+* Return:
+*  1, if coprocessor have finished proccesing commands list.
+*  0, if coprocessor is busy.
+*
+*******************************************************************************/
+
+uint8 FTIsCoproccesorReady()
+{
+    return FTIsCoproReady(&ramCMDOffset);
+}
+
+/*******************************************************************************
+* Function Name: FTIsCoproReady
+********************************************************************************
+*
+* Summary:
+*  Check if coproccesor is ready to proccess a new commands list.
+*
+* Parameters:
+*  newoffset:   pointer to variable to store offset to command list.
+*
+* Return:
+*  1, if coproccesor is ready.
+*  0, if coproccesor is busy proccessing a commands list.
+*
+*******************************************************************************/
+uint8 FTIsCoproReady(uint16 *newoffset)
+{
+    unsigned int cmdbufferrd, cmdbufferwr;
+
+    cmdbufferrd = FT_Register_Read(REG_CMD_READ);		    // Read the graphics processor read pointer.
+	cmdbufferwr = FT_Register_Read(REG_CMD_WRITE); 	        // Read the graphics processor write pointer.
+    
+    if (cmdbufferrd != cmdbufferwr) return 0;               // If both are equal, processor have finished
+    else                                                    //    processing previous list.
+    {
+        *newoffset = cmdbufferwr;
+        return 1;                  
+    }
 }
 
 /*******************************************************************************
@@ -654,8 +679,8 @@ void CMDListAddDLItem(unsigned long item)
 *
 * Summary:
 *  Send an array of bytes to FT chip.
-*  Used when bytes to sent have to be multiple of four but possibly they are not.
-*  This functions, if the array to be sent is not multiple of 4; sends 0 bytes
+*  Used when bytes to send have to be multiple of four but possibly they are not.
+*  This functions, if the array to be send is not multiple of 4; sends 0 bytes
 *  until it is multiple.
 *
 * Parameters:
@@ -666,438 +691,15 @@ void CMDListAddDLItem(unsigned long item)
 *  none
 *
 *******************************************************************************/
-void FT_Write_ByteArray_4(const unsigned char *data, unsigned long length)
+void FT_Write_ByteArray_4(const uint8 *data, uint32 length)
 {
-    SPI_TransferL_Write_ByteArray(data, length);
-    ramCMDOffset += length;
+    FT_Send_ByteArray(data, length);
+    ramCMDOffset += length; CheckCMDOffset();           // Manage offset to FT RAM.
     
     while ((ramCMDOffset % 4) != 0)
     {
-        SPI_TransferL_Write_Byte(0);
-        ramCMDOffset++;
+        FT_Send_Byte(0);
+        ramCMDOffset++; CheckCMDOffset();               // Manage offset to FT RAM.
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-unsigned char EVE_CoPro_IsReady(unsigned int *newoffset)
-{
-    unsigned int cmdbufferrd, cmdbufferwr;
-    
-    cmdbufferrd = EVE_Memory_Read_Word(REG_CMD_READ);		// Read the graphics processor read pointer.
-	cmdbufferwr = EVE_Memory_Read_Word(REG_CMD_WRITE); 	    // Read the graphics processor write pointer.
-    
-    if (cmdbufferrd != cmdbufferwr) return 0;               // If both are equal, processor have finished
-    else                                                    //    processing previous list.
-    {
-        *newoffset = cmdbufferwr;
-        return 1;                  
-    }
-}
-
-
-
-
-/******************************************************************************
- * Function:        void incCMDOffset(currentOffset, commandSize)
- * PreCondition:    None
- *                    starting a command list
- * Input:           currentOffset = graphics processor command list pointer
- *                  commandSize = number of bytes to increment the offset
- * Output:          newOffset = the new ring buffer pointer after adding the command
- * Side Effects:    None
- * Overview:        Adds commandSize to the currentOffset.  
- *                  Checks for 4K ring-buffer offset roll-over 
- * Note:            None
- *****************************************************************************/
-unsigned int IncCMDOffset(unsigned int currentoffset, unsigned char commandsize)
-{
-    unsigned int newOffset = currentoffset + commandsize;
-    
-    if(newOffset > 4095) newOffset = (newOffset - 4096);
-    
-    return newOffset;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-//void EVE_Touch_Enable()
-//{
-//    mEVE_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
-//    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 1200);
-//}
-//
-//void EVE_Touch_Disable()
-//{
-//    mEVE_Register_Write(REG_TOUCH_MODE, 0);
-//    mEVE_Register_Write(REG_TOUCH_RZTHRESH, 0);
-//}
-
-//void EVE_Touch_Calibrate()
-//{
-////    unsigned int cmdoffset;
-////    
-////    while (!EVE_Is_Copro_Ready(&cmdoffset)) {}
-////    
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_DLSTART));// Start the display list
-////	cmdoffset += 4;
-//////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR_RGB | 0x0000FFUL));																									// Set the default clear color to black
-////    cmdoffset += 4;// Update the command pointer
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));																// Clear the screen - this and the previous prevent artifacts between lists
-////    cmdoffset += 4;
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_CALIBRATE));
-////    cmdoffset += 4;	
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_END));
-////    cmdoffset += 4;
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_DISPLAY));
-////    cmdoffset += 4;
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_SWAP));
-////    cmdoffset += 4;
-////    EVE_Memory_Write_Word(REG_CMD_WRITE, (cmdoffset));   
-////    
-////    EVE_Is_Copro_Ready(&cmdoffset);
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//unsigned char EVE_Init_Display()
-//{
-//    unsigned long tvalue;
-//    
-//    
-//    
-//    
-//    // Force a hardware reset of EVE chip using PD_N pin.
-//    PD_N_Write(0); CyDelay(10); PD_N_Write(1); CyDelay(20);
-//    
-//    // Initialize EVE chip. Max SPI speed before the chip is initialized is 11Mhz.
-//    EVE_CommandWrite(FT800_ACTIVE);            // Start FT800
-//    CyDelay(5);	
-//    EVE_CommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
-//    CyDelay(5);	
-//    EVE_CommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
-//    CyDelay(5);	
-//    EVE_CommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
-//    CyDelay(5);
-//    
-//    // After initialization, EVE chip accept commands at up to 30Mhz clock on SPI bus.
-//    
-//    // Read ID register. If we don¨t get 0x7C something is bad.
-//
-//    
-//    if (EVE_RegisterRead(REG_ID) != 0x7C) return 0;
-//    
-//    // At startup, PCLK (pixel clock) and PWM_DUTY (used for backlight) are programmed to 0.
-//    //      Display is off until user turns it on.
-//    
-//    EVE_RegisterWrite(REG_PCLK, 0);
-//    EVE_RegisterWrite(REG_PWM_DUTY, 0);	
-//    
-//    // Continue initializing registers with values from configuration header file.
-//    
-//    EVE_RegisterWrite(REG_HSIZE, LCDWIDTH);	
-//    EVE_RegisterWrite(REG_VSIZE, LCDHEIGHT);
-//    EVE_RegisterWrite(REG_HCYCLE, LCDHCYCLE);
-//    EVE_RegisterWrite(REG_HOFFSET, LCDHOFFSET);
-//    EVE_RegisterWrite(REG_HSYNC0, LCDHSYNC0);
-//    EVE_RegisterWrite(REG_HSYNC1, LCDHSYNC1);
-//    EVE_RegisterWrite(REG_VCYCLE, LCDVCYCLE);
-//    EVE_RegisterWrite(REG_VOFFSET, LCDVOFFSET);
-//    EVE_RegisterWrite(REG_VSYNC0, LCDVSYNC0);
-//    EVE_RegisterWrite(REG_VSYNC1, LCDVSYNC1);
-//    EVE_RegisterWrite(REG_SWIZZLE, LCDSWIZZLE);
-//    EVE_RegisterWrite(REG_PCLK_POL, LCDPCLKPOL);
-//    
-//    // Touch configuration - configure the resistance value to 1200 - this value is specific 
-//    //      to customer requirement and derived by experimentation.
-//    EVE_RegisterWrite(REG_TOUCH_RZTHRESH, 1200);
-//        
-//    return 1;
-//}
-//
-//void EVE_Display_ON()
-//{
-//    unsigned char gpio = EVE_RegisterRead(REG_GPIO);    // Read actual value of GPIO register.
-//
-//    EVE_RegisterWrite(REG_GPIO, (gpio | 0x80));			// Set bit 7 of GPIO register (DISP signal).
-//    EVE_RegisterWrite(REG_PCLK, LCDPCLK);			    // Start clock.
-//}
-//
-//void EVE_Display_OFF()
-//{
-//    unsigned char gpio = EVE_RegisterRead(REG_GPIO);    // Read actual value of GPIO register.
-//
-//    EVE_RegisterWrite(REG_GPIO, (gpio & 0x70));			// Clear bit 7 of GPIO register (DISP signal).
-//    EVE_RegisterWrite(REG_PCLK, LCDPCLK);			    // Stop clock.
-//}
-//
-//void EVE_Touch_Enable()
-//{
-//    EVE_RegisterWrite(REG_TOUCH_MODE, TOUCHMODE_FRAME);
-//    EVE_RegisterWrite(REG_TOUCH_RZTHRESH, 1200);
-//}
-//
-//void EVE_Touch_Disable()
-//{
-//    EVE_RegisterWrite(REG_TOUCH_MODE, 0);
-//    EVE_RegisterWrite(REG_TOUCH_RZTHRESH, 0);
-//}
-
-
-//void EVE_StartList(enum LISTTYPE list)
-//{
-//    if (list == DISPLAY) ramPtr = RAM_DL;
-//    else if (list == COPROCESSOR) ramPtr = RAM_CMD;
-//    
-//    listInProgress = list;
-//    
-//    SPI_Transfer_Start(ramPtr  | MEMORY_WRITE);
-//}
-
-//void EVE_ListNewItem(unsigned long item)
-//{
-//    SPI_Transfer_Write_Long(item);
-//}
-
-//void EVE_EndList(unsigned char swap)
-//{
-//    if (listInProgress == COPROCESSOR)
-//    {
-//        if (swap)
-//        {
-//            SPI_Transfer_Write_Long(DL_DISPLAY); 
-//            ramCMDOffset += 4;
-//            SPI_Transfer_Write_Long(CMD_SWAP); 
-//            ramCMDOffset += 4;
-//        }
-//        
-//        SPI_Transfer_End();
-//        EVE_Memory_Write_Word(REG_CMD_WRITE, (ramCMDOffset));
-//    }
-//    else if (listInProgress == DISPLAY)
-//    {
-//        SPI_Transfer_Write_Long(DL_DISPLAY);
-//        SPI_Transfer_End();
-//        EVE_RegisterWrite(REG_DLSWAP, DLSWAP_FRAME);
-//    }
-//}
-
-/******************************************************************************
- * Function:        void ft800cmdWrite(ftCommand)
- * PreCondition:    None
- * Input:           ftCommand
- * Output:          None
- * Side Effects:    None
- * Overview:        Sends FT800 command
- * Note:            None
- *****************************************************************************/
-//void EVE_CommandWrite(unsigned char command)
-//{
-//    unsigned char tobesent[3] = {command, 0x00, 0x00};
-//
-//    SPI_Transfer_StartSS(); 
-//    SPI_Transfer_Write_Array(tobesent, 3); 
-//    SPI_Transfer_End();
-//}
-//
-//void EVE_RegisterWrite(unsigned long everegister, unsigned long data)
-//{
-//    SPI_Transfer_Start(everegister | MEMORY_WRITE); 
-//    SPI_Transfer_Write_Long(data); 
-//    SPI_Transfer_End();
-//}
-//
-//unsigned char EVE_RegisterRead(unsigned long everegister)
-//{
-//    unsigned long retdata;
-//    
-//    SPI_Transfer_StartRead(everegister | MEMORY_READ); 
-//    retdata = SPI_Transfer_Read_Byte(); 
-//    SPI_Transfer_End();    
-//    
-//    return retdata;
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ***** GENERAL ***** */
-/* ------------------- */
-                                    
-//unsigned char EVE_Init_Display()
-//{
-//    PD_N_Write(0);
-//    CyDelay(10);
-//    PD_N_Write(1);
-//    CyDelay(20);
-//    
-//    
-//	
-//    EVE_Command_Write(FT800_ACTIVE);            // Start FT800
-//    CyDelay(5);	
-//    EVE_Command_Write(FT800_CLKEXT);			// Set FT800 for external clock
-//    CyDelay(5);	
-//    EVE_Command_Write(FT800_CLK48M);			// Set FT800 for 48MHz PLL
-//    CyDelay(5);	
-//    EVE_Command_Write(FT800_CORERST);			// Set FT800 for 48MHz PLL
-//    CyDelay(5);
-//    
-//    /* After initialization, EVE chip accept commands at up to 30Mhz clock on SPI bus. */
-//    
-//    // Read ID register. If we don¨t get 0x7C something is bad.
-//
-//    if (EVE_Memory_Read_Byte(REG_ID) != 0x7C)
-//    {
-//        return 0;
-//    }
-//    
-//    EVE_Memory_Write_Byte(REG_PCLK, ZERO);	    // Set PCLK to zero - don't clock the LCD until later
-//    EVE_Memory_Write_Byte(REG_PWM_DUTY, ZERO);	
-//
-//    EVE_Memory_Write_Word(REG_HSIZE, LCDWIDTH);	
-//    EVE_Memory_Write_Word(REG_VSIZE, LCDHEIGHT);
-//    EVE_Memory_Write_Word(REG_HCYCLE, LCDHCYCLE);
-//    EVE_Memory_Write_Word(REG_HOFFSET, LCDHOFFSET);
-//    EVE_Memory_Write_Word(REG_HSYNC0, LCDHSYNC0);
-//    EVE_Memory_Write_Word(REG_HSYNC1, LCDHSYNC1);
-//    EVE_Memory_Write_Word(REG_VCYCLE, LCDVCYCLE);
-//    EVE_Memory_Write_Word(REG_VOFFSET, LCDVOFFSET);
-//    EVE_Memory_Write_Word(REG_VSYNC0, LCDVSYNC0);
-//    EVE_Memory_Write_Word(REG_VSYNC1, LCDVSYNC1);
-//    EVE_Memory_Write_Word(REG_SWIZZLE, LCDSWIZZLE);
-//    EVE_Memory_Write_Word(REG_PCLK_POL, LCDPCLKPOL);
-//    
-//    /* Touch configuration - configure the resistance value to 1200 - this value is specific to customer requirement and derived by experiment */
-//    EVE_Memory_Write_Word(REG_TOUCH_RZTHRESH, 1200);
-//        
-//    return 1;
-//
-//}
-//
-//void EVE_Display_ON()
-//{
-//    unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);    // Read actual value of GPIO register.
-//
-//    EVE_Memory_Write_Byte(REG_GPIO, (gpio | 0x80));			// Set bit 7 of GPIO register (DISP signal).
-//    EVE_Memory_Write_Byte(REG_PCLK, LCDPCLK);			    // Start clock.
-//}
-//
-//void EVE_Display_OFF()
-//{
-//    unsigned char gpio = EVE_Memory_Read_Byte(REG_GPIO);    // Read actual value of GPIO register.
-//
-//    EVE_Memory_Write_Byte(REG_GPIO, (gpio & 0x70));			// Clear bit 7 of GPIO register (DISP signal).
-//    EVE_Memory_Write_Byte(REG_PCLK, LCDPCLK);			    // Stop clock.
-//}
-//
-//void EVE_Touch_Enable()
-//{
-//    EVE_Memory_Write_Byte(REG_TOUCH_MODE, TOUCHMODE_FRAME);
-//    EVE_Memory_Write_Word(REG_TOUCH_RZTHRESH, 1200);
-//}
-//
-//void EVE_Touch_Disable()
-//{
-//    EVE_Memory_Write_Byte(REG_TOUCH_MODE, 0);
-//    EVE_Memory_Write_Word(REG_TOUCH_RZTHRESH, 0);
-//}
-//
-//void EVE_Touch_Calibrate()
-//{
-//    unsigned int cmdoffset;
-//    
-//    while (!EVE_Is_Copro_Ready(&cmdoffset)) {}
-//    
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_DLSTART));// Start the display list
-//	cmdoffset += 4;
-////    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR_RGB | 0x0000FFUL));																									// Set the default clear color to black
-//    cmdoffset += 4;// Update the command pointer
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));																// Clear the screen - this and the previous prevent artifacts between lists
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_CALIBRATE));
-//    cmdoffset += 4;	
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_END));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (DL_DISPLAY));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Long(RAM_CMD + cmdoffset, (CMD_SWAP));
-//    cmdoffset += 4;
-//    EVE_Memory_Write_Word(REG_CMD_WRITE, (cmdoffset));   
-//    
-//    EVE_Is_Copro_Ready(&cmdoffset);
-//}
-//
-
-
-
-/* USER CODE BEGIN 4 */
-
-
-/******************************************************************************
- * Function:        void incCMDOffset(currentOffset, commandSize)
- * PreCondition:    None
- *                    starting a command list
- * Input:           currentOffset = graphics processor command list pointer
- *                  commandSize = number of bytes to increment the offset
- * Output:          newOffset = the new ring buffer pointer after adding the command
- * Side Effects:    None
- * Overview:        Adds commandSize to the currentOffset.  
- *                  Checks for 4K ring-buffer offset roll-over 
- * Note:            None
- *****************************************************************************/
-//unsigned int IncCMDOffset(unsigned int currentoffset, unsigned char commandsize)
-//{
-//    unsigned int newOffset = currentoffset + commandsize;
-//    
-//    if(newOffset > 4095) newOffset = (newOffset - 4096);
-//    
-//    return newOffset;
-//}
-
-
-
-
 
