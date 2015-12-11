@@ -140,80 +140,12 @@ int main()
 
     // ************************************************************************
 
-    
-
     /* CyGlobalIntEnable; */
     for(;;)
     {
-//        /* Place your application code here. */
-//        if (CurrentScreenTask != 0) (*CurrentScreenTask)();
-//        
-//        if (newScreen != currentScreen)
-//        {
-//            switch (newScreen)
-//            {
-//                case 0: 
-//                {
-//                    CurrentScreenTask = Screen_0_Create(Screen_0_TouchCallback);
-//                }; break;
-//                case 1:
-//                {
-//                    CurrentScreenTask = Screen_1_Create(Screen_1_TouchCallback);
-//                }; break;
-//            }
-//            
-//            currentScreen = newScreen;
-//        }
     }
 }
 
-//void Screen_0_TouchCallback(unsigned char button)
-//{
-//    if (button == NEXT) newScreen = 1;
-//}
-//
-//void Screen_1_TouchCallback(unsigned char button)
-//{
-//    if (button == BACK) newScreen = 0;
-//    else if (button == NEXT) newScreen = 2;
-//}
-//
-//void Screen_2_TouchCallback(unsigned char button)
-//{
-//    if (button == BACK) newScreen = 1;
-//}
-//
-//void Screen_1()
-//{
-//    unsigned long ramDisplayList = RAM_DL;                                              // Set beginning of display list memory.
-//    
-////    EVE_Memory_Write_Long(ramDisplayList, (DL_CLEAR_COLOR_RGB | RED)); 		                // Clear screen (using background color.  
-////    ramDisplayList += 4;
-////    EVE_Memory_Write_Long(ramDisplayList, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));    // Clear all.	  															
-////    ramDisplayList += 4;										
-////    EVE_Memory_Write_Long(ramDisplayList, DL_DISPLAY);			                        // DISPLAY (End of display list)
-////    EVE_Memory_Write_Long(REG_DLSWAP, DLSWAP_FRAME);			
-////      ramDisplayList = RAM_DL;
-////    EVE_Display_ON();
-////    EVE_Memory_Write_Byte(REG_PWM_DUTY, 128);	
-//}
-////
-////void Screen_2()
-////{
-////    unsigned long ramDisplayList = RAM_DL;                                              // Set beginning of display list memory.
-////    
-////    EVE_Memory_Write_Long(ramDisplayList, (DL_CLEAR_RGB | BLACK)); 		                // Clear screen (using background color.  
-////    ramDisplayList += 4;
-////    EVE_Memory_Write_Long(ramDisplayList, (DL_CLEAR | CLR_COL | CLR_STN | CLR_TAG));    // Clear all.	  															
-////    ramDisplayList += 4;										
-////    EVE_Memory_Write_Long(ramDisplayList, DL_DISPLAY);			                        // DISPLAY (End of display list)
-////    EVE_Memory_Write_Long(REG_DLSWAP, DLSWAP_FRAME);
-////}
-////
-//void Screen_3()
-//{
-//    EVE_Touch_Enable();
-//    EVE_Touch_Calibrate();    
-//}
+
 
 /* [] END OF FILE */

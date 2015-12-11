@@ -21,12 +21,15 @@
 #include <project.h>
 #include "PSoCEve_Hal.h"
 
+// Define SS bus pin delay in uS.
+#define SS_DELAY        100
+
 // FT800 Memory Commands
 #define MEMORY_WRITE    0x80			// FT800 Host Memory Write 
 #define MEMORY_READ		0x00			// FT800 Host Memory Read  
 
-#define mSPI_EVE_WAIT_TXDONE()      while(0u == (SPI_EVE_GetMasterInterruptSource() & SPI_EVE_INTR_MASTER_SPI_DONE)) {} \
-                                    SPI_EVE_ClearMasterInterruptSource(SPI_EVE_INTR_MASTER_SPI_DONE);
+#define mSPI_WAIT_TXDONE()      while(0u == (SPI_EVE_GetMasterInterruptSource() & SPI_EVE_INTR_MASTER_SPI_DONE)) {} \
+                                SPI_EVE_ClearMasterInterruptSource(SPI_EVE_INTR_MASTER_SPI_DONE);
 
 unsigned char spiTransferInProgress = 0;
 
@@ -50,13 +53,13 @@ void FTCommandWrite(uint8 command)
     unsigned char tobesent[3] = {command, 0x00, 0x00};
     
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 3);
     
-    mSPI_EVE_WAIT_TXDONE();
-    CyDelay(5);
+    mSPI_WAIT_TXDONE();
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
 }
 
@@ -80,14 +83,14 @@ void FT_Write_Byte(uint32 address, uint8 data)
     unsigned char tobesent[4] = { (address >> 16) | MEMORY_WRITE, (address >> 8), address, data };
     
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 4);
     
-    mSPI_EVE_WAIT_TXDONE();    
+    mSPI_WAIT_TXDONE();    
 
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
 }
 
@@ -111,21 +114,21 @@ uint8 FT_Read_Byte(uint32 address)
     unsigned char tobesent[4] = { (address >> 16) | MEMORY_READ, (address >> 8), address,  0x00 };
 
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     
     SPI_EVE_SpiUartPutArray(tobesent, 4);
-    mSPI_EVE_WAIT_TXDONE();
+    mSPI_WAIT_TXDONE(); 
     
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartClearRxBuffer();
     SPI_EVE_SpiUartWriteTxData(0x00);
-    mSPI_EVE_WAIT_TXDONE();
+    mSPI_WAIT_TXDONE();
         
     data = SPI_EVE_SpiUartReadRxData();
 
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
         
     return data;
@@ -151,14 +154,14 @@ void FT_Write_UINT32(uint32 address, uint32 data)
     unsigned char tobesent[7] =  { (address >> 16), (address >> 8), address,  data, (data >> 8), (data >> 16), (data >> 24) };
         
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 7);
     
-    mSPI_EVE_WAIT_TXDONE();    
+    mSPI_WAIT_TXDONE();    
 
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
 }
 
@@ -182,19 +185,19 @@ uint32 FT_Read_UINT32(uint32 address)
     unsigned char tobesent[4] = { (address >> 16), (address >> 8), address,  0x00 };
         
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 4);
-    mSPI_EVE_WAIT_TXDONE();  
+    mSPI_WAIT_TXDONE(); 
     
     SPI_EVE_SpiUartClearRxBuffer();
     SPI_EVE_SpiUartWriteTxData(0x00);
     SPI_EVE_SpiUartWriteTxData(0x00); 
     SPI_EVE_SpiUartWriteTxData(0x00);
     SPI_EVE_SpiUartWriteTxData(0x00);
-    mSPI_EVE_WAIT_TXDONE();  
-    CyDelay(5);
+    mSPI_WAIT_TXDONE();  
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
 
     
@@ -250,12 +253,12 @@ void FT_Transfer_Start(uint32 address)
     unsigned char tobesent[] =  { (address >> 16), (address >> 8), address };
         
     SPI_EVE_SS_Write(0);
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
 
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 3);
     
-    mSPI_EVE_WAIT_TXDONE();    
+    mSPI_WAIT_TXDONE();    
 }
 
 /*******************************************************************************
@@ -274,7 +277,7 @@ void FT_Transfer_Start(uint32 address)
 *******************************************************************************/
 void FT_Transfer_End()
 {
-    CyDelay(5);
+    CyDelayUs(SS_DELAY);
     SPI_EVE_SS_Write(1);
 }
 
@@ -298,7 +301,7 @@ void FT_Send_Byte(uint8 data)
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartWriteTxData(data);
     
-    mSPI_EVE_WAIT_TXDONE();
+    mSPI_WAIT_TXDONE();
 }
 
 /*******************************************************************************
@@ -322,7 +325,7 @@ void FT_Send_ByteArray(const uint8 *data, uint32 size)
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(data, size);
         
-    mSPI_EVE_WAIT_TXDONE();     
+    mSPI_WAIT_TXDONE();     
 }
 
 /*******************************************************************************
@@ -347,7 +350,7 @@ void FT_Send_UINT32(uint32 data)
     SPI_EVE_SpiUartClearTxBuffer();
     SPI_EVE_SpiUartPutArray(tobesent, 4);
     
-    mSPI_EVE_WAIT_TXDONE();  
+    mSPI_WAIT_TXDONE();  
 }
 
 /* [] END OF FILE */

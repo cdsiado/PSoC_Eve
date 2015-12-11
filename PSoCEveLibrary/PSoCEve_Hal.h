@@ -21,7 +21,8 @@
 #if !defined(PSOC_EVE_HAL_H)
 #define PSOC_EVE_HAL_H
     
-#include <cytypes.h>  
+#include <cytypes.h>
+#include "PSoCEve_Config.h"    
     
 void FTCommandWrite(uint8 command);   
 void FT_Write_Byte(uint32 address, uint8 data);

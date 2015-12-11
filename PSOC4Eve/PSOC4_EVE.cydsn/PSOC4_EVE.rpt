@@ -1,7 +1,7 @@
-Loading plugins phase: Elapsed time ==> 0s.234ms
+Loading plugins phase: Elapsed time ==> 0s.250ms
 Initializing data phase: Elapsed time ==> 0s.000ms
 <CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -d CY8C4245AXI-483 -s C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE</CYPRESSTAG>
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -d CY8C4245AXI-483 -s C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE</CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
 Elaboration phase: Elapsed time ==> 2s.609ms
@@ -25,23 +25,23 @@ HDL generation phase: Elapsed time ==> 0s.062ms
 ======================================================================
 Compiling:  PSOC4_EVE.v
 Program  :   C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\bin/warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  PSOC4_EVE.v
 Program  :   C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\bin/warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  PSOC4_EVE.v
 Program  :   vlogfe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Tue Nov 17 12:31:36 2015
+Fri Dec 11 21:31:58 2015
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 PSOC4_EVE.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Tue Nov 17 12:31:36 2015
+Fri Dec 11 21:31:58 2015
 
 Flattening file 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'
 Flattening file 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
@@ -80,11 +80,11 @@ vlogfe:  No errors.
 ======================================================================
 Compiling:  PSOC4_EVE.v
 Program  :   tovif
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Tue Nov 17 12:31:36 2015
+Fri Dec 11 21:31:58 2015
 
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -95,9 +95,9 @@ Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.ctl'.
+Linking 'C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.ctl'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
-Linking 'C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.v'.
+Linking 'C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\or_v1_0\or_v1_0.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v'.
@@ -108,11 +108,11 @@ tovif:  No errors.
 ======================================================================
 Compiling:  PSOC4_EVE.v
 Program  :   topld
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 -verilog PSOC4_EVE.v
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Tue Nov 17 12:31:36 2015
+Fri Dec 11 21:31:58 2015
 
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -123,9 +123,9 @@ Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.ctl'.
+Linking 'C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.ctl'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
-Linking 'C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.v'.
+Linking 'C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\codegentemp\PSOC4_EVE.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\or_v1_0\or_v1_0.v'.
 Linking 'C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v'.
@@ -237,13 +237,13 @@ topld:  No errors.
 
 CYPRESS_DIR    : C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp
 Warp Program   : C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\bin/warp.exe
-Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
+Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -dcpsoc3 PSOC4_EVE.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 0s.640ms
+Warp synthesis phase: Elapsed time ==> 0s.625ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V3.3.0.410, Family: PSoC3, Started at: Tuesday, 17 November 2015 12:31:37
-Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSOCEve\PSOC4EVE\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -d CY8C4245AXI-483 PSOC4_EVE.v -verilog
+cyp3fit: V3.3.0.410, Family: PSoC3, Started at: Friday, 11 December 2015 21:31:58
+Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -d CY8C4245AXI-483 PSOC4_EVE.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
 Design parsing phase: Elapsed time ==> 0s.015ms
@@ -256,7 +256,7 @@ Design parsing phase: Elapsed time ==> 0s.015ms
 <CYPRESSTAG name="UDB Clock/Enable Remapping Results">
 </CYPRESSTAG>
 </CYPRESSTAG>
-ADD: pft.M0040: information: The following 4 pin(s) will be assigned a location by the fitter: \SPI_EVE:miso_m(0)\, \SPI_EVE:mosi_m(0)\, \SPI_EVE:sclk_m(0)\, \SPI_EVE:ss0_m(0)\
+ADD: pft.M0040: information: The following 1 pin(s) will be assigned a location by the fitter: \SPI_EVE:ss0_m(0)\
 
 
 Removing unused cells resulting from optimization
@@ -313,6 +313,9 @@ Design Equations
             pa_out => \SPI_EVE:sclk_m(0)\__PA ,
             input => \SPI_EVE:Net_687\ ,
             pad => \SPI_EVE:sclk_m(0)_PAD\ );
+        Properties:
+        {
+        }
 
     Pin : Name = \SPI_EVE:miso_m(0)\
         Attributes:
@@ -350,6 +353,9 @@ Design Equations
             pa_out => \SPI_EVE:miso_m(0)\__PA ,
             fb => \SPI_EVE:Net_663\ ,
             pad => \SPI_EVE:miso_m(0)_PAD\ );
+        Properties:
+        {
+        }
 
     Pin : Name = \SPI_EVE:mosi_m(0)\
         Attributes:
@@ -387,6 +393,9 @@ Design Equations
             pa_out => \SPI_EVE:mosi_m(0)\__PA ,
             input => \SPI_EVE:Net_660\ ,
             pad => \SPI_EVE:mosi_m(0)_PAD\ );
+        Properties:
+        {
+        }
 
     Pin : Name = \SPI_EVE:ss0_m(0)\
         Attributes:
@@ -698,18 +707,18 @@ DAC                           :      :      :      :
   7-bit IDAC                  :    0 :    1 :    1 :  0.00 %
   8-bit IDAC                  :    0 :    1 :    1 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.015ms
+Technology Mapping: Elapsed time ==> 0s.031ms
 Tech mapping phase: Elapsed time ==> 0s.062ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 <CYPRESSTAG name="Analog Placement">
-Elapsed time ==> 0.1746176s
+Elapsed time ==> 0.1821789s
 </CYPRESSTAG>
-Analog Placement phase: Elapsed time ==> 0s.359ms
+Analog Placement phase: Elapsed time ==> 0s.375ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 <CYPRESSTAG name="Analog Routing">
-Route success=True, Iterations=1 Elapsed=0.0012847 secs
+Route success=True, Iterations=1 Elapsed=0.0013016 secs
 </CYPRESSTAG>
 Analog Routing phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
@@ -722,12 +731,12 @@ Map of item to net {
 }
 Mux Info {
 }
-Analog Code Generation phase: Elapsed time ==> 0s.031ms
+Analog Code Generation phase: Elapsed time ==> 0s.015ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
 I2659: No Constrained paths were found. The placer will run in non-timing driven mode.
-I2076: Total run-time: 0.5 sec.
+I2076: Total run-time: 0.3 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -764,7 +773,7 @@ Partitioning: Elapsed time ==> 0s.015ms
 Annealing: Elapsed time ==> 0s.000ms
 <CYPRESSTAG name="Simulated Annealing Results">
 The seed used for moves was 114161200.
-Inital cost was 52, final cost is 52 (0.00% improvement).</CYPRESSTAG>
+Inital cost was 55, final cost is 55 (0.00% improvement).</CYPRESSTAG>
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -783,11 +792,10 @@ Component Placement Details
 ------------------------------------------------------------
 UDB [UDB=(0,0)] is empty.
 UDB [UDB=(0,1)] is empty.
-UDB [UDB=(1,0)] is empty.
-UDB [UDB=(1,1)] contents:
-LAB@[UDB=(1,1)][LB=0] #macrocells=1, #inputs=1, #pterms=1
+UDB [UDB=(1,0)] contents:
+LAB@[UDB=(1,0)][LB=0] #macrocells=1, #inputs=1, #pterms=1
 {
-    [McSlotId=0]:     MacroCell: Name=Net_17, Mode=(Combinatorial) @ [UDB=(1,1)][LB=0][MC=0]
+    [McSlotId=0]:     MacroCell: Name=Net_17, Mode=(Combinatorial) @ [UDB=(1,0)][LB=0][MC=0]
         Total # of inputs        : 1
         Total # of product terms : 1
             Clock Enable: True
@@ -805,6 +813,7 @@ LAB@[UDB=(1,1)][LB=0] #macrocells=1, #inputs=1, #pterms=1
     [McSlotId=3]: (empty)
 }
 
+UDB [UDB=(1,1)] is empty.
 Intr container @ [IntrContainer=(0)]: 
   Intr@ [IntrContainer=(0)][IntrId=(0)] 
     interrupt: Name =Eve_ISR
@@ -856,17 +865,17 @@ Pin : Name = SPI_EVE_SS(0)
     }
 
 [IoId=1]: 
-Pin : Name = EVE_INT(0)
+Pin : Name = PD_N(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: SYNC
-        Out Sync Option: AUTO
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: RES_PULL_UP
-        VTrip: CMOS
+        Drive mode: CMOS_OUT
+        VTrip: EITHER
         Slew: FAST
-        Input Sync needed: True
+        Input Sync needed: False
         Output Sync needed: False
         SC shield enabled: False
         POR State: ANY
@@ -885,13 +894,12 @@ Pin : Name = EVE_INT(0)
         SIO Vtrip: MULTIPLIER_0_5
         SIO Multiplier Index: 0
         SIO RefSel: VCC_IO
-        Required Capabilitites: DIGITAL, ROUTABLE
-        Initial Value: 1
+        Required Capabilitites: DIGITAL
+        Initial Value: 0
         IO Voltage: 0
     PORT MAP (
-        pa_out => EVE_INT(0)__PA ,
-        fb => Net_15 ,
-        pad => EVE_INT(0)_PAD );
+        pa_out => PD_N(0)__PA ,
+        pad => PD_N(0)_PAD );
     Properties:
     {
     }
@@ -1062,17 +1070,17 @@ Pin : Name = \SPI_EVE:ss0_m(0)\
 
 Port 1 contains the following IO cells:
 [IoId=0]: 
-Pin : Name = PD_N(0)
+Pin : Name = EVE_INT(0)
     Attributes:
         In Group/Port: True
-        In Sync Option: AUTO
-        Out Sync Option: NOSYNC
+        In Sync Option: SYNC
+        Out Sync Option: AUTO
         Interrupt generated: False
         Interrupt mode: NONE
-        Drive mode: CMOS_OUT
-        VTrip: EITHER
+        Drive mode: RES_PULL_UP
+        VTrip: CMOS
         Slew: FAST
-        Input Sync needed: False
+        Input Sync needed: True
         Output Sync needed: False
         SC shield enabled: False
         POR State: ANY
@@ -1091,12 +1099,13 @@ Pin : Name = PD_N(0)
         SIO Vtrip: MULTIPLIER_0_5
         SIO Multiplier Index: 0
         SIO RefSel: VCC_IO
-        Required Capabilitites: DIGITAL
-        Initial Value: 0
+        Required Capabilitites: DIGITAL, ROUTABLE
+        Initial Value: 1
         IO Voltage: 0
     PORT MAP (
-        pa_out => PD_N(0)__PA ,
-        pad => PD_N(0)_PAD );
+        pa_out => EVE_INT(0)__PA ,
+        fb => Net_15 ,
+        pad => EVE_INT(0)_PAD );
     Properties:
     {
     }
@@ -1281,13 +1290,13 @@ Port Configuration report
 Port | Pin | Fixed |      Type |       Drive Mode |                Name | Connections
 -----+-----+-------+-----------+------------------+---------------------+----------------------
    0 |   0 |     * |      NONE |         CMOS_OUT |       SPI_EVE_SS(0) | 
-     |   1 |     * |      NONE |      RES_PULL_UP |          EVE_INT(0) | FB(Net_15)
-     |   4 |       |      NONE |         CMOS_OUT | \SPI_EVE:mosi_m(0)\ | In(\SPI_EVE:Net_660\)
-     |   5 |       |      NONE |     HI_Z_DIGITAL | \SPI_EVE:miso_m(0)\ | FB(\SPI_EVE:Net_663\)
-     |   6 |       |      NONE |         CMOS_OUT | \SPI_EVE:sclk_m(0)\ | In(\SPI_EVE:Net_687\)
+     |   1 |     * |      NONE |         CMOS_OUT |             PD_N(0) | 
+     |   4 |     * |      NONE |         CMOS_OUT | \SPI_EVE:mosi_m(0)\ | In(\SPI_EVE:Net_660\)
+     |   5 |     * |      NONE |     HI_Z_DIGITAL | \SPI_EVE:miso_m(0)\ | FB(\SPI_EVE:Net_663\)
+     |   6 |     * |      NONE |         CMOS_OUT | \SPI_EVE:sclk_m(0)\ | In(\SPI_EVE:Net_687\)
      |   7 |       |      NONE |         CMOS_OUT |  \SPI_EVE:ss0_m(0)\ | In(\SPI_EVE:ss_0\)
 -----+-----+-------+-----------+------------------+---------------------+----------------------
-   1 |   0 |     * |      NONE |         CMOS_OUT |             PD_N(0) | 
+   1 |   0 |     * |      NONE |      RES_PULL_UP |          EVE_INT(0) | FB(Net_15)
 -----+-----+-------+-----------+------------------+---------------------+----------------------
    4 |   0 |     * |      NONE |     HI_Z_DIGITAL |        \UART:rx(0)\ | FB(\UART:Net_654\)
      |   1 |     * |      NONE |         CMOS_OUT |        \UART:tx(0)\ | In(\UART:Net_656\)
@@ -1296,31 +1305,31 @@ Port | Pin | Fixed |      Type |       Drive Mode |                Name | Connec
 </CYPRESSTAG>
 </CYPRESSTAG>
 Digital component placer commit/Report: Elapsed time ==> 0s.000ms
-Digital Placement phase: Elapsed time ==> 0s.718ms
+Digital Placement phase: Elapsed time ==> 0s.859ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 Routing successful.
-Digital Routing phase: Elapsed time ==> 0s.671ms
+Digital Routing phase: Elapsed time ==> 0s.687ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream and API generation">
 Bitstream and API generation phase: Elapsed time ==> 0s.234ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream verification">
-Bitstream verification phase: Elapsed time ==> 0s.031ms
+Bitstream verification phase: Elapsed time ==> 0s.046ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in PSOC4_EVE_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.234ms
+Static timing analysis phase: Elapsed time ==> 0s.203ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.250ms
+Design database save phase: Elapsed time ==> 0s.265ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 2s.640ms
+cydsfit: Elapsed time ==> 2s.796ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 2s.687ms
-API generation phase: Elapsed time ==> 1s.734ms
-Dependency generation phase: Elapsed time ==> 0s.015ms
-Cleanup phase: Elapsed time ==> 0s.015ms
+Fitter phase: Elapsed time ==> 2s.859ms
+API generation phase: Elapsed time ==> 1s.718ms
+Dependency generation phase: Elapsed time ==> 0s.031ms
+Cleanup phase: Elapsed time ==> 0s.000ms

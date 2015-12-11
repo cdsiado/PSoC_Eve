@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\Generated_Source">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\Source Files\Test.c">
 <ExpandedNodeIds>
 <v>PSOC4_EVE</v>
 <v>PSOC4_EVE\PSOC4_EVE</v>
@@ -25,9 +25,16 @@
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Config.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Hal.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Hal.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_List.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_List.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_TouchPanel.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_TouchPanel.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\Source Files</v>
 <v>PSOC4_EVE\PSOC4_EVE\Source Files\main.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\Source Files\Test.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\Generated_Source\PSoC4</v>
@@ -147,10 +154,18 @@
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Config.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Hal.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Hal.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_List.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_List.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_TouchPanel.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_TouchPanel.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\Source Files</v>
+<v>PSOC4_EVE\PSOC4_EVE\Source Files\main.c</v>
+<v>PSOC4_EVE\PSOC4_EVE\Source Files\Test.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\Generated_Source</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
@@ -189,7 +204,10 @@
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\main.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PD_N.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve.lst</v>
+<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_Audio.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_Hal.lst</v>
+<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_List.lst</v>
+<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_TouchPanel.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_BOOT.lst</v>
 <v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_miso_m.lst</v>
@@ -223,49 +241,6 @@
 <VisibleNodeIds>
 <v>PSOC4_EVE</v>
 <v>PSOC4_EVE\PSOC4_EVE</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\Cm0Start.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\EVE_INT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\Eve_ISR.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\main.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PD_N.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_Hal.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_BOOT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_miso_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_mosi_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_SCBCLK.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_sclk_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_SPI.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_SPI_BOOT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_SPI_UART.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_SS.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_EVE_ss0_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\Test.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_BOOT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_rx.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_SCBCLK.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_SPI_UART.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_tx.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_UART.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\UART_UART_BOOT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\PSOC4_EVE.elf</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\PSOC4_EVE.hex</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -310,13 +285,15 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\PSOC4_EVE.cydsn\main.c" />
+<name v="..\PSoCEveLibrary\PSoCEve.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_Audio.h" />
 <name v="..\PSoCEveLibrary\PSoCEve_Config.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_List.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
 <name v=".\PSOC4_EVE.cydsn\Test.h" />
 <name v=".\PSOC4_EVE.cydsn\Test.c" />
-<name v="..\PSoCEveLibrary\PSoCEve_Hal.h" />
-<name v="..\PSoCEveLibrary\PSoCEve_Hal.c" />
-<name v="..\PSoCEveLibrary\PSoCEve.h" />
+<name v=".\PSOC4_EVE.cydsn\main.c" />
 <name v="..\PSoCEveLibrary\PSoCEve.c" />
 </OpenDocs>
 <config v="" />

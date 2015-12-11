@@ -57,10 +57,21 @@
     #define LCDPCLKPOL  1					// Define active edge of PCLK    
 #endif
 
+/* Uncomment USE_TOUCHPANEL line to include touch functions.
+   If not using a touch panel, commenting this line you can save some program memory space.
+*/
+#define USE_TOUCHPANEL
+
+/* Uncomment USE_AUDIO line to include audio functions.
+   If not using audio, commenting this line you can save some program memory space.
+*/
+#define USE_AUDIO
+
 /* Development modules from FTDI use GPIO1 as output to control the audio 
    amplifier chip. If your design doesn´t use this, comment next line. 
 */
 #define USE_GPIO1_AUDIO
+
     
 #endif /* End PSOC_EVE_CONFIG_H */ 
 
