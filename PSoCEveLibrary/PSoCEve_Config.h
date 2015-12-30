@@ -21,6 +21,8 @@
 #if !defined(PSOC_EVE_CONFIG_H) /* Pins SPI_EVE_miso_s_H */
 #define PSOC_EVE_CONFIG_H
     
+#define SPI_NAME    SPI    
+    
 //#define LCD_QVGA
 #define LCD_WQVGA    
     

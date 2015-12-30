@@ -23,13 +23,19 @@
 
 int main()
 {
+    /* *** Start SPI bus. *** 
+        In schematic, SPI module is configured to have one SS line.
+        Disconects SS0 fro HSIOM so it can be controlled by software instead of hardware or API. */
 
-    /* Start SPI bus. */
-    SPI_EVE_SS_Write(1);
-    SPI_EVE_Start();
+    SPI_Start();
+    
+    (*(reg32 *)SPI_ss0_m__0__HSIOM) = 
+        ((*(reg32 *)SPI_ss0_m__0__HSIOM) & (uint32)~SPI_ss0_m__0__HSIOM_MASK) | (uint32)(SPI_HSIOM_GPIO_SEL << SPI_ss0_m__0__HSIOM_SHIFT);
+    
+    SPI_ss0_m_Write(1); 
  
     
-    /* Start UART. */
+    /* *** Start UART. *** */
    	UART_Start();
     UART_UartPutString("\n\r");
 	UART_UartPutString("*** EVE TEST ***\n\r");

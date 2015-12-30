@@ -82,208 +82,7 @@
 <CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256 type_name="CyDesigner.Common.ProjMgmt.Model.CyConfigDependencies" version="1">
 <dependency_info name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" xml_contents_version="2">
 <CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021 type_name="CyDesigner.Common.Base.CyFileDeps" version="1">
-<file name=".\CortexM0\ARM_GCC_493\Debug\main.o">
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\Test.h" />
-<dep name=".\main.c" />
-<dep name="..\..\PSoCEveLibrary\PsoCEve.h" />
-</file>
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-<file name=".\Generated_Source\PSoC4\CyFlash.h" />
-<file name=".\Generated_Source\PSoC4\CyLib.h" />
-<file name=".\Generated_Source\PSoC4\EVE_INT.h" />
-<file name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
-<file name=".\Generated_Source\PSoC4\Eve_ISR.h" />
-<file name=".\Generated_Source\PSoC4\PD_N.h" />
-<file name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<file name=".\Generated_Source\PSoC4\UART.h" />
-<file name=".\Generated_Source\PSoC4\UART_BOOT.h" />
-<file name=".\Generated_Source\PSoC4\UART_PINS.h" />
-<file name=".\Generated_Source\PSoC4\UART_PVT.h" />
-<file name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
-<file name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
-<file name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
-<file name=".\Generated_Source\PSoC4\UART_rx.h" />
-<file name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
-<file name=".\Generated_Source\PSoC4\UART_tx.h" />
-<file name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
-<file name=".\Generated_Source\PSoC4\core_cm0.h" />
-<file name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<file name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<file name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<file name=".\Generated_Source\PSoC4\cyPm.h" />
-<file name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<file name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<file name=".\Generated_Source\PSoC4\cyfitter.h" />
-<file name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<file name=".\Generated_Source\PSoC4\cypins.h" />
-<file name=".\Generated_Source\PSoC4\cytypes.h" />
-<file name=".\Generated_Source\PSoC4\project.h" />
-<file name=".\Test.h" />
-<file name=".\main.c" />
-<file name="..\..\PSoCEveLibrary\PsoCEve.h" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\Test.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\Demos_Resources.h" />
-<dep name=".\Test.c" />
-<dep name=".\Test.h" />
-<dep name="..\..\PSocEveLibrary\PSoCEve.h" />
-</file>
-<file name=".\Demos_Resources.h" />
-<file name=".\Test.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
@@ -291,31 +90,21 @@
 <dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
 <dep name=".\Generated_Source\PSoC4\PD_N.h" />
 <dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\UART.h" />
 <dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
 <dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
@@ -341,55 +130,78 @@
 <dep name=".\Generated_Source\PSoC4\project.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve.c" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
 </file>
+<file name=".\Generated_Source\PSoC4\CyFlash.h" />
+<file name=".\Generated_Source\PSoC4\CyLib.h" />
+<file name=".\Generated_Source\PSoC4\EVE_INT.h" />
+<file name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
+<file name=".\Generated_Source\PSoC4\Eve_ISR.h" />
+<file name=".\Generated_Source\PSoC4\PD_N.h" />
+<file name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI.h" />
+<file name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<file name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<file name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<file name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\UART.h" />
+<file name=".\Generated_Source\PSoC4\UART_BOOT.h" />
+<file name=".\Generated_Source\PSoC4\UART_PINS.h" />
+<file name=".\Generated_Source\PSoC4\UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
+<file name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
+<file name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\UART_rx.h" />
+<file name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
+<file name=".\Generated_Source\PSoC4\UART_tx.h" />
+<file name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<file name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<file name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<file name=".\Generated_Source\PSoC4\cyPm.h" />
+<file name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<file name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<file name=".\Generated_Source\PSoC4\cypins.h" />
+<file name=".\Generated_Source\PSoC4\cytypes.h" />
+<file name=".\Generated_Source\PSoC4\project.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Audio.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
-</file>
-<file name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_List.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
-</file>
-<file name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_TouchPanel.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
-</file>
-<file name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
+<file name="..\..\PSoCEveLibrary\PSoCEve.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Audio.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Hal.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
@@ -397,31 +209,21 @@
 <dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
 <dep name=".\Generated_Source\PSoC4\PD_N.h" />
 <dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\UART.h" />
 <dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
 <dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
@@ -445,9 +247,37 @@
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 <dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
 </file>
 <file name="..\..\PSoCEveLibrary\PSoCEve_Hal.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_List.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_TouchPanel.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\Cm0Start.o">
 <dep name=".\Generated_Source\PSoC4\Cm0Start.c" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
@@ -503,250 +333,192 @@
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
 <file name=".\Generated_Source\PSoC4\PD_N.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE.o">
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.c" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_BOOT.o">
+<file name=".\Generated_Source\PSoC4\SPI.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_BOOT.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_PM.o">
+<file name=".\Generated_Source\PSoC4\SPI_BOOT.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_PM.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PM.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PM.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_PM.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SCBCLK.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<file name=".\Generated_Source\PSoC4\SPI_PM.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_SCBCLK.o">
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI.o">
+<file name=".\Generated_Source\PSoC4\SPI_SCBCLK.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_BOOT.o">
+<file name=".\Generated_Source\PSoC4\SPI_SPI.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI_BOOT.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_BOOT.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_BOOT.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_BOOT.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_UART.o">
+<file name=".\Generated_Source\PSoC4\SPI_SPI_BOOT.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI_UART.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SS.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_SPI_UART.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_miso_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_SS.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_miso_m.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_miso_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_mosi_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_mosi_m.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_mosi_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_sclk_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_sclk_m.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_sclk_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_ss0_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
 <dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 </file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_ss0_m.o">
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.c" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-</file>
-<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.c" />
+<file name=".\Generated_Source\PSoC4\SPI_ss0_m.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\UART.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\UART.c" />
@@ -948,6 +720,415 @@
 <file name=".\Generated_Source\PSoC4\CyBootAsmGnu.s" />
 <file name=".\Generated_Source\PSoC4\cydevicegnu_trm.inc" />
 <file name=".\Generated_Source\PSoC4\cyfittergnu.inc" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\main.o">
+<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\Test.h" />
+<dep name=".\main.c" />
+<dep name="..\..\PSoCEveLibrary\PsoCEve.h" />
+</file>
+<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
+<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
+<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
+<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
+<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+<file name=".\Test.h" />
+<file name=".\main.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\Test.o">
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\Demos_Resources.h" />
+<dep name=".\Test.c" />
+<dep name=".\Test.h" />
+<dep name="..\..\PSocEveLibrary\PSoCEve.h" />
+</file>
+<file name=".\Demos_Resources.h" />
+<file name=".\Test.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_BOOT.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_PM.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PM.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_PM.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SCBCLK.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_BOOT.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_BOOT.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_BOOT.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_UART.o">
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_miso_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_mosi_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_sclk_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_ss0_m.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.c" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SS.o">
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.c" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_EVE_SS_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\SPI_EVE_SS.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\SysTick.o">
+<dep name=".\SysTick.c" />
+</file>
+<file name=".\SysTick.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\PSocEve_CMD.o">
 <dep name=".\CortexM0\PSoCEveLibrary\PSoCEve.h" />
 <dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_CMD.h" />
@@ -2492,6 +2673,7 @@
 <file name=".\CortexM0\ARM_GCC_493\Debug\PSOC4_EVE.hex">
 <dep name=".\CortexM0\ARM_GCC_493\Debug\main.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\Test.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SysTick.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Hal.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Audio.o" />
@@ -2499,13 +2681,6 @@
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_TouchPanel.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\cymetadata.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_UART.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_PM.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_BOOT.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SPI_BOOT.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SCBCLK.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\Cm0Start.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\CyFlash.o" />
@@ -2522,14 +2697,20 @@
 <dep name=".\CortexM0\ARM_GCC_493\Debug\UART_SCBCLK.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\UART_tx.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\UART_rx.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_SS.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\EVE_INT.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_sclk_m.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_miso_m.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_mosi_m.o" />
-<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE_ss0_m.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PD_N.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\Eve_ISR.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI_UART.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_PM.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_BOOT.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_SPI_BOOT.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_SCBCLK.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_sclk_m.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_miso_m.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_mosi_m.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\SPI_ss0_m.o" />
 <dep name=".\CortexM0\ARM_GCC_493\Debug\PSOC4_EVE.a" />
 <dep name="${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_493\Debug\CyComponentLibrary.a" />
 </file>
@@ -2609,6 +2790,18 @@
 <name_val_pair name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 <name_val_pair name="..\..\PSoCEveLibrary\PSoCEve_List.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 <name_val_pair name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\SysTick.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_SPI_UART.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_PM.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_SPI.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_BOOT.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_SPI_BOOT.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_SCBCLK.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_sclk_m.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_miso_m.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_mosi_m.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\SPI_ss0_m.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 </name>
 </genericCmdLineData>
 <codeGenCmdLineTag v="-.appdatapath &quot;C:\Documents and Settings\jesusrcc\Configuración local\Datos de programa\Cypress Semiconductor\PSoC Creator\3.3&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\PSOC4_EVE.cyprj -d CY8C4245AXI-483 -s C:\HackingChips\PSoCEve\PSOC4Eve\PSOC4_EVE.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
@@ -3260,45 +3453,6 @@
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.c</v>
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.h</v>
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\aliases.h</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cysym</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cystate</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cyprimitive</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\custom.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyenums.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinsdata.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinpicture.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinutils.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.Designer.cs</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.resx</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.c</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.h</v>
-<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\aliases.h</v>
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_isr_v1_70\cy_isr_v1_70.cysym</v>
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_isr_v1_70\cy_isr_v1_70.primitive</v>
@@ -3439,20 +3593,46 @@
 <v>.\Generated_Source\PSoC4\Eve_ISR.h</v>
 <v>.\Generated_Source\PSoC4\cycodeshareimport.ld</v>
 <v>.\Generated_Source\PSoC4\cycodeshareimport.scat</v>
+<v>.\Generated_Source\PSoC4\SPI.c</v>
+<v>.\Generated_Source\PSoC4\SPI.h</v>
+<v>.\Generated_Source\PSoC4\SPI_SPI_UART.h</v>
+<v>.\Generated_Source\PSoC4\SPI_SPI_UART.c</v>
+<v>.\Generated_Source\PSoC4\SPI_PM.c</v>
+<v>.\Generated_Source\PSoC4\SPI_SPI.c</v>
+<v>.\Generated_Source\PSoC4\SPI_BOOT.c</v>
+<v>.\Generated_Source\PSoC4\SPI_SPI_BOOT.c</v>
+<v>.\Generated_Source\PSoC4\SPI_PINS.h</v>
+<v>.\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h</v>
+<v>.\Generated_Source\PSoC4\SPI_PVT.h</v>
+<v>.\Generated_Source\PSoC4\SPI_BOOT.h</v>
+<v>.\Generated_Source\PSoC4\SPI_SCBCLK.c</v>
+<v>.\Generated_Source\PSoC4\SPI_SCBCLK.h</v>
+<v>.\Generated_Source\PSoC4\SPI_sclk_m.c</v>
+<v>.\Generated_Source\PSoC4\SPI_sclk_m.h</v>
+<v>.\Generated_Source\PSoC4\SPI_sclk_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPI_miso_m.c</v>
+<v>.\Generated_Source\PSoC4\SPI_miso_m.h</v>
+<v>.\Generated_Source\PSoC4\SPI_miso_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPI_mosi_m.c</v>
+<v>.\Generated_Source\PSoC4\SPI_mosi_m.h</v>
+<v>.\Generated_Source\PSoC4\SPI_mosi_m_aliases.h</v>
+<v>.\Generated_Source\PSoC4\SPI_ss0_m.c</v>
+<v>.\Generated_Source\PSoC4\SPI_ss0_m.h</v>
+<v>.\Generated_Source\PSoC4\SPI_ss0_m_aliases.h</v>
 </gen_list>
 <warp_dep>
 <v>C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\ieee\work\stdlogic.vif</v>
 <v>C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif</v>
 <v>C:\Archivos de programa\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 </warp_dep>
-<deps_time v="130943395238125000" />
+<deps_time v="130959742885000000" />
 <top_block v="TopDesign" />
 <last_generation v="1" />
 </CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="130943426576875000" />
+<deps_time v="130959743164375000" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 <dataGuid v="504337dd-7d07-4bc7-9057-90e60cf6c469">
