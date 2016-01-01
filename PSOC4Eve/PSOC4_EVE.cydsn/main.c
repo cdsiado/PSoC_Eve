@@ -25,7 +25,7 @@ int main()
 {
     /* *** Start SPI bus. *** 
         In schematic, SPI module is configured to have one SS line.
-        Disconects SS0 fro HSIOM so it can be controlled by software instead of hardware or API. */
+        Disconects SS0 from HSIOM so it can be controlled by software instead of hardware or API. */
 
     SPI_Start();
     
