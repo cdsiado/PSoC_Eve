@@ -15,47 +15,24 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Cypress Component Catalog\System\Emulated EEPROM [v1.10]">
 <ExpandedNodeIds>
 <v>Cypress Component Catalog</v>
-<v>Cypress Component Catalog\Communications</v>
-<v>Cypress Component Catalog\Digital</v>
-<v>Cypress Component Catalog\Digital\Logic</v>
-<v>Cypress Component Catalog\Ports and Pins</v>
-<v>Cypress Component Catalog\System</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>Cypress Component Catalog</v>
+<v>Cypress Component Catalog\Analog</v>
+<v>Cypress Component Catalog\Analog Primitives</v>
+<v>Cypress Component Catalog\CapSense</v>
+<v>Cypress Component Catalog\Communications</v>
+<v>Cypress Component Catalog\Deprecated</v>
+<v>Cypress Component Catalog\Digital</v>
+<v>Cypress Component Catalog\Display</v>
+<v>Cypress Component Catalog\External</v>
+<v>Cypress Component Catalog\Filters</v>
 <v>Cypress Component Catalog\Fixed Function</v>
 <v>Cypress Component Catalog\Ports and Pins</v>
-<v>Cypress Component Catalog\Ports and Pins\Analog Pin [v2.10]</v>
-<v>Cypress Component Catalog\Ports and Pins\cy_pins [v2.10]</v>
-<v>Cypress Component Catalog\Ports and Pins\Digital Bidirectional Pin [v2.10]</v>
-<v>Cypress Component Catalog\Ports and Pins\Digital Input Pin [v2.10]</v>
-<v>Cypress Component Catalog\Ports and Pins\Digital Output Pin [v2.10]</v>
 <v>Cypress Component Catalog\Power Supervision</v>
 <v>Cypress Component Catalog\Primitive</v>
 <v>Cypress Component Catalog\System</v>
-<v>Cypress Component Catalog\System\Boost Converter [v5.0]</v>
-<v>Cypress Component Catalog\System\Bootloadable [v1.40]</v>
-<v>Cypress Component Catalog\System\Bootloader [v1.40]</v>
-<v>Cypress Component Catalog\System\Clock [v2.20]</v>
-<v>Cypress Component Catalog\System\cy_boot [v5.20]</v>
-<v>Cypress Component Catalog\System\cy_dmac [v1.0]</v>
-<v>Cypress Component Catalog\System\CyLFClk [v1.0]</v>
-<v>Cypress Component Catalog\System\Die Temperature [v1.0]</v>
-<v>Cypress Component Catalog\System\Die Temperature [v2.0]</v>
-<v>Cypress Component Catalog\System\DMA [v1.70]</v>
-<v>Cypress Component Catalog\System\DMA Channel [v1.0]</v>
-<v>Cypress Component Catalog\System\EEPROM [v3.0]</v>
-<v>Cypress Component Catalog\System\EMIF Port [v1.0]</v>
-<v>Cypress Component Catalog\System\Emulated EEPROM [v1.10]</v>
-<v>Cypress Component Catalog\System\External Memory Interface</v>
-<v>Cypress Component Catalog\System\Global Signal Reference [v2.0]</v>
-<v>Cypress Component Catalog\System\Global Signal Reference [v2.0] (2)</v>
-<v>Cypress Component Catalog\System\ILO Trim [v2.0]</v>
-<v>Cypress Component Catalog\System\ILO Trim [v2.0] (2)</v>
-<v>Cypress Component Catalog\System\Interrupt [v1.70]</v>
-<v>Cypress Component Catalog\System\LIN_Dynamic [v3.20]</v>
-<v>Cypress Component Catalog\System\Real-time clock (RTC) [v1.0]</v>
-<v>Cypress Component Catalog\System\RTC [v2.0]</v>
-<v>Cypress Component Catalog\System\SleepTimer [v3.20]</v>
+<v>Cypress Component Catalog\Thermal Management</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -130,6 +107,7 @@
 <dep name=".\Generated_Source\PSoC4\project.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve.c" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_81x_List.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
@@ -183,6 +161,7 @@
 <file name=".\Generated_Source\PSoC4\project.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve.c" />
 <file name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<file name="..\..\PSoCEveLibrary\PSoCEve_81x_List.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
 <file name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
@@ -193,6 +172,7 @@
 <dep name=".\Generated_Source\PSoC4\cyfitter.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_81x_List.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
@@ -201,7 +181,41 @@
 <dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
 </file>
 <file name="..\..\PSoCEveLibrary\PSoCEve_Audio.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Hal.o">
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_List.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_81x_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_TouchPanel.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_81x_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
+<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\Test.o">
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_81x_List.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
 <dep name=".\Generated_Source\PSoC4\CyFlash.h" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
@@ -247,37 +261,128 @@
 <dep name=".\Generated_Source\PSoC4\cypins.h" />
 <dep name=".\Generated_Source\PSoC4\cytypes.h" />
 <dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
+<dep name=".\Demos_Resources.h" />
+<dep name=".\Test.c" />
+<dep name=".\Test.h" />
+<dep name="..\..\PSocEveLibrary\PSoCEve.h" />
+</file>
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_81x_List.h" />
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
+<file name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
+<file name=".\Demos_Resources.h" />
+<file name=".\Test.c" />
+<file name=".\Test.h" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\main.o">
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_81x_List.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\Test.h" />
+<dep name=".\main.c" />
+<dep name="..\..\PSoCEveLibrary\PsoCEve.h" />
+</file>
+<file name=".\main.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_Hal.o">
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
+<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
+<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N.h" />
+<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_miso_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_mosi_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_sclk_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m.h" />
+<dep name=".\Generated_Source\PSoC4\SPI_ss0_m_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
 <dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.c" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
 </file>
 <file name="..\..\PSoCEveLibrary\PSoCEve_Hal.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_List.o">
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-</file>
-<file name="..\..\PSoCEveLibrary\PSoCEve_List.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\PSoCEve_TouchPanel.o">
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Audio.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Config.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_Hal.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_List.h" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
-<dep name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-</file>
-<file name="..\..\PSoCEveLibrary\PSoCEve_TouchPanel.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\Cm0Start.o">
 <dep name=".\Generated_Source\PSoC4\Cm0Start.c" />
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
@@ -743,142 +848,6 @@
 <file name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
 <file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
 <file name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\main.o">
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\Test.h" />
-<dep name=".\main.c" />
-<dep name="..\..\PSoCEveLibrary\PsoCEve.h" />
-</file>
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Audio.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Config.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_Hal.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_List.h" />
-<file name=".\CortexM0\PSoCEveLibrary\PSoCEve_TouchPanel.h" />
-<file name=".\Test.h" />
-<file name=".\main.c" />
-<file name=".\CortexM0\ARM_GCC_493\Debug\Test.o">
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Audio.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Config.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_Hal.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_List.h" />
-<dep name=".\CortexM0\PSocEveLibrary\PSoCEve_TouchPanel.h" />
-<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC4\CyLib.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT.h" />
-<dep name=".\Generated_Source\PSoC4\EVE_INT_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\Eve_ISR.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N.h" />
-<dep name=".\Generated_Source\PSoC4\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_miso_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_mosi_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_sclk_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss0_m_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s.h" />
-<dep name=".\Generated_Source\PSoC4\SPI_EVE_ss_s_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_BOOT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PINS.h" />
-<dep name=".\Generated_Source\PSoC4\UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SCBCLK.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART.h" />
-<dep name=".\Generated_Source\PSoC4\UART_SPI_UART_PVT.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_rx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx.h" />
-<dep name=".\Generated_Source\PSoC4\UART_tx_aliases.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
-<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC4\cyPm.h" />
-<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC4\cypins.h" />
-<dep name=".\Generated_Source\PSoC4\cytypes.h" />
-<dep name=".\Generated_Source\PSoC4\project.h" />
-<dep name=".\Demos_Resources.h" />
-<dep name=".\Test.c" />
-<dep name=".\Test.h" />
-<dep name="..\..\PSocEveLibrary\PSoCEve.h" />
-</file>
-<file name=".\Demos_Resources.h" />
-<file name=".\Test.c" />
 <file name=".\CortexM0\ARM_GCC_493\Debug\SPI_EVE.o">
 <dep name=".\Generated_Source\PSoC4\CyLib.h" />
 <dep name=".\Generated_Source\PSoC4\SPI_EVE.c" />
@@ -3632,12 +3601,14 @@
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="130959743164375000" />
+<deps_time v="130971899791406250" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 <dataGuid v="504337dd-7d07-4bc7-9057-90e60cf6c469">
 <CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469 type_name="CyDesigner.Common.Debugger.CyBreakpointList" version="1">
-<debugger_breakpoint_list />
+<debugger_breakpoint_list>
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename=".\main.c" linenumber="46" />
+</debugger_breakpoint_list>
 </CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469>
 </dataGuid>
 <dataGuid v="bf610382-39c6-441f-80b8-b04622ea7845">

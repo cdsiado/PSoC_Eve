@@ -27,7 +27,11 @@
 #include "PSoCEve_Config.h"
 #include "PSoCEve_Hal.h"
     
-#include "PSoCEve_List.h"    
+#if defined EVE_FT800
+    #include "PSoCEve_List.h"    
+#elif defined EVE_FT810
+    #include "PSoCEve_81x_List.h" 
+#endif    
     
 #ifdef USE_TOUCHPANEL
     #include "PSoCEve_TouchPanel.h"

@@ -65,7 +65,7 @@ void T_DL_A()
     FT_ListEnd(END_DL_NOSWAP);   
     CyDelay(1000); 
 
-    FT_ListStart(DISPLAY);                             // Start the display list.
+    FT_ListStart(DISPLAY);             // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00); // Set red color for background. 
     DLClear(1, 1, 1);                  // Clear all (color, stencil and tag buffer).
     FT_ListEnd(END_DL_NOSWAP); 
@@ -77,7 +77,7 @@ void T_DL_PRIMITIVE_POINT()
     // Test also: DL_COLOR_RGB, DL_VERTEXII, DL_POINT_SIZE, DL_END,
     //     DL_LINE_WIDTH
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     DLColorRGB(0xFF, 0xFF, 0xFF);        // White color.
@@ -92,7 +92,7 @@ void T_DL_PRIMITIVE_LINE()
 {
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
        
@@ -122,7 +122,7 @@ void T_PRIMITIVE_EDGESTRIP()
 {
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
 
@@ -155,7 +155,7 @@ void T_PRIMITIVE_RECTANGLE()
 {
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
         DLColorRGB(0x00, 0xFF, 0x00);         
@@ -184,7 +184,7 @@ void T_PRIMITIVE_BITMAP()
     FT_Send_ByteArray(testbitmap, bitmaplength);
     FT_Transfer_End();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     
@@ -201,7 +201,7 @@ void T_PRIMITIVE_BITMAP()
     
     // **********************************************************************    TODO: REvisar.
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     
@@ -217,7 +217,7 @@ void T_PRIMITIVE_BITMAP()
     
     // **********************************************************************    
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     
@@ -236,7 +236,7 @@ void T_PRIMITIVE_BITMAP()
     // **********************************************************************    
             
         // The same with bilinear filter.
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     
@@ -247,7 +247,7 @@ void T_PRIMITIVE_BITMAP()
         DLBitmapTransformE(160);
         DLBitmapSize(BITMAP_SIZE_FILTER_BILINEAR, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 240, 240); 
         DLVertex2II(0, 0, 0, 0);         // Place the bitmap at 0, 0.
-                                                        // Fill display.
+                                         // Fill display.
     FT_ListEnd(END_DL_NOSWAP);
 }
 
@@ -255,7 +255,7 @@ void T_DL_B() // Test DL_COLOR_A, DL_BLEND_FUNC
 {
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
         DLColorRGB(0xFF, 0x00, 0x00);         
@@ -277,7 +277,7 @@ void T_DL_B() // Test DL_COLOR_A, DL_BLEND_FUNC
     
     CyDelay(3000);
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
         DLColorRGB(0xFF, 0x00, 0x00);         
@@ -303,7 +303,7 @@ void T_DL_SCISSOR()
 {
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);                                      // Start the display list.
+    FT_ListStart(DISPLAY);               // Start the display list.
     DLClearColorRGB(0x00, 0x00, 0x00);   
     DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
     DLScissorXY(40, 30);         
@@ -705,13 +705,13 @@ void T_CMD_INFLATE()
     bitmaplength = sizeof(testbitmapzlib);
     
     FT_ListStart(COPROCESSOR); 
-    CMDInflate(RAM_G);                     // Inflate data in RAM_G memory.
-    FT_Write_ByteArray_4(testbitmapzlib, bitmaplength);    // Send Zlib data. 
+    CMDInflate(RAM_G);                                      // Inflate data in RAM_G memory.
+    FT_Write_ByteArray_4(testbitmapzlib, bitmaplength);     // Send Zlib data. 
     
     DLClearColorRGB(0x00, 0x00, 0x00);
     DLClear(1, 1, 1);
-    DLBegin(PRIMITIVE_BITMAP);             // Start new primitive (BITMAP.
-    DLBitmapSource(0x00);                  // Source address 0 in RAM_G.
+    DLBegin(PRIMITIVE_BITMAP);                              // Start new primitive (BITMAP.
+    DLBitmapSource(0x00);                                   // Source address 0 in RAM_G.
     DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
     DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64); 
     DLVertex2F(100, 100);

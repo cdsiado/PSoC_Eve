@@ -23,8 +23,13 @@
     
 #define SPI_NAME    SPI    
     
+//#define EVE_FT800
+#define EVE_FT810    
+    
+    
 //#define LCD_QVGA
-#define LCD_WQVGA    
+//#define LCD_WQVGA 
+#define LCD_WVVGA    
     
 // LCD display parameters
 #ifdef LCD_QVGA			            // QVGA display parameters
@@ -41,6 +46,8 @@
     #define LCDPCLK     8					// Pixel Clock
     #define LCDSWIZZLE  2					// Define RGB output pins
     #define LCDPCLKPOL  0					// Define active edge of PCLK
+	#define LCDCSPREAD  1
+	#define LCDDITHER   1        
 #endif
 
 #ifdef LCD_WQVGA		            // WQVGA display parameters
@@ -56,7 +63,27 @@
     #define LCDVSYNC1   10					// End of vertical sync pulse
     #define LCDPCLK     5					// Pixel Clock
     #define LCDSWIZZLE  0					// Define RGB output pins
-    #define LCDPCLKPOL  1					// Define active edge of PCLK    
+    #define LCDPCLKPOL  1					// Define active edge of PCLK   
+	#define LCDCSPREAD  1
+	#define LCDDITHER   1    
+#endif
+
+#ifdef LCD_WVVGA		            // WQVGA display parameters
+    #define LCDWIDTH        800				    // Active width of LCD display
+    #define LCDHEIGHT       480					// Active height of LCD display
+    #define LCDHCYCLE       928					// Total number of clocks per line
+    #define LCDHOFFSET      88				    // Start of active line
+    #define LCDHSYNC0       0					// Start of horizontal sync pulse
+    #define LCDHSYNC1       48				    // End of horizontal sync pulse
+    #define LCDVCYCLE       525					// Total number of lines per screen
+    #define LCDVOFFSET      32				    // Start of active screen
+    #define LCDVSYNC0       0					// Start of vertical sync pulse
+    #define LCDVSYNC1       3					// End of vertical sync pulse
+    #define LCDPCLK         2					// Pixel Clock
+    #define LCDSWIZZLE      0					// Define RGB output pins
+    #define LCDPCLKPOL      1					// Define active edge of PCLK  
+	#define LCDCSPREAD      0
+	#define LCDDITHER       1    
 #endif
 
 /* Uncomment USE_TOUCHPANEL line to include touch functions.

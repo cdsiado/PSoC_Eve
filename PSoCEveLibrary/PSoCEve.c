@@ -108,7 +108,13 @@ uint8 FT_Init()
     CyDelay(5);	
     FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
     CyDelay(5);	
-    FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
+
+    #if defined EVE_FT800
+        FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
+    #elif defined EVE_FT810
+        FTCommandWrite(FT800_CLKSEL);
+    #endif
+    
     CyDelay(5);	
     FTCommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
     CyDelay(5);

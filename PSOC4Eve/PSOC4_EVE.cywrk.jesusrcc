@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Config.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_List.c">
 <ExpandedNodeIds>
 <v>PSOC4_EVE</v>
 <v>PSOC4_EVE\PSOC4_EVE</v>
@@ -26,6 +26,7 @@
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_81x_List.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Config.h</v>
@@ -154,6 +155,7 @@
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve.h</v>
+<v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_81x_List.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.c</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Audio.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\PSoCEveLibrary\PSoCEve_Config.h</v>
@@ -187,7 +189,6 @@
 <v>PSOC4_EVE\PSOC4_EVE\Generated_Source\PSoC4\SPI\SPI_SPI_UART.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\Generated_Source\PSoC4\SPI\SPI_SPI_UART_PVT.h</v>
 <v>PSOC4_EVE\PSOC4_EVE\Generated_Source\PSoC4\SPI_miso_m</v>
-<v>PSOC4_EVE\PSOC4_EVE\Generated_Source\PSoC4\SPI_miso_m\SPI_miso_m.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -353,6 +354,14 @@
 <name v=".\PSOC4_EVE.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\PSOC4_EVE.cydsn\PSOC4_EVE.cydwr" />
 <name v=".\PSOC4_EVE.cydsn\main.c" />
+<name v=".\PSOC4_EVE.cydsn\Test.c" />
+<name v="..\PSoCEveLibrary\PSoCEve.c" />
+<name v="..\PSoCEveLibrary\PSoCEve_Config.h" />
+<name v="..\PSoCEveLibrary\PSoCEve.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_List.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_Hal.c" />
+<name v="..\PSoCEveLibrary\PSoCEve_81x_List.h" />
+<name v="..\PSoCEveLibrary\PSoCEve_List.c" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
