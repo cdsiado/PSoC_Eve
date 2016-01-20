@@ -24,6 +24,8 @@ void T_Init();
 
 /* *** DISPLAY LIST *** */
 
+void Test_First();
+
 void T_DL_A();
 void T_DL_PRIMITIVE_POINT();
 void T_DL_PRIMITIVE_LINE();

@@ -115,9 +115,9 @@ uint8 FT_Init()
         FTCommandWrite(FT800_CLKSEL);
     #endif
     
-    CyDelay(5);	
+    CyDelay(200);	
     FTCommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
-    CyDelay(5);
+    CyDelay(200);
     
     // Read ID register. If we don¨t get 0x7C something is bad.
     //if (EVE_Memory_Read_Byte(REG_ID) != 0x7C) return 0;

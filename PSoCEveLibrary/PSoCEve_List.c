@@ -405,11 +405,19 @@ inline void DLCell(uint8 cell)
 inline void DLBitmapLayout(uint8 format, uint16 linestride, uint16 height)
 {
     DLListNewItem(_DLBitmapLayout(format, linestride, height));
+    
+    #if defined EVE_FT810
+        DLListNewItem(_DLBitmapLayout_H(linestride, height));
+    #endif 
 }
 
 inline void DLBitmapSize(uint8 filter, uint8 wrapx, uint8 wrapy, uint16 width, uint16 height)
 {
     DLListNewItem(_DLBitmapSize(filter, wrapx, wrapy, width, height));
+    
+    #if defined EVE_FT810
+        DLListNewItem(_DLBitmapSize_H(width, height));
+    #endif 
 }
 
 inline void DLAlphaFunc(uint8 func, uint8 ref)

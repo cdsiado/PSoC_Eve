@@ -42,8 +42,31 @@ void T_Init()
 ********************************************************************************
 *******************************************************************************/
 
+void Test_First()
+{
+    T_CMD_COLDSTART();
+    
+    FT_ListStart(DISPLAY);
+        DLClearColorRGB(0x00, 0x00, 0x00);              // Background = black.
+        DLClear(1, 1, 1);                               // Clear all(color, stencil & tag buffer);
+        DLColorRGB( 0xFF, 0xFF, 0xFF);                  // White color.
+        DLBegin(PRIMITIVE_LINE_STRIP);                  // Begin a primitive (LINE_STRIP)
+            DLVertex2II(10, 10, 0, 0);          
+//            DLVertex2II(((LCDWIDTH - 1) - 10), 10, 0, 0);           
+//            DLVertex2II(((LCDWIDTH - 1) - 10), ((LCDHEIGHT - 1) - 10), 0, 0);           
+//            DLVertex2II(10, ((LCDHEIGHT - 1) - 10), 0, 0);
+//            DLVertex2II(10, 10, 0, 0);     
+                DLVertex2II(789, 10, 0, 0);           
+                DLVertex2II(789,469, 0, 0);           
+                DLVertex2II(10, 469, 0, 0);
+                DLVertex2II(10, 10, 0, 0);                 
+        DLEnd();
+    FT_ListEnd(END_DL_NOSWAP);                          // End the display list.      
+}
+
 void T_DL_A()
 {
+    
     T_CMD_COLDSTART();
     // Test: CLEAR_COLOR_RGB, CLEAR
     
