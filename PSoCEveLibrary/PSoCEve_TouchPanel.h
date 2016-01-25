@@ -47,6 +47,7 @@ typedef union
 void FT_Touch_Enable();
 void FT_Touch_Disable();
 uint8 FT_Touch_Calibrate();
+void FT_Touch_WaitCalibrationEnds();
 void FT_Touch_ReadCalibrationValues(TouchCalibrationValues* values);
 void FT_Touch_WriteCalibrationValues(TouchCalibrationValues* values);
     

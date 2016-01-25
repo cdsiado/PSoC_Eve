@@ -23,14 +23,11 @@ void T_Init();
 
 
 /* *** DISPLAY LIST *** */
-
+void Test_ZERO();
 void Test_First();
 
-void T_DL_A();
-void T_DL_PRIMITIVE_POINT();
-void T_DL_PRIMITIVE_LINE();
 void T_PRIMITIVE_EDGESTRIP();
-void T_PRIMITIVE_RECTANGLE();
+
 void T_PRIMITIVE_BITMAP();
 void T_DL_B();
 void T_DL_SCISSOR();

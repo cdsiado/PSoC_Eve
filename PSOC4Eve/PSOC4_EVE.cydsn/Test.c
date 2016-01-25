@@ -42,103 +42,136 @@ void T_Init()
 ********************************************************************************
 *******************************************************************************/
 
-void Test_First()
+void Test_ZERO()
 {
+    uint16 point_x, point_y;
+    uint16 point_size = 1;
+    uint8 loop;
+    
+    unsigned int bitmaplength;    
+    
     T_CMD_COLDSTART();
+    
+    /* For bitmap test. Copy bitmap to RAM-G. */
+    bitmaplength = sizeof(testbitmap);
+    FT_Transfer_Start(RAM_G | MEMORY_WRITE);
+    FT_Send_ByteArray(testbitmap, bitmaplength);
+    FT_Transfer_End(); 
     
     FT_ListStart(DISPLAY);
         DLClearColorRGB(0x00, 0x00, 0x00);              // Background = black.
         DLClear(1, 1, 1);                               // Clear all(color, stencil & tag buffer);
         DLColorRGB( 0xFF, 0xFF, 0xFF);                  // White color.
-        DLBegin(PRIMITIVE_LINE_STRIP);                  // Begin a primitive (LINE_STRIP)
-            DLVertex2II(10, 10, 0, 0);          
-//            DLVertex2II(((LCDWIDTH - 1) - 10), 10, 0, 0);           
-//            DLVertex2II(((LCDWIDTH - 1) - 10), ((LCDHEIGHT - 1) - 10), 0, 0);           
-//            DLVertex2II(10, ((LCDHEIGHT - 1) - 10), 0, 0);
-//            DLVertex2II(10, 10, 0, 0);     
-                DLVertex2II(789, 10, 0, 0);           
-                DLVertex2II(789,469, 0, 0);           
-                DLVertex2II(10, 469, 0, 0);
-                DLVertex2II(10, 10, 0, 0);                 
-        DLEnd();
-    FT_ListEnd(END_DL_NOSWAP);                          // End the display list.      
-}
-
-void T_DL_A()
-{
-    
-    T_CMD_COLDSTART();
-    // Test: CLEAR_COLOR_RGB, CLEAR
-    
-    FT_ListStart(DISPLAY);                              // Start the display list.
-    DLClearColorRGB(0xFF, 0x00, 0x00);                  // Set red color for background. 
-    DLClear(1, 1, 1);                                   // Clear all (color, stencil and tag buffer).
-    FT_ListEnd(END_DL_NOSWAP);                          // End the display list.
-    CyDelay(1000);                              
-
-    FT_ListStart(DISPLAY);                             // Start the display list.
-    DLClearColorRGB(0x00, 0xFF, 0x00);                  // Set red color for background. 
-    DLClear(1, 1, 1);                  // Clear all (color, stencil and tag buffer).
-    FT_ListEnd(END_DL_NOSWAP);                                     // End the display list.
-    CyDelay(1000); 
-
-    FT_ListStart(DISPLAY);                             // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0xFF); // Set red color for background. 
-    DLClear(1, 1, 1);                  // Clear all (color, stencil and tag buffer).
-    FT_ListEnd(END_DL_NOSWAP);   
-    CyDelay(1000); 
-
-    FT_ListStart(DISPLAY);             // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00); // Set red color for background. 
-    DLClear(1, 1, 1);                  // Clear all (color, stencil and tag buffer).
     FT_ListEnd(END_DL_NOSWAP); 
 }
+        
 
-void T_DL_PRIMITIVE_POINT()
+void Test_First()
 {
-    T_CMD_COLDSTART();
-    // Test also: DL_COLOR_RGB, DL_VERTEXII, DL_POINT_SIZE, DL_END,
-    //     DL_LINE_WIDTH
+    uint16 point_x, point_y;
+    uint16 point_size = 1;
+    uint8 loop;
     
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-    DLColorRGB(0xFF, 0xFF, 0xFF);        // White color.
-    DLBegin(PRIMITIVE_POINT);            // Begin a primitive (POINT)
-    DLVertex2II(10, 10, 0, 0);           // First point.
-    DLPointSize(50);                     // Increase point size.
-    DLVertex2II(240, 136, 0, 0);         // Second point.
-    FT_ListEnd(END_DL_NOSWAP);
-}
-
-void T_DL_PRIMITIVE_LINE()
-{
+    unsigned int bitmaplength;    
+    
     T_CMD_COLDSTART();
     
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-       
-    // Test PRIMITIVE_LINE
-    DLColorRGB(0xFF, 0x00, 0x00);         // Red color.       
-    DLBegin(PRIMITIVE_LINE);              // Begin a primitive (LINE)
-        DLVertex2II(10, 10, 0, 0);        // First point (line from...)
-        DLVertex2II(100, 10, 0, 0);       // Second point (to...)
-        DLColorRGB(0x00, 0xFF, 0x00);
-    DLBegin(PRIMITIVE_LINE);
-        DLLineWidth(3);
-        DLVertex2II(10, 30, 0, 0);        // First point (line from...)
-        DLVertex2II(100, 100, 0, 0);      // Second point (to...)
-        DLEnd();
-        DLColorRGB(0x00, 0x00, 0xFF);
+    /* For bitmap test. Copy bitmap to RAM-G. */
+    bitmaplength = sizeof(testbitmap);
+    FT_Transfer_Start(RAM_G | MEMORY_WRITE);
+    FT_Send_ByteArray(testbitmap, bitmaplength);
+    FT_Transfer_End(); 
+    
+    FT_ListStart(DISPLAY);
+        DLClearColorRGB(0x00, 0x00, 0x00);              // Background = black.
+        DLClear(1, 1, 1);                               // Clear all(color, stencil & tag buffer);
+        DLColorRGB( 0xFF, 0xFF, 0xFF);                  // White color.
+
+        #if defined EVE_FT810
+            DLVertexFormat(VERTEX_FORMAT_1);
+        #endif
+        
+        DLBegin(PRIMITIVE_LINE_STRIP);                  // Begin a primitive (LINE_STRIP)
+            DLVertex2F(10, 10);          
+            DLVertex2F(((LCDWIDTH - 1) - 10), 10);           
+            DLVertex2F(((LCDWIDTH - 1) - 10), ((LCDHEIGHT - 1) - 10));           
+            DLVertex2F(10, ((LCDHEIGHT - 1) - 10));
+            DLVertex2F(10, 10); 
+        DLColorRGB(0xFF, 0x00, 0x00);
+        DLBegin(PRIMITIVE_LINE);
+            DLVertex2F(50, 50);
+            DLVertex2F(((LCDWIDTH - 1) - 50), 50);
+            DLColorRGB(0x00, 0xFF, 0x00);
+            DLLineWidth(2);
+            DLVertex2F(60, 60);
+            DLVertex2F(((LCDWIDTH - 1) - 60), 60);
+            DLColorRGB(0x00, 0x00, 0xFF);
+            DLLineWidth(4);
+            DLVertex2F(70, 70);
+            DLVertex2F(((LCDWIDTH - 1) - 70), 70);            
+        DLColorRGB(0xFF, 0x00, 0x00);         
         DLLineWidth(1);
-    DLBegin(PRIMITIVE_LINE_STRIP);        // Begin a primitive (LINE_STRIP)
-        DLVertex2II(200, 100, 0, 0);          
-        DLVertex2II(300, 100, 0, 0);           
-        DLVertex2II(300, 200, 0, 0);           
-        DLVertex2II(200, 200, 0, 0);
-        DLVertex2II(200, 100, 0, 0);
+        DLBegin(PRIMITIVE_RECTANGLE);         
+            DLVertex2F(90, 90);            
+            DLVertex2F(190, 190);    
+            DLColorRGB(0x00, 0xFF, 0x00);         
+            DLLineWidth(5);                 
+            DLVertex2F(210, 90);            
+            DLVertex2F(310, 190); 
+        DLColorRGB(0xFF, 0xFF, 0xFF);         
+        DLBegin(PRIMITIVE_POINT);
+            point_x = 50;
+            point_y = 250;
+            for (loop = 1; loop < 6; loop++) 
+            {
+                DLVertex2F(point_x, point_y);  
+                DLPointSize(point_size += 3);
+                point_x += 30;
+            }
+
+        DLBegin(PRIMITIVE_BITMAP);                      // Start new primitive (BITMAP.
+            DLBitmapSource(0x00);                       // Source address 0 in RAM_G.
+            DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
+            DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64); 
+            DLVertex2F(330, 90);                        // Place the bitmap
+            DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 32, 32); 
+            DLVertex2F(330 + 64 + 20, 90);              // Place, only a piece of the bitmap.
+            
+        DLBegin(PRIMITIVE_BITMAP);                      // Start new primitive (BITMAP.
+            DLBitmapSource(0x00);                       // Source address 0 in RAM_G.
+            DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
+            DLBitmapTransformA(120);
+            DLBitmapTransformE(120);
+            DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 120, 120); 
+            DLVertex2F(330, 170);                       // Place the bitmap at 0, 0.    
+            
+        DLBegin(PRIMITIVE_BITMAP);           // Start new primitive (BITMAP.
+            DLBitmapSource(0x00);            // Source address 0 in RAM_G.
+            DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
+            DLBitmapTransformA(160);
+            DLBitmapTransformE(160);
+            DLBitmapSize(BITMAP_SIZE_FILTER_BILINEAR, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 240, 240); 
+            DLVertex2F(210, 200);         // Place the bitmap at 0, 0.
+            
+        DLEnd();
+    FT_ListEnd(END_DL_NOSWAP);                          // End the display list.  
+    
+    CyDelay(5000);
+    
+    /* New display list. */
+    FT_ListStart(DISPLAY);               // Start the display list.
+    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
+    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
+    
+    DLBegin(PRIMITIVE_BITMAP);            // Start new primitive (BITMAP.
+        DLBitmapSource(0x00);             // Source address 0 in RAM_G.
+        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
+        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_REPEAT, BITMAP_SIZE_WRAP_REPEAT, LCDWIDTH, LCDHEIGHT); 
+        DLVertex2II(0, 0, 0, 0);          // Place the bitmap at 0, 0.
+                                          // Fill display.
     FT_ListEnd(END_DL_NOSWAP);
+    
+    CyDelay(3000);
 }
 
 void T_PRIMITIVE_EDGESTRIP()
@@ -174,105 +207,7 @@ void T_PRIMITIVE_EDGESTRIP()
     FT_ListEnd(END_DL_NOSWAP);
 }
 
-void T_PRIMITIVE_RECTANGLE()
-{
-    T_CMD_COLDSTART();
-    
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-        DLColorRGB(0x00, 0xFF, 0x00);         
-        DLLineWidth(1);
-    DLBegin(PRIMITIVE_RECTANGLE);         
-        DLVertex2II(40, 40, 0, 0);            
-        DLVertex2II(100, 100, 0, 0);    
-        DLColorRGB(0xFF, 0xFF, 0x00);         
-        DLLineWidth(5);                  // Round rectangle
-        DLBegin(PRIMITIVE_RECTANGLE);         
-        DLVertex2II(200, 200, 0, 0);            
-        DLVertex2II(300, 250, 0, 0);
-    FT_ListEnd(END_DL_NOSWAP);
-}
 
-void T_PRIMITIVE_BITMAP()
-{
-    unsigned int bitmaplength;
-    
-    T_CMD_COLDSTART();
-    
-    // Firt, copy the bitmap data from program memory to RAM_G (graphics RAM) of the 
-    // EVE chip. Starting at address 0.
-    bitmaplength = sizeof(testbitmap);
-    FT_Transfer_Start(RAM_G | MEMORY_WRITE);
-    FT_Send_ByteArray(testbitmap, bitmaplength);
-    FT_Transfer_End();
-    
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-    
-    DLBegin(PRIMITIVE_BITMAP);            // Start new primitive (BITMAP.
-        DLBitmapSource(0x00);             // Source address 0 in RAM_G.
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64); 
-        DLVertex2II(10, 10, 0, 0);        // Place the bitmap at 10, 10.
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 32, 32); 
-        DLVertex2II(100, 10, 0, 0);       // Place, only a piece of the bitmap.
-    FT_ListEnd(END_DL_NOSWAP);
-    
-    CyDelay(3000);
-    
-    // **********************************************************************    TODO: REvisar.
-    
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-    
-    DLBegin(PRIMITIVE_BITMAP);            // Start new primitive (BITMAP.
-        DLBitmapSource(0x00);             // Source address 0 in RAM_G.
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_REPEAT, BITMAP_SIZE_WRAP_REPEAT, 480, 272); 
-        DLVertex2II(0, 0, 0, 0);          // Place the bitmap at 0, 0.
-                                                        // Fill display.
-    FT_ListEnd(END_DL_NOSWAP);
-    
-    CyDelay(3000);
-    
-    // **********************************************************************    
-    
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-    
-    DLBegin(PRIMITIVE_BITMAP);           // Start new primitive (BITMAP.
-        DLBitmapSource(0x00);            // Source address 0 in RAM_G.
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
-        DLBitmapTransformA(120);
-        DLBitmapTransformE(120);
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 120, 120); 
-        DLVertex2II(0, 0, 0, 0);         // Place the bitmap at 0, 0.
-                                                        // Fill display.
-    FT_ListEnd(END_DL_NOSWAP);
-    
-    CyDelay(3000);
-    
-    // **********************************************************************    
-            
-        // The same with bilinear filter.
-    FT_ListStart(DISPLAY);               // Start the display list.
-    DLClearColorRGB(0x00, 0x00, 0x00);   // Set red color for background. 
-    DLClear(1, 1, 1);                    // Clear all (color, stencil and tag buffer).
-    
-    DLBegin(PRIMITIVE_BITMAP);           // Start new primitive (BITMAP.
-        DLBitmapSource(0x00);            // Source address 0 in RAM_G.
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
-        DLBitmapTransformA(160);
-        DLBitmapTransformE(160);
-        DLBitmapSize(BITMAP_SIZE_FILTER_BILINEAR, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 240, 240); 
-        DLVertex2II(0, 0, 0, 0);         // Place the bitmap at 0, 0.
-                                         // Fill display.
-    FT_ListEnd(END_DL_NOSWAP);
-}
 
 void T_DL_B() // Test DL_COLOR_A, DL_BLEND_FUNC
 {

@@ -82,26 +82,21 @@ int main()
 
     
     /* *** DISPLAY LIST *** */
-    Test_First();
-    while(1);
+    T_DL_B();
+    CyDelay(delayTime);
     
-    T_DL_A();
-    CyDelay(delayTime);
-    T_DL_PRIMITIVE_POINT();
-    CyDelay(delayTime);
-    T_DL_PRIMITIVE_LINE();
+    
+    Test_ZERO();
+    
+    Test_First();
     CyDelay(delayTime);
     T_PRIMITIVE_EDGESTRIP();
-    CyDelay(delayTime);
-    T_PRIMITIVE_RECTANGLE();
-    CyDelay(delayTime);
-    T_PRIMITIVE_BITMAP();
     CyDelay(delayTime);
     T_DL_B();
     CyDelay(delayTime);
     T_DL_SCISSOR();
-    CyDelay(delayTime);
-    T_CMD_CALIBRATE();
+    //CyDelay(delayTime);
+    //T_CMD_CALIBRATE();
     CyDelay(delayTime);
     T_DL_TAG_AND_MASK();
     while(1);

@@ -23,13 +23,13 @@
     
 #define SPI_NAME    SPI    
     
-//#define EVE_FT800
-#define EVE_FT810    
+#define EVE_FT800
+//#define EVE_FT810    
     
     
 //#define LCD_QVGA
-//#define LCD_WQVGA 
-#define LCD_WVVGA    
+#define LCD_WQVGA 
+//#define LCD_WVVGA    
     
 // LCD display parameters
 #ifdef LCD_QVGA			            // QVGA display parameters

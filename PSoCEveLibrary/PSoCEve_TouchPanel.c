@@ -81,15 +81,18 @@ uint8 FT_Touch_Calibrate()
 {
     //if (listInProgress != NONE) return 0;
     
-    FT_ListStart(COPROCESSOR);
-    DLClearColorRGB(0x00, 0x00, 0x00);
-    DLClear(1, 1, 1);
+    //FT_ListStart(COPROCESSOR);
     CMDCalibrate();
-    FT_ListEnd(END_DL_SWAP);  
+    //FT_ListEnd(END_DL_NOSWAP);  
     
-    while (!FTIsCoproccesorReady()) {};
+    //while (!FTIsCoproccesorReady()) {};
     
     return 1;
+}
+
+void FT_Touch_WaitCalibrationEnds()
+{
+    while (!FTIsCoproccesorReady()) {};
 }
 
 /*******************************************************************************

@@ -160,6 +160,65 @@ uint8 FT_Init()
     return 1;
 }
 
+//uint8 FT_Init()
+//{
+//    uint8 t = 0;
+//    
+//    // Force a hardware reset of EVE chip using PD_N pin.
+//    PD_N_Write(0); CyDelay(10); PD_N_Write(1); CyDelay(20);
+//    
+//    // Initialize EVE chip. Max SPI speed before the chip is initialized is 11Mhz.
+//    FTCommandWrite(FT800_ACTIVE);            // Start FT800
+//    CyDelay(5);	
+//    FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
+//    CyDelay(5);	
+//    FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
+//    CyDelay(5);	
+//    FTCommandWrite(FT800_CORERST);			// Set FT800 for 48MHz PLL
+//    CyDelay(5);
+//    
+//    // Read ID register. If we don¨t get 0x7C something is bad.
+//    //if (EVE_Memory_Read_Byte(REG_ID) != 0x7C) return 0;
+//    if (FT_Register_Read(REG_ID) != 0x7C) return 0;
+//    
+//    // At startup, PCLK (pixel clock) and PWM_DUTY (used for backlight) are programmed to 0.
+//    //      Display is off until user turns it on.
+//    FT_Register_Write(REG_PCLK, 0);
+//    FT_Register_Write(REG_PWM_DUTY, 0);	
+//    
+//    // Continue initializing registers with values from configuration header file.
+//    FT_Register_Write(REG_HSIZE, LCDWIDTH);	
+//    FT_Register_Write(REG_VSIZE, LCDHEIGHT);
+//    FT_Register_Write(REG_HCYCLE, LCDHCYCLE);
+//    FT_Register_Write(REG_HOFFSET, LCDHOFFSET);
+//    FT_Register_Write(REG_HSYNC0, LCDHSYNC0);
+//    FT_Register_Write(REG_HSYNC1, LCDHSYNC1);
+//    FT_Register_Write(REG_VCYCLE, LCDVCYCLE);
+//    FT_Register_Write(REG_VOFFSET, LCDVOFFSET);
+//    FT_Register_Write(REG_VSYNC0, LCDVSYNC0);
+//    FT_Register_Write(REG_VSYNC1, LCDVSYNC1);
+//    FT_Register_Write(REG_SWIZZLE, LCDSWIZZLE);
+//    FT_Register_Write(REG_PCLK_POL, LCDPCLKPOL);
+//    
+//    FT_Register_Write(REG_VOL_PB, 0);               // turn recorded audio volume down
+//    FT_Register_Write(REG_VOL_SOUND, 0);            // turn synthesizer volume down
+//    FT_Register_Write(REG_SOUND, 0x0060);           // set synthesizer to mute
+//    
+//    /* Configure GPIO1 to control audio amplifier chip. */
+//    #ifdef USE_GPIO1_AUDIO
+//        t = FT_Register_Read(REG_GPIO_DIR);   
+//        t |= 0x02;                                  // GIPO1, as output.
+//        FT_Register_Write(REG_GPIO_DIR, t);
+//        
+//        t = FT_Register_Read(REG_GPIO);             
+//        t &= 0xFD;                                  // = 0, shutdown amplifier.
+//        FT_Register_Write(REG_GPIO, t);
+//    #endif
+//              
+//    return 1;
+//}
+
+
 /*******************************************************************************
 * Function Name: FT_Display_ON
 ********************************************************************************

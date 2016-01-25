@@ -222,7 +222,7 @@ FTERROR FT_ListStart(LISTTYPE listtype)
     if (listtype == DISPLAY)
     {
         ramPtr = RAM_DL;                                // Display list ram in FT chip.
-        FT_Transfer_Start(ramPtr  | MEMORY_WRITE);
+        FT_Transfer_Start(ramPtr | MEMORY_WRITE);
         
         listInProgress = DISPLAY;
         return OK;
@@ -575,6 +575,38 @@ inline void DLVertex2II(uint16 x, uint16 y, uint8 handle, uint8 cell)
     DLListNewItem(_DLVertex2II(x, y, handle, cell));
 }
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+#if defined EVE_FT810
+
+    inline void DLVertexFormat(uint8 format)
+    {
+        DLListNewItem(_DLVertexFormat(format));
+    }
+    
+    inline void DLPaletteSource(uint32 address)
+    {
+        DLListNewItem(_DLPaletteSource(address));
+    }
+    
+    inline void DLVertexTranslateX(int32 translation)
+    {
+        DLListNewItem(_DLVertexTranslateX(translation));
+    }
+    
+    inline void DLVertexTranslateY(int32 translation)
+    {
+        DLListNewItem(_DLVertexTranslateY(translation));
+    }
+    
+    inline void DLNop()
+    {
+        DLListNewItem(_DL_Nop());
+    }
+    
+#endif  
+
+
 
 
 
@@ -771,6 +803,16 @@ inline void CMDGradcolor(int16 red, int16 green, int16 blue)
     CMDListNewItem(_CMDGradcolor(red, green, blue));
 }
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+#if defined EVE_FT810
+    
+    inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
+    {
+        CMDListNewItem(_CMDSetBitmap(address, format, width, height));
+    }
+
+#endif    
 
 
 /* [] END OF FILE */

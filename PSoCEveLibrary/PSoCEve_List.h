@@ -211,7 +211,12 @@
     #define REG_TOUCH_DIRECT_Z1Z2   0x302190
     #define REG_DATESTAMP           0x302564
     #define REG_CMDB_SPACE          0x302574
-    #define REG_CMDB_WRITE          0x302578    
+    #define REG_CMDB_WRITE          0x302578 
+    #define REG_TRACKER             0x309000
+    #define REG_TRACKER_1           0x309004
+    #define REG_TRACKER_2           0x309008
+    #define REG_TRACKER_3           0x30900C
+    #define REG_TRACKER_4           0x309010
 #endif    
     
 /*******************************************************************************
@@ -428,12 +433,12 @@ inline void DLBlendFunc(uint8 src, uint8 dst);
 inline void DLStencilOp(uint8 sfail, uint8 spass);
 /* ************************************************************************** */ 
 #define DL_POINT_SIZE       	0x0D000000
-#define _DLPointSize(size) (DL_POINT_SIZE | (size << 4))  
+#define _DLPointSize(size) (DL_POINT_SIZE | size)  
 
 inline void DLPointSize(uint32 size);
 /* ************************************************************************** */  
 #define DL_LINE_WIDTH       	0x0E000000
-#define _DLLineWidth(width) (DL_LINE_WIDTH | (width << 4))
+#define _DLLineWidth(width) (DL_LINE_WIDTH | width)
 
 inline void DLLineWidth(uint16 width);
 /* ************************************************************************** */  
@@ -553,7 +558,7 @@ inline void DLMacro(uint8 macro);
 inline void DLClear(uint8 color, uint8 stencil, uint8 tag);
 /* ************************************************************************** */ 
 #define DL_VERTEX2F         	0x40000000
-#define _DLVertex2F(x, y) (DL_VERTEX2F | ((x << 4) << 15) | (y << 4))  
+#define _DLVertex2F(x, y) (DL_VERTEX2F | (x << 15) | y)  
 
 inline void DLVertex2F(int16 x, int16 y);
 /* ************************************************************************** */     
@@ -566,13 +571,43 @@ inline void DLVertex2II(uint16 x, uint16 y, uint8 handle, uint8 cell);
 /* ************************************************************************** */
 #if defined EVE_FT810
 
+    #define VERTEX_FORMAT_1         0
+    #define VERTEX_FORMAT_1_2       1
+    #define VERTEX_FORMAT_1_4       2
+    #define VERTEX_FORMAT_1_8       3
+    #define VERTEX_FORMAT_1_16      4
+    
+    #define DL_VERTEX_FORMAT        0x27000000
+    #define _DLVertexFormat(format) (DL_VERTEX_FORMAT | (format & 0x00000003))
+    
+    inline void DLVertexFormat(uint8 format);
     /* ************************************************************************** */
     #define DL_BITMAP_LAYOUT_H    	0x28000000
     #define _DLBitmapLayout_H(linestride, height) (DL_BITMAP_LAYOUT_H | ((linestride & 0x0C00) >> 8) | ((height & 0x0600) >> 9)) 
     /* ************************************************************************** */
     #define DL_BITMAP_SIZE_H      	0x29000000
     #define _DLBitmapSize_H(width, height) (DL_BITMAP_SIZE_H | ((width & 0x0600) >> 7) | ((height & 0x0600) >> 9)) 
-
+    /* ************************************************************************** */
+    #define DL_PALETTE_SOURCE       0x2A000000
+    #define _DLPaletteSource(address) (DL_PALETTE_SOURCE | (address & 0x003FFFFF))
+    
+    inline void DLPaletteSource(uint32 address);
+    /* ************************************************************************** */
+    #define DL_VERTEX_TRANSLATE_X   0x2B000000
+    #define _DLVertexTranslateX(translation)  (DL_VERTEX_TRANSLATE_X | (translation & 0x0001FFFF))
+    
+    inline void DLVertexTranslateX(int32 translation);
+    /* ************************************************************************** */
+    #define DL_VERTEX_TRANSLATE_Y   0x2C000000
+    #define _DLVertexTranslateY(translation)  (DL_VERTEX_TRANSLATE_Y | (translation & 0x0001FFFF))
+    
+    inline void DLVertexTranslateY(int32 translation);    
+    /* ************************************************************************** */
+    #define DL_NOP                  0x2D000000
+    #define _DL_Nop() (DL_NOP)
+    
+    inline void DLNop();
+    
 #endif    
 
 /*******************************************************************************
@@ -589,7 +624,8 @@ inline void DLVertex2II(uint16 x, uint16 y, uint8 handle, uint8 cell);
 *   Data types for data formating.
 *******************************************************************************/
 
-typedef struct { int32 Command;} CINT32;
+typedef struct { int32 Command; } CINT32;
+typedef struct { int32 Command; int8 v1; } CINT32_INT8;
 typedef struct { int32 Command; int8 v0; int8 v1; int8 v2; int8 v3; } CINT32_4INT8;
 typedef struct { int32 Command; int32 v0; } CINT32_CINT32;
 typedef struct { int32 Command; int32 v0; int32 v1; } CINT32_2CINT32;
@@ -726,7 +762,7 @@ inline void CMDGauge(int16 x, int16 y, int16 radius, int16 options, int16 major,
 inline void CMDClock(int16 x, int16 y, int16 radius, int16 options, int16 hours, int16 minutes, int16 seconds, int16 milliseconds);
 /* ************************************************************************** */
 #define CMD_CALIBRATE           0xffffff15
-#define _CMDCalibrate() ((uint8*)&(CINT32){CMD_CALIBRATE}), sizeof(CINT32), 0
+#define _CMDCalibrate() ((uint8*)&(CINT32_INT8){CMD_CALIBRATE, 0}), sizeof(CINT32_INT8), 0
 
 inline void CMDCalibrate();
 /* ************************************************************************** */
@@ -873,6 +909,43 @@ inline void CMDColdstart();
     ((uint8*)&(CINT32_4INT16){CMD_GRADCOLOR, blue, green, red, 0}), sizeof(CINT32_4INT16), 0
 
 inline void CMDGradcolor(int16 red, int16 green, int16 blue);
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+#if defined EVE_FT810
+
+    /* ************************************************************************** */
+    #define CMD_CSKETCH         0xFFFFFF35
+    /* ************************************************************************** */
+    #define CMD_SETROTATE       0xFFFFFF36
+    /* ************************************************************************** */
+    #define CMD_SNAPSHOT2       0xFFFFFF37
+    /* ************************************************************************** */
+    #define CMD_SETBASE         0xFFFFFF38
+    /* ************************************************************************** */
+    #define CMD_MEDIAFIFO       0xFFFFFF39
+    /* ************************************************************************** */
+    #define CMD_PLAYVIDEO       0xFFFFFF3A
+    /* ************************************************************************** */
+    #define CMD_SETFONT2        0xFFFFFF3B
+    /* ************************************************************************** */
+    #define CMD_SETSCRATCH      0xFFFFFF3C
+    /* ************************************************************************** */
+    #define CMD_ROMFONT         0xFFFFFF3F
+    /* ************************************************************************** */
+    #define CMD_VIDEOSTART      0xFFFFFF40
+    /* ************************************************************************** */
+    #define CMD_VIDEOFRAME      0xFFFFFF41
+    /* ************************************************************************** */
+    #define CMD_SETBITMAP       0xFFFFFF43   
+    #define _CMDSetBitmap(address, format, width, height) \
+        ((uint8*)&(CINT32_4INT16){CMD_SETBITMAP, address, format, width, height}), sizeof(CINT32_4INT16), 0
+    
+    inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height);
+    /* ************************************************************************** */
+    
+#endif    
     
 /*******************************************************************************
 *   Typedefs.
