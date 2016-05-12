@@ -19,16 +19,20 @@
 /* Include PSoC_Eve library header file. */
 #include "..\..\..\PSoC_Eve_Library\PsoCEve.h"
 
+
 /* Include a header file for every demo. */
 #include "demo_0.h"
 #include "demo_1.h"
 #include "demo_2.h"
 #include "demo_3.h"
 #include "demo_4.h"
+#include "demo_5.h"
+#include "demo_6.h"
+#include "demo_7.h"
 
 #define delayTime 3000
 
-enum DEMOS { NODEMO, DEMO_0, DEMO_1, DEMO_2, DEMO_3, DEMO_4 };
+enum DEMOS { NODEMO, DEMO_0, DEMO_1, DEMO_2, DEMO_3, DEMO_4, DEMO_5, DEMO_6, DEMO_7 };
 
 unsigned char currentDemo = NODEMO;
 unsigned char newDemo = NODEMO;
@@ -38,6 +42,9 @@ void Demo_1_TouchCallback(DEMO_1_EVENTS event);
 void Demo_2_TouchCallback(DEMO_2_EVENTS event);
 void Demo_3_TouchCallback(DEMO_3_EVENTS event);
 void Demo_4_TouchCallback(DEMO_4_EVENTS event);
+void Demo_5_TouchCallback(DEMO_5_EVENTS event);
+void Demo_6_TouchCallback(DEMO_6_EVENTS event);
+void Demo_7_TouchCallback(DEMO_7_EVENTS event);
 
 void (*CurrentScreenLoop)() = 0;
 void (*CurrentScreenCloseFunction)() = 0;
@@ -157,7 +164,22 @@ int main()
                 case DEMO_4: 
                 {
                     CurrentScreenLoop = Demo_4_Start(Demo_4_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;                
+                }; break;   
+                
+                case DEMO_5: 
+                {
+                    CurrentScreenLoop = Demo_5_Start(Demo_5_TouchCallback, &CurrentScreenCloseFunction);
+                }; break;    
+                
+                case DEMO_6: 
+                {
+                    CurrentScreenLoop = Demo_6_Start(Demo_6_TouchCallback, &CurrentScreenCloseFunction);
+                }; break;   
+                
+                case DEMO_7: 
+                {
+                    CurrentScreenLoop = Demo_7_Start(Demo_7_TouchCallback, &CurrentScreenCloseFunction);
+                }; break;                   
             }
             
             /***/
@@ -209,7 +231,13 @@ void Demo_0_TouchCallback(DEMO_0_EVENTS event)
         case D0_BTN_DEMO_3: // Demo 3 button pressed.
             newDemo = DEMO_3; break;   
         case D0_BTN_DEMO_4: // Demo 4 button pressed.
-            newDemo = DEMO_4; break;        
+            newDemo = DEMO_4; break;  
+        case D0_BTN_DEMO_5: // Demo 5 button pressed.
+            newDemo = DEMO_5; break;
+        case D0_BTN_DEMO_6: // Demo 6 button pressed.
+            newDemo = DEMO_6; break;  
+        case D0_BTN_DEMO_7: // Demo 6 button pressed.
+            newDemo = DEMO_7; break;         
     }
     
     FT_Sound_Play(0x50, 0xc0);
@@ -257,11 +285,11 @@ void Demo_3_TouchCallback(DEMO_3_EVENTS event)
     FT_Sound_Play(0x50, 0xc0);
 }
 
-/* *** Callback function for DEMO 3. ******************************************
+/* *** Callback function for DEMO 4. ******************************************
 */
 void Demo_4_TouchCallback(DEMO_4_EVENTS event)
 {
-    // For Demo 3, 'event' contains the value of the pressed button.
+    // For Demo 4, 'event' contains the value of the pressed button.
     switch(event)
     {
         case D4_EXIT: // Exit button pressed.
@@ -271,5 +299,46 @@ void Demo_4_TouchCallback(DEMO_4_EVENTS event)
     FT_Sound_Play(0x50, 0xc0);
 }
 
+/* *** Callback function for DEMO 5. ******************************************
+*/
+void Demo_5_TouchCallback(DEMO_5_EVENTS event)
+{
+    // For Demo 5, 'event' contains the value of the pressed button.
+    switch(event)
+    {
+        case D5_EXIT: // Exit button pressed.
+            newDemo = DEMO_0; break;
+    }
+    
+    FT_Sound_Play(0x50, 0xc0);
+}
+
+/* *** Callback function for DEMO 6. ******************************************
+*/
+void Demo_6_TouchCallback(DEMO_6_EVENTS event)
+{
+    // For Demo 6, 'event' contains the value of the pressed button.
+    switch(event)
+    {
+        case D6_BTN_EXIT: // Exit button pressed.
+            newDemo = DEMO_0; break;
+    }
+    
+    FT_Sound_Play(0x50, 0xc0);
+}
+
+/* *** Callback function for DEMO 7. ******************************************
+*/
+void Demo_7_TouchCallback(DEMO_7_EVENTS event)
+{
+    // For Demo 7, 'event' contains the value of the pressed button.
+    switch(event)
+    {
+        case D7_BTN_EXIT: // Exit button pressed.
+            newDemo = DEMO_0; break;
+    }
+    
+    FT_Sound_Play(0x50, 0xc0);
+}
 
 /* [] END OF FILE */

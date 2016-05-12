@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC5_EVE\PSOC5_EVE\Source Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC5_EVE\PSOC5_EVE\PSoC_Eve_Library\PSoCEve_Hal.c">
 <ExpandedNodeIds>
 <v>PSOC5_EVE</v>
 <v>PSOC5_EVE\PSOC5_EVE</v>
@@ -25,6 +25,9 @@
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_2.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_3.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_4.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_5.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_6.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_7.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\Demos_Resources.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\SysTick.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\PSoC_Eve_Library</v>
@@ -45,6 +48,9 @@
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_2.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_3.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_4.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_5.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_6.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_7.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\Demos_Resources.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\main.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\SysTick.c</v>
@@ -256,6 +262,9 @@
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_2.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_3.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_4.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_5.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_6.h</v>
+<v>PSOC5_EVE\PSOC5_EVE\Header Files\demo_7.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\Demos_Resources.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\Header Files\SysTick.h</v>
 <v>PSOC5_EVE\PSOC5_EVE\PSoC_Eve_Library</v>
@@ -276,6 +285,9 @@
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_2.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_3.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_4.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_5.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_6.c</v>
+<v>PSOC5_EVE\PSOC5_EVE\Source Files\demo_7.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\Demos_Resources.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\main.c</v>
 <v>PSOC5_EVE\PSOC5_EVE\Source Files\SysTick.c</v>
@@ -321,6 +333,9 @@
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_2.lst</v>
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_3.lst</v>
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_4.lst</v>
+<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_5.lst</v>
+<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_6.lst</v>
+<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_7.lst</v>
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\Demos_Resources.lst</v>
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
 <v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\MISO.lst</v>
@@ -352,49 +367,6 @@
 <VisibleNodeIds>
 <v>PSOC5_EVE</v>
 <v>PSOC5_EVE\PSOC5_EVE</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CyScBoostClk.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_0.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_1.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_2.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_3.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\demo_4.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\Demos_Resources.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\MISO.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\MOSI.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PD_N.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PSoCEve.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PSoCEve_Audio.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PSoCEve_Hal.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PSoCEve_List.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\PSoCEve_TouchPanel.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SCLK.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SPI.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SPI_INT.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SPI_PM.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SPI_SS.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\SysTick.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\UART.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_BOOT.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_INT.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_IntClock.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_PM.lst</v>
-<v>PSOC5_EVE\PSOC5_EVE\CortexM3\ARM_GCC_493\Debug\PSOC5_EVE.elf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -441,7 +413,17 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v="..\..\Code\demo_2.c" />
+<name v="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.c" />
+<name v="..\..\Code\main.c" />
+<name v="..\..\Code\demo_4.c" />
+<name v="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.c" />
+<name v="..\..\Code\Demos_Resources.h" />
+<name v="..\..\Code\Demos_Resources.c" />
+<name v=".\PSOC5_EVE.cydsn\Generated_Source\PSoC5\SPI.c" />
+<name v=".\PSOC5_EVE.cydsn\TopDesign\TopDesign.cysch" />
+</OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

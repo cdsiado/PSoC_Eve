@@ -942,6 +942,11 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue);
 /* ************************************************************************** */
 #if defined EVE_FT810
 
+    #define NUMBER_BASE_BINARY      2
+    #define NUMBER_BASE_OCTAL       8
+    #define NUMBER_BASE_DECIMAL     10
+    #define NUMBER_BASE_HEXADECIMAL 16
+    
     /* ************************************************************************** */
     #define CMD_CSKETCH         0xFFFFFF35
     /* ************************************************************************** */
@@ -950,6 +955,10 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue);
     #define CMD_SNAPSHOT2       0xFFFFFF37
     /* ************************************************************************** */
     #define CMD_SETBASE         0xFFFFFF38
+    #define _CMDSETBASE(base) \
+        ((uint8*)&(CINT32_CINT32){CMD_SETBASE, base}), sizeof(CINT32_CINT32), 0
+
+    inline void CMDSetBase(int32 base);
     /* ************************************************************************** */
     #define CMD_MEDIAFIFO       0xFFFFFF39
     /* ************************************************************************** */

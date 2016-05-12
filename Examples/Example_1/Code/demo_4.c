@@ -61,7 +61,26 @@ void Demo_4_Loop()
     
     // Call the callback function with value of TAG.
     if (rdtag == D4_EXIT)
+    {
+        FT_ListStart(DLIST); 
+            
+            // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
+            DLClearColorRGB(0x00, 0x00, 0x00);
+            DLClear(1, 1, 1);
+            
+            // Show message.
+            DLColorRGB(0x00, 0xFF, 0x00);
+            CMDText( LCDWIDTH / 2, 10, 30, OPT_CENTERX, "Please Wait...");
+            
+            DLColorRGB(0xFF, 0xFF, 0xFF);
+            CMDSpinner(LCDWIDTH / 2, LCDHEIGHT / 2, SPINNER_ROUND, 1);
+            
+        FT_ListEnd(END_DL_NOSWAP);          // The spinner command swaps the display.
+        
+        CyDelay(5000);
+    
         (*TouchCallback)(rdtag);
+    }
 }
 
 

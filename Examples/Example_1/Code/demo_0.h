@@ -32,7 +32,7 @@
     
 /* Possible events from this demo. Demo 0. */
 typedef enum { D0_NONE, D0_BTN_DEMO_1 = 1, D0_BTN_DEMO_2 = 2, D0_BTN_DEMO_3 = 3,
-    D0_BTN_DEMO_4 = 4 } DEMO_0_EVENTS;
+    D0_BTN_DEMO_4 = 4, D0_BTN_DEMO_5 = 5, D0_BTN_DEMO_6 = 6, D0_BTN_DEMO_7 = 7 } DEMO_0_EVENTS;
 
 /* *** Function prototypes. ***************************************************
 */

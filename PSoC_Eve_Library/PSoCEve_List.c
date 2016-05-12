@@ -1074,6 +1074,11 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue)
 /* ************************************************************************** */
 #if defined EVE_FT810
     
+    inline void CMDSetBase(int32 base)
+    {
+        CMDListNewItem(_CMDSETBASE(base));
+    }
+    
     inline void CMDRomfont(int32 handle, int32 font)
     {
         CMDListNewItem(_CMDROMFONT(handle, font));

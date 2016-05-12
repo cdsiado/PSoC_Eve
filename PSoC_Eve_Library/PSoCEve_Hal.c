@@ -357,14 +357,54 @@ void FT_Send_Byte(uint8 data)
 *******************************************************************************/
 void FT_Send_ByteArray(const uint8 *data, uint32 size)
 {
+    uint32 bufIndex = 0;
+
+    mmSPI_SpiUartClearTxBuffer();
+    
+    while(size > 0u)
+    {
+        mmSPI_SpiUartWriteTxData(data[bufIndex]);
+        bufIndex++;
+        size--;
+    }
+    
+    mSPI_WAIT_TXDONE(); 
+    
+    /* 12/05/2016 Reworked.
+       PSoC 4 API uses a uint32 for 'size'; while PSoC 5 API uses a uint8 for 'size'.
+    
     mmSPI_SpiUartClearTxBuffer();
     mmSPI_SpiUartPutArray(data, size);
         
-    mSPI_WAIT_TXDONE();     
+    mSPI_WAIT_TXDONE();    
+    
+    */
 }
 
 void FT_Send_ByteArray_S(const uint8 *data, uint32 size)
 {
+    uint32 bufIndex = 0;
+    
+    mmSPI_SS(0);
+    CyDelayUs(SS_DELAY);
+    
+    mmSPI_SpiUartClearTxBuffer();
+    
+    while(size > 0u)
+    {
+        mmSPI_SpiUartWriteTxData(data[bufIndex]);
+        bufIndex++;
+        size--;
+    }    
+        
+    mSPI_WAIT_TXDONE();    
+    
+    CyDelayUs(SS_DELAY);
+    mmSPI_SS(1);    
+    
+    /* 12/05/2016 Reworked.
+       PSoC 4 API uses a uint32 for 'size'; while PSoC 5 API uses a uint8 for 'size'.
+    
     mmSPI_SS(0);
     CyDelayUs(SS_DELAY);
     
@@ -375,6 +415,8 @@ void FT_Send_ByteArray_S(const uint8 *data, uint32 size)
     
     CyDelayUs(SS_DELAY);
     mmSPI_SS(1);    
+    
+    */
 }
 
 /*******************************************************************************

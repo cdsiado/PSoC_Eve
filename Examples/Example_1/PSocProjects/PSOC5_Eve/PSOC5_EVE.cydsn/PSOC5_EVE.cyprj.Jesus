@@ -11,18 +11,80 @@
 <CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256 type_name="CyDesigner.Common.ProjMgmt.Model.CyConfigDependencies" version="1">
 <dependency_info name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM3" xml_contents_version="2">
 <CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021 type_name="CyDesigner.Common.Base.CyFileDeps" version="1">
-<file name=".\CortexM3\ARM_GCC_493\Debug\Demos_Resources.o">
+<file name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve_Hal.o">
+<dep name=".\Generated_Source\PSoC5\Clock.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\MISO.h" />
+<dep name=".\Generated_Source\PSoC5\MISO_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SPI.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART.h" />
+<dep name=".\Generated_Source\PSoC5\UART_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
 <dep name=".\Generated_Source\PSoC5\cydevice.h" />
 <dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
 <dep name=".\Generated_Source\PSoC5\cytypes.h" />
-<dep name="..\..\..\Code\Demos_Resources.c" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.c" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
 </file>
+<file name=".\Generated_Source\PSoC5\Clock.h" />
+<file name=".\Generated_Source\PSoC5\CyDmac.h" />
+<file name=".\Generated_Source\PSoC5\CyFlash.h" />
+<file name=".\Generated_Source\PSoC5\CyLib.h" />
+<file name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
+<file name=".\Generated_Source\PSoC5\CySpc.h" />
+<file name=".\Generated_Source\PSoC5\MISO.h" />
+<file name=".\Generated_Source\PSoC5\MISO_aliases.h" />
+<file name=".\Generated_Source\PSoC5\MOSI.h" />
+<file name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
+<file name=".\Generated_Source\PSoC5\PD_N.h" />
+<file name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
+<file name=".\Generated_Source\PSoC5\SCLK.h" />
+<file name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
+<file name=".\Generated_Source\PSoC5\SPI.h" />
+<file name=".\Generated_Source\PSoC5\SPI_PVT.h" />
+<file name=".\Generated_Source\PSoC5\SPI_SS.h" />
+<file name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
+<file name=".\Generated_Source\PSoC5\UART.h" />
+<file name=".\Generated_Source\PSoC5\UART_IntClock.h" />
+<file name=".\Generated_Source\PSoC5\core_cm3.h" />
+<file name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<file name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<file name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<file name=".\Generated_Source\PSoC5\cyPm.h" />
 <file name=".\Generated_Source\PSoC5\cydevice.h" />
 <file name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<file name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <file name=".\Generated_Source\PSoC5\cyfitter.h" />
+<file name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<file name=".\Generated_Source\PSoC5\cypins.h" />
 <file name=".\Generated_Source\PSoC5\cytypes.h" />
-<file name="..\..\..\Code\Demos_Resources.c" />
+<file name=".\Generated_Source\PSoC5\project.h" />
+<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
+<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.c" />
+<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\demo_0.o">
 <dep name="..\..\PSoC_Eve_Library\PsoCEve.h" />
 <dep name=".\Generated_Source\PSoC5\Clock.h" />
@@ -67,40 +129,9 @@
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 </file>
 <file name="..\..\PSoC_Eve_Library\PsoCEve.h" />
-<file name=".\Generated_Source\PSoC5\Clock.h" />
-<file name=".\Generated_Source\PSoC5\CyDmac.h" />
-<file name=".\Generated_Source\PSoC5\CyFlash.h" />
-<file name=".\Generated_Source\PSoC5\CyLib.h" />
-<file name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
-<file name=".\Generated_Source\PSoC5\CySpc.h" />
-<file name=".\Generated_Source\PSoC5\MISO.h" />
-<file name=".\Generated_Source\PSoC5\MISO_aliases.h" />
-<file name=".\Generated_Source\PSoC5\MOSI.h" />
-<file name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
-<file name=".\Generated_Source\PSoC5\PD_N.h" />
-<file name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
-<file name=".\Generated_Source\PSoC5\SCLK.h" />
-<file name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
-<file name=".\Generated_Source\PSoC5\SPI.h" />
-<file name=".\Generated_Source\PSoC5\SPI_PVT.h" />
-<file name=".\Generated_Source\PSoC5\SPI_SS.h" />
-<file name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
-<file name=".\Generated_Source\PSoC5\UART.h" />
-<file name=".\Generated_Source\PSoC5\UART_IntClock.h" />
-<file name=".\Generated_Source\PSoC5\core_cm3.h" />
-<file name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
-<file name=".\Generated_Source\PSoC5\core_cmFunc.h" />
-<file name=".\Generated_Source\PSoC5\core_cmInstr.h" />
-<file name=".\Generated_Source\PSoC5\cyPm.h" />
-<file name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
-<file name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
-<file name=".\Generated_Source\PSoC5\cypins.h" />
-<file name=".\Generated_Source\PSoC5\project.h" />
 <file name="..\..\..\Code\demo_0.c" />
 <file name="..\..\..\Code\demo_0.h" />
 <file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.h" />
-<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
-<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
 <file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.h" />
 <file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\demo_1.o">
@@ -286,6 +317,145 @@
 </file>
 <file name="..\..\..\Code\demo_4.c" />
 <file name="..\..\..\Code\demo_4.h" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\demo_5.o">
+<dep name="..\..\PSoC_Eve_Library\PsoCEve.h" />
+<dep name=".\Generated_Source\PSoC5\Clock.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\MISO.h" />
+<dep name=".\Generated_Source\PSoC5\MISO_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SPI.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART.h" />
+<dep name=".\Generated_Source\PSoC5\UART_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name="..\..\..\Code\demo_5.c" />
+<dep name="..\..\..\Code\demo_5.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\..\Code\demo_5.c" />
+<file name="..\..\..\Code\demo_5.h" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\demo_6.o">
+<dep name="..\..\PSoC_Eve_Library\PsoCEve.h" />
+<dep name="..\..\PSoC_Eve_Library\PsoCEve_Config.h" />
+<dep name=".\Generated_Source\PSoC5\Clock.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\MISO.h" />
+<dep name=".\Generated_Source\PSoC5\MISO_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SPI.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART.h" />
+<dep name=".\Generated_Source\PSoC5\UART_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name="..\..\..\Code\Demos_Resources.h" />
+<dep name="..\..\..\Code\demo_6.c" />
+<dep name="..\..\..\Code\demo_6.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\PSoC_Eve_Library\PsoCEve_Config.h" />
+<file name="..\..\..\Code\demo_6.c" />
+<file name="..\..\..\Code\demo_6.h" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\demo_7.o">
+<dep name="..\..\PSoC_Eve_Library\PsoCEve.h" />
+<dep name=".\Generated_Source\PSoC5\Clock.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\MISO.h" />
+<dep name=".\Generated_Source\PSoC5\MISO_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI.h" />
+<dep name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N.h" />
+<dep name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK.h" />
+<dep name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SPI.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS.h" />
+<dep name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART.h" />
+<dep name=".\Generated_Source\PSoC5\UART_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name="..\..\..\Code\Demos_Resources.h" />
+<dep name="..\..\..\Code\demo_7.c" />
+<dep name="..\..\..\Code\demo_7.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.h" />
+<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
+</file>
+<file name="..\..\..\Code\demo_7.c" />
+<file name="..\..\..\Code\demo_7.h" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\main.o">
 <dep name="..\..\PSoC_Eve_Library\PsoCEve.h" />
 <dep name=".\Generated_Source\PSoC5\Clock.h" />
@@ -326,6 +496,9 @@
 <dep name="..\..\..\Code\demo_2.h" />
 <dep name="..\..\..\Code\demo_3.h" />
 <dep name="..\..\..\Code\demo_4.h" />
+<dep name="..\..\..\Code\demo_5.h" />
+<dep name="..\..\..\Code\demo_6.h" />
+<dep name="..\..\..\Code\demo_7.h" />
 <dep name="..\..\..\Code\main.c" />
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.h" />
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
@@ -334,10 +507,6 @@
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 </file>
 <file name="..\..\..\Code\main.c" />
-<file name=".\CortexM3\ARM_GCC_493\Debug\SysTick.o">
-<dep name=".\SysTick.c" />
-</file>
-<file name=".\SysTick.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve.o">
 <dep name=".\Generated_Source\PSoC5\Clock.h" />
 <dep name=".\Generated_Source\PSoC5\CyDmac.h" />
@@ -396,45 +565,6 @@
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 </file>
 <file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Audio.c" />
-<file name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve_Hal.o">
-<dep name=".\Generated_Source\PSoC5\Clock.h" />
-<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
-<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
-<dep name=".\Generated_Source\PSoC5\CyLib.h" />
-<dep name=".\Generated_Source\PSoC5\CyScBoostClk.h" />
-<dep name=".\Generated_Source\PSoC5\CySpc.h" />
-<dep name=".\Generated_Source\PSoC5\MISO.h" />
-<dep name=".\Generated_Source\PSoC5\MISO_aliases.h" />
-<dep name=".\Generated_Source\PSoC5\MOSI.h" />
-<dep name=".\Generated_Source\PSoC5\MOSI_aliases.h" />
-<dep name=".\Generated_Source\PSoC5\PD_N.h" />
-<dep name=".\Generated_Source\PSoC5\PD_N_aliases.h" />
-<dep name=".\Generated_Source\PSoC5\SCLK.h" />
-<dep name=".\Generated_Source\PSoC5\SCLK_aliases.h" />
-<dep name=".\Generated_Source\PSoC5\SPI.h" />
-<dep name=".\Generated_Source\PSoC5\SPI_PVT.h" />
-<dep name=".\Generated_Source\PSoC5\SPI_SS.h" />
-<dep name=".\Generated_Source\PSoC5\SPI_SS_aliases.h" />
-<dep name=".\Generated_Source\PSoC5\UART.h" />
-<dep name=".\Generated_Source\PSoC5\UART_IntClock.h" />
-<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
-<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
-<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
-<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
-<dep name=".\Generated_Source\PSoC5\cyPm.h" />
-<dep name=".\Generated_Source\PSoC5\cydevice.h" />
-<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
-<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
-<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
-<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
-<dep name=".\Generated_Source\PSoC5\cypins.h" />
-<dep name=".\Generated_Source\PSoC5\cytypes.h" />
-<dep name=".\Generated_Source\PSoC5\project.h" />
-<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Config.h" />
-<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.c" />
-<dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.h" />
-</file>
-<file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_Hal.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve_List.o">
 <dep name=".\Generated_Source\PSoC5\cydevice.h" />
 <dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
@@ -463,6 +593,18 @@
 <dep name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 </file>
 <file name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.c" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\Demos_Resources.o">
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name="..\..\..\Code\Demos_Resources.c" />
+</file>
+<file name="..\..\..\Code\Demos_Resources.c" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\SysTick.o">
+<dep name=".\SysTick.c" />
+</file>
+<file name=".\SysTick.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Clock.o">
 <dep name=".\Generated_Source\PSoC5\Clock.c" />
 <dep name=".\Generated_Source\PSoC5\Clock.h" />
@@ -798,7 +940,6 @@
 <file name=".\CortexM3\PSoC_Eve_Library\PSoCEve_List.h" />
 <file name=".\CortexM3\PSoC_Eve_Library\PSoCEve_TouchPanel.h" />
 <file name="..\..\PSoC_Eve_Library\PSoCEve_Audio.h" />
-<file name="..\..\PSoC_Eve_Library\PSoCEve_Config.h" />
 <file name="..\..\PSoC_Eve_Library\PSoCEve_Hal.h" />
 <file name="..\..\PSoC_Eve_Library\PSoCEve_List.h" />
 <file name="..\..\PSoC_Eve_Library\PSoCEve_TouchPanel.c" />
@@ -870,6 +1011,9 @@
 <dep name=".\CortexM3\ARM_GCC_493\Debug\demo_4.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\Demos_Resources.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\main.o" />
+<dep name=".\CortexM3\ARM_GCC_493\Debug\demo_5.o" />
+<dep name=".\CortexM3\ARM_GCC_493\Debug\demo_6.o" />
+<dep name=".\CortexM3\ARM_GCC_493\Debug\demo_7.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve_Audio.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\PSoCEve_Hal.o" />
@@ -972,6 +1116,9 @@
 <name_val_pair name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_List.c" v="-mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 <name_val_pair name="C:\HackingChips\PSoC_Eve\PSoC_Eve_Library\PSoCEve_TouchPanel.c" v="-mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 <name_val_pair name="C:\HackingChips\PSoC_Eve\Examples\Example_1\PSocProjects\PSOC5_Eve\PSOC5_EVE.cydsn\CortexM3\ARM_GCC_493\Debug\PSOC5_EVE.hex" v="-mcpu=cortex-m3 -mthumb -g -ffunction-sections -O0 -L Generated_Source\PSoC5 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections" />
+<name_val_pair name="..\..\..\Code\demo_5.c" v="-mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name="..\..\..\Code\demo_6.c" v="-mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
+<name_val_pair name="..\..\..\Code\demo_7.c" v="-mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -O0 -ffat-lto-objects" />
 </name>
 </genericCmdLineData>
 <codeGenCmdLineTag v="-.appdatapath &quot;C:\Users\Jesus\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\HackingChips\PSoC_Eve\Examples\Example_1\PSocProjects\PSOC5_Eve\PSOC5_EVE.cydsn\PSOC5_EVE.cyprj -d CY8C5888LTI-LP097 -s C:\HackingChips\PSoC_Eve\Examples\Example_1\PSocProjects\PSOC5_Eve\PSOC5_EVE.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
@@ -1454,7 +1601,7 @@
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="131072167080249833" />
+<deps_time v="131075624701292222" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 <dataGuid v="718b6b01-68ba-4a17-b632-d38dc61ebb3b">
@@ -1540,6 +1687,8 @@
 <CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469 type_name="CyDesigner.Common.Debugger.CyBreakpointList" version="1">
 <debugger_breakpoint_list>
 <CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="False" hardware="True" temparary="False" filename=".\demo_2.c" linenumber="73" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename="..\..\..\Code\demo_2.c" linenumber="70" />
+<CyGuid_76464711-0ae1-4583-b869-f07a0403fc6e type_name="CyDesigner.Common.Debugger.CyFileLineBreakpoint" version="1" hitcount="0" condition="" enabled="True" hardware="True" temparary="False" filename="..\..\..\Code\demo_2.c" linenumber="127" />
 </debugger_breakpoint_list>
 </CyGuid_504337dd-7d07-4bc7-9057-90e60cf6c469>
 </dataGuid>

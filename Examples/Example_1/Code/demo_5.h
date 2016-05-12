@@ -10,26 +10,22 @@
 * This library is dual licensed under the MIT and GPL licenses.
 * http:
 *******************************************************************************/
-#if !defined(DEMO_4_H)
-#define DEMO_4_H
+#if !defined(DEMO_5_H)
+#define DEMO_5_H
     
-/* DEMO 4.
+/* DEMO 5.
     
-    First, the demo plays the FTDI logo.
-    Then shows the screen saver with a moving bitmap.
-    To exit, you have to touch the moving bitmap. 
-    Then, the screen is cleared, and the spinner is shown during 5 seconds before to return 
-    to main menu.
-        ¡¡¡ Catch the bitmap !!!
+    Sketch Demo.
+    Similar demo to FTDI sketch demo.
 */    
     
 /* Possible events from this demo. Demo 0. */
-typedef enum { D4_NONE, D4_EXIT = 204 } DEMO_4_EVENTS;
+typedef enum { D5_NONE, D5_EXIT = 205 } DEMO_5_EVENTS;
 
 /* *** Function prototypes. ***************************************************
 */
-void* Demo_4_Start(void (*touchcallback)(DEMO_4_EVENTS event), void (**closefunction)());
+void* Demo_5_Start(void (*touchcallback)(DEMO_5_EVENTS event), void (**closefunction)());
     
-#endif /* End DEMO_4_H */    
+#endif /* End DEMO_5_H */    
 
 /* [] END OF FILE */
