@@ -22,7 +22,7 @@ uint16 ramCMDOffset;
 TRANSFERTYPE transferinprogress = NONE;
 
 #if defined EVE_FT800
-    uint8 vertexFormat = 4;
+    uint8 vertexFormat = VERTEX_FORMAT_1_16;
 #endif    
 
 /*******************************************************************************
@@ -824,16 +824,18 @@ inline void DLVertex2II(uint16 x, uint16 y, uint8 handle, uint8 cell)
 
 /* ************************************************************************** */
 /* ************************************************************************** */
-#if defined EVE_FT810
-
-    inline void DLVertexFormat(uint8 format)
-    {
+inline void DLVertexFormat(uint8 format)
+{
+    #if defined EVE_FT800
+        vertexFormat = format;
+    #endif
+    
+    #if defined EVE_FT810
         DLListNewItem(_DLVertexFormat(format));
-        
-        #if defined EVE_FT800
-            vertexFormat = format;
-        #endif
-    }
+    #endif
+}
+
+#if defined EVE_FT810
     
     inline void DLPaletteSource(uint32 address)
     {
@@ -984,12 +986,12 @@ inline void CMDInflate(int32 ptr)
     CMDListNewItem(_CMDInflate(ptr));
 }
 
-inline int32 CMDGetPtr(int32 dummy)
+inline int32 CMDGetPtr()
 {
     uint16 cmdptr = FT_Register_Read(REG_CMD_WRITE);
 
     FT_ListStart(DATA);
-        CMDListNewItem(_CMDGETPTR(dummy));
+        CMDListNewItem(_CMDGETPTR(0));
     FT_ListEnd(END_DL_NOSWAP);
     
     return FT_Read_UINT32(RAM_CMD + cmdptr + 4);
@@ -1072,6 +1074,31 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue)
 
 /* ************************************************************************** */
 /* ************************************************************************** */
+inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
+{
+    #if defined EVE_FT800
+        DLBitmapSource(address);
+        
+        switch(format)
+        {
+            case BITMAP_LAYOUT_ARGB1555: DLBitmapLayout(format, width << 1, height); break;
+            case BITMAP_LAYOUT_L1: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_L4: DLBitmapLayout(format, width >> 1, height); break;
+            case BITMAP_LAYOUT_L8: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_RGB332: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_ARGB2: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_ARGB4: DLBitmapLayout(format, width << 1, height); break;
+            case BITMAP_LAYOUT_RGB565: DLBitmapLayout(format, width << 1, height); break;
+        }
+        
+        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, width, height);
+    #endif
+    
+    #if defined EVE_FT810
+        CMDListNewItem(_CMDSetBitmap(address, format, width, height));
+    #endif
+}
+    
 #if defined EVE_FT810
     
     inline void CMDSetBase(int32 base)
@@ -1082,11 +1109,6 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue)
     inline void CMDRomfont(int32 handle, int32 font)
     {
         CMDListNewItem(_CMDROMFONT(handle, font));
-    }
-    
-    inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
-    {
-        CMDListNewItem(_CMDSetBitmap(address, format, width, height));
     }
 
 #endif    

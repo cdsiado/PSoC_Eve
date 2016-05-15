@@ -106,7 +106,7 @@ void Demo_6_Screen()
         CMDFgcolor(0x00, 0x00, 0xFF);   // Button color = blue.
         DLColorRGB(0xFF, 0xFF, 0xFF);   // Text color = white.
         DLTag(D6_BTN_EXIT);             // For touch. Assign tag 1 to this button.
-        CMDButton(LCDWIDTH - 120 - 20, LCDHEIGHT - 50 - 20, 120, 50, 30, OPT_3D, (char*)"Exit");
+        CMDButton(LCDWIDTH - 120, LCDHEIGHT - 30, 100, 30, 28, OPT_3D, (char*)"Exit");
         
     FT_ListEnd(END_DL_SWAP);    
 }

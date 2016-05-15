@@ -10,20 +10,20 @@
 * This library is dual licensed under the MIT and GPL licenses.
 * http:
 *******************************************************************************/
-#if !defined(DEMO_7_H)
-#define DEMO_7_H
+#if !defined(DEMO_8_H)
+#define DEMO_8_H
     
-/* DEMO 7.
-    
+/* DEMO 8.
+    Testing bitmaps.
 */    
     
-/* Possible events from this demo. Demo 7. */
-typedef enum { D7_NONE, D7_BTN_EXIT = 217 } DEMO_7_EVENTS;
+/* Possible events from this demo. Demo 8. */
+typedef enum { D8_NONE, D8_BTN_EXIT = 218 } DEMO_8_EVENTS;
 
 /* *** Function prototypes. ***************************************************
 */
-void* Demo_7_Start(void (*touchcallback)(DEMO_7_EVENTS event), void (**closefunction)());
+void* Demo_8_Start(void (*touchcallback)(DEMO_8_EVENTS event), void (**closefunction)());
     
-#endif /* End DEMO_7_H */    
+#endif /* End DEMO_8_H */    
 
 /* [] END OF FILE */

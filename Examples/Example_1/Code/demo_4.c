@@ -134,10 +134,10 @@ void Demo_4_Screen()
         DLColorRGB(0xFF, 0xFF, 0xFF);
         DLTag(D4_EXIT);
         DLBegin(PRIMITIVE_BITMAP);        // Start new primitive (BITMAP.
-        DLBitmapSource(0x00);             // Source address 0 in RAM_G.
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64); 
-        DLMacro(0);
+            DLBitmapSource(0x00);             // Source address 0 in RAM_G.
+            DLBitmapLayout(BITMAP_LAYOUT_RGB565, 64*2, 64);
+            DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 64, 64); 
+            DLMacro(0);
     FT_ListEnd(END_DL_SWAP);    
 }
 

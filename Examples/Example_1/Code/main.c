@@ -29,10 +29,11 @@
 #include "demo_5.h"
 #include "demo_6.h"
 #include "demo_7.h"
+#include "demo_8.h"
 
 #define delayTime 3000
 
-enum DEMOS { NODEMO, DEMO_0, DEMO_1, DEMO_2, DEMO_3, DEMO_4, DEMO_5, DEMO_6, DEMO_7 };
+enum DEMOS { NODEMO, DEMO_0, DEMO_1, DEMO_2, DEMO_3, DEMO_4, DEMO_5, DEMO_6, DEMO_7, DEMO_8 };
 
 unsigned char currentDemo = NODEMO;
 unsigned char newDemo = NODEMO;
@@ -45,6 +46,7 @@ void Demo_4_TouchCallback(DEMO_4_EVENTS event);
 void Demo_5_TouchCallback(DEMO_5_EVENTS event);
 void Demo_6_TouchCallback(DEMO_6_EVENTS event);
 void Demo_7_TouchCallback(DEMO_7_EVENTS event);
+void Demo_8_TouchCallback(DEMO_8_EVENTS event);
 
 void (*CurrentScreenLoop)() = 0;
 void (*CurrentScreenCloseFunction)() = 0;
@@ -179,7 +181,12 @@ int main()
                 case DEMO_7: 
                 {
                     CurrentScreenLoop = Demo_7_Start(Demo_7_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;                   
+                }; break;
+                
+                case DEMO_8: 
+                {
+                    CurrentScreenLoop = Demo_8_Start(Demo_8_TouchCallback, &CurrentScreenCloseFunction);
+                }; break;                
             }
             
             /***/
@@ -236,8 +243,10 @@ void Demo_0_TouchCallback(DEMO_0_EVENTS event)
             newDemo = DEMO_5; break;
         case D0_BTN_DEMO_6: // Demo 6 button pressed.
             newDemo = DEMO_6; break;  
-        case D0_BTN_DEMO_7: // Demo 6 button pressed.
-            newDemo = DEMO_7; break;         
+        case D0_BTN_DEMO_7: // Demo 7 button pressed.
+            newDemo = DEMO_7; break;   
+        case D0_BTN_DEMO_8: // Demo 8 button pressed.
+            newDemo = DEMO_8; break;        
     }
     
     FT_Sound_Play(0x50, 0xc0);
@@ -335,6 +344,20 @@ void Demo_7_TouchCallback(DEMO_7_EVENTS event)
     switch(event)
     {
         case D7_BTN_EXIT: // Exit button pressed.
+            newDemo = DEMO_0; break;
+    }
+    
+    FT_Sound_Play(0x50, 0xc0);
+}
+
+/* *** Callback function for DEMO 8. ******************************************
+*/
+void Demo_8_TouchCallback(DEMO_8_EVENTS event)
+{
+    // For Demo 8, 'event' contains the value of the pressed button.
+    switch(event)
+    {
+        case D8_BTN_EXIT: // Exit button pressed.
             newDemo = DEMO_0; break;
     }
     

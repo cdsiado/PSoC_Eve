@@ -330,7 +330,20 @@
 #define STENCIL_FUNC_GEQUAL     4
 #define STENCIL_FUNC_EQUAL      5
 #define STENCIL_FUNC_NOTEQUAL   6
-#define STENCIL_FUNC_ALLWAYS    7    
+#define STENCIL_FUNC_ALLWAYS    7   
+
+/*******************************************************************************
+*   Definition of contants for the SCISSOR SIZE
+*******************************************************************************/  
+    
+#if defined EVE_FT800
+    #define SCISSOR_RESTORE_SIZE    512
+#endif    
+    
+#if defined EVE_FT810
+    #define SCISSOR_RESTORE_SIZE    2048
+#endif    
+ 
     
 /*******************************************************************************
 *   Definition of contants for the command BLEND_FUNC
@@ -588,19 +601,23 @@ inline void DLVertex2II(uint16 x, uint16 y, uint8 handle, uint8 cell);
 
 /* ************************************************************************** */
 /* ************************************************************************** */
-#if defined EVE_FT810
 
+/* ************************************************************************** */
     #define VERTEX_FORMAT_1         0
     #define VERTEX_FORMAT_1_2       1
     #define VERTEX_FORMAT_1_4       2
     #define VERTEX_FORMAT_1_8       3
     #define VERTEX_FORMAT_1_16      4
-    
+/* ************************************************************************** */    
+
+inline void DLVertexFormat(uint8 format);
+/* ************************************************************************** */
+
+#if defined EVE_FT810
+
     #define DL_VERTEX_FORMAT        0x27000000
     #define _DLVertexFormat(format) (DL_VERTEX_FORMAT | (format & 0x00000003))
-    
-    inline void DLVertexFormat(uint8 format);
-    /* ************************************************************************** */
+    /* ************************************************************************** */ 
     #define DL_BITMAP_LAYOUT_H    	0x28000000
     #define _DLBitmapLayout_H(linestride, height) (DL_BITMAP_LAYOUT_H | ((linestride & 0x0C00) >> 8) | ((height & 0x0600) >> 9)) 
     /* ************************************************************************** */
@@ -651,6 +668,7 @@ typedef struct { int32 Command; int32 v0; int32 v1; } CINT32_2CINT32;
 typedef struct { int32 Command; int32 v0; int32 v1; int32 v2; } CINT32_3CINT32;
 typedef struct { int32 Command; int16 v0; int16 v1; int8 v2; int8 v3; int8 v4; int8 v5; int16 v6; int16 v7; int8 v8; int8 v9; int8 v10; int8 v11; } CINT32_2INT16_4INT8_X2;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; } CINT32_4INT16;
+typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int8 v4; int8 v5; } CINT32_4INT16_2INT8;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int32 v4; } CINT32_4INT16_CINT32;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int32 v4; int16 v5; } CINT32_4INT16_CINT32_INT16;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int16 v4; } CINT32_5INT16;
@@ -848,7 +866,7 @@ inline void CMDInflate(int32 ptr);
 #define _CMDGETPTR(dummy) \
     ((uint8*)&(CINT32_CINT32){CMD_GETPTR, dummy}), sizeof(CINT32_CINT32), 0
 
-inline int32 CMDGetPtr(int32 dummy);
+inline int32 CMDGetPtr();
 /* ************************************************************************** */
 #define CMD_LOADIMAGE           0xffffff24
 #define _CMDLoadImage(ptr, options) \
@@ -940,6 +958,10 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue);
 
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height);
+/* ************************************************************************** */
+
 #if defined EVE_FT810
 
     #define NUMBER_BASE_BINARY      2
@@ -980,9 +1002,9 @@ inline void CMDGradcolor(int8 red, int8 green, int8 blue);
     /* ************************************************************************** */
     #define CMD_SETBITMAP       0xFFFFFF43   
     #define _CMDSetBitmap(address, format, width, height) \
-        ((uint8*)&(CINT32_4INT16){CMD_SETBITMAP, address, format, width, height}), sizeof(CINT32_4INT16), 0
+        ((uint8*)&(CINT32_4INT16_2INT8){CMD_SETBITMAP, address, format, width, height, 0, 0}), sizeof(CINT32_4INT16_2INT8), 0
     
-    inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height);
+    //inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height);
     /* ************************************************************************** */
     
 #endif    

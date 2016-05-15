@@ -78,7 +78,7 @@ void Demo_7_Screen()
         DLScissorSize(LCDWIDTH - 40, 50);
         CMDGradient(20, 150, 0x00, 0x00, 0xFF, LCDWIDTH - 20, 150, 0xFF, 0x00, 0x00);
         DLScissorXY(0, 0);
-        DLScissorSize(2048, 2048);
+        DLScissorSize(SCISSOR_RESTORE_SIZE, SCISSOR_RESTORE_SIZE);
         
         // Dial
         CMDFgcolor(0x00, 0x00, 0xFF);
@@ -121,7 +121,7 @@ void Demo_7_Screen()
         //CMDFgcolor(0x00, 0x00, 0xFF);   // Button color = blue.
         DLColorRGB(0xFF, 0xFF, 0xFF);   // Text color = white.
         DLTag(D7_BTN_EXIT);             // For touch. Assign tag 1 to this button.
-        CMDButton(LCDWIDTH - 120 - 20, LCDHEIGHT - 50 - 20, 120, 50, 30, OPT_3D, (char*)"Exit");
+        CMDButton(LCDWIDTH - 120, LCDHEIGHT - 30, 100, 30, 28, OPT_3D, (char*)"Exit");
         
         // Restore button gradient to default.
         CMDGradcolor(0xFF, 0xFF, 0xFF);

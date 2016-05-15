@@ -48,7 +48,7 @@ void Demo_0_Loop()
     uint8 rdtag = FT_Read_Byte(REG_TOUCH_TAG);
     
     // Call the callback function with value of TAG.
-    if ((rdtag > 0) && (rdtag < 8))
+    if ((rdtag > 0) && (rdtag < 9))
         (*TouchCallback)(rdtag);
 }
 
@@ -73,19 +73,21 @@ void Demo_0_Screen()
         CMDFgcolor(0x00, 0x00, 0xFF);   // Button color = blue.
         DLColorRGB(0xFF, 0xFF, 0xFF);   // Text color = white.
         DLTag(1);                       // For touch. Assign tag 1 to this button.
-        CMDButton(10, 100, 120, 50, 30, OPT_3D, (char*)"Demo 1");
+        CMDButton(10, 100, 100, 50, 28, OPT_3D, (char*)"Demo 1");
         DLTag(2);                       // ... next button... next tag.
-        CMDButton(150, 100, 120, 50, 30, OPT_3D, (char*)"Demo 2");
+        CMDButton(125, 100, 100, 50, 28, OPT_3D, (char*)"Demo 2");
         DLTag(3);                       // ... next button... next tag.
-        CMDButton(290, 100, 120, 50, 30, OPT_3D, (char*)"Demo 3");
+        CMDButton(240, 100, 100, 50, 28, OPT_3D, (char*)"Demo 3");
         DLTag(4);                       // ... next button... next tag.
-        CMDButton(430, 100, 120, 50, 30, OPT_3D, (char*)"Demo 4");
+        CMDButton(360, 100, 100, 50, 28, OPT_3D, (char*)"Demo 4");
         DLTag(5);                       // ... next button... next tag.
-        CMDButton(10, 170, 120, 50, 30, OPT_3D, (char*)"Demo 5");
+        CMDButton(10, 170, 100, 50, 28, OPT_3D, (char*)"Demo 5");
         DLTag(6);                       // ... next button... next tag.
-        CMDButton(150, 170, 120, 50, 30, OPT_3D, (char*)"Demo 6");    
+        CMDButton(125, 170, 100, 50, 28, OPT_3D, (char*)"Demo 6");    
         DLTag(7);                       // ... next button... next tag.
-        CMDButton(290, 170, 120, 50, 30, OPT_3D, (char*)"Demo 7");        
+        CMDButton(240, 170, 100, 50, 28, OPT_3D, (char*)"Demo 7");  
+        DLTag(8);                       // ... next button... next tag.
+        CMDButton(360, 170, 100, 50, 28, OPT_3D, (char*)"Demo 8");        
         
     /* Finish current display list. Make SWAP. */
     FT_ListEnd(END_DL_SWAP);        

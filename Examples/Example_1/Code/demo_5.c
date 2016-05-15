@@ -171,8 +171,7 @@ void Demo_5_Loop()
         
         // Exit button. Assigned tag = 205.            
         DLTag(D5_EXIT);
-        CMDButton(10, LCDHEIGHT - 50 - 20, 120, 50, 30, OPT_3D, (char*)"Exit");     
-        
+        CMDButton(10, LCDHEIGHT - 30, 100, 30, 28, OPT_3D, (char*)"Exit");     
         // Disable tags.
         DLTagMask(0);
         
