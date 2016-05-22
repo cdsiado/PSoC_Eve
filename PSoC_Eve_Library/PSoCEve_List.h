@@ -825,6 +825,10 @@ inline void CMDStop();
 #define CMD_REGREAD             0xffffff19
 /* ************************************************************************** */
 #define CMD_MEMWRITE            0xffffff1a
+#define _CMDMemWrite(ptr, size) \
+    ((uint8*)&(CINT32_2CINT32){CMD_MEMWRITE, ptr, size}), sizeof(CINT32_2CINT32), 0
+
+inline void CMDMemWrite(int32 ptr, int32 size);
 /* ************************************************************************** */
 #define CMD_MEMSET              0xffffff1b
 #define _CMDMemSet(ptr, value, size) \
@@ -874,6 +878,8 @@ inline int32 CMDGetPtr();
 
 inline void CMDLoadImage(int32 ptr, int32 options);
 /* ************************************************************************** */
+#define CMD_GETPROPS            0xffffff25
+/* ************************************************************************** */
 #define CMD_LOADIDENTITY        0xffffff26
 #define _CMDLoadIdentity() ((uint8*)&(CINT32){CMD_LOADIDENTITY}), sizeof(CINT32), 0
 
@@ -881,19 +887,19 @@ inline void CMDLoadIdentity();
 /* ************************************************************************** */
 #define CMD_TRANSLATE           0xffffff27
 #define _CMDTranslate(tx, ty) \
-    ((uint8*)&(CINT32_2CINT32){CMD_TRANSLATE, tx * 65536, ty * 65536}), sizeof(CINT32_2CINT32), 0
+    ((uint8*)&(CINT32_2CINT32){CMD_TRANSLATE, tx, ty}), sizeof(CINT32_2CINT32), 0
 
 inline void CMDTranslate(int32 tx, int32 ty);
 /* ************************************************************************** */
 #define CMD_SCALE               0xffffff28
 #define _CMDScale(x, y) \
-    ((uint8*)&(CINT32_2CINT32){CMD_SCALE, (x * 65536), (y * 65536)}), sizeof(CINT32_2CINT32), 0
+    ((uint8*)&(CINT32_2CINT32){CMD_SCALE, (x), (y)}), sizeof(CINT32_2CINT32), 0
 
 inline void CMDScale(int32 x, int32 y);
 /* ************************************************************************** */
 #define CMD_ROTATE              0xffffff29
 #define _CMDRotate(angle) \
-    ((uint8*)&(CINT32_CINT32){CMD_ROTATE, ((angle * 65536) / 360)}), sizeof(CINT32_CINT32), 0
+    ((uint8*)&(CINT32_CINT32){CMD_ROTATE, ((angle))}), sizeof(CINT32_CINT32), 0
 
 inline void CMDRotate(int32 angle);
 /* ************************************************************************** */
@@ -973,6 +979,10 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     #define CMD_CSKETCH         0xFFFFFF35
     /* ************************************************************************** */
     #define CMD_SETROTATE       0xFFFFFF36
+    #define _CMDSETROTATE(rotation) \
+        ((uint8*)&(CINT32_CINT32){CMD_SETROTATE, rotation}), sizeof(CINT32_CINT32), 0
+    
+    inline void CMDSetRotate(int32 rotation);
     /* ************************************************************************** */
     #define CMD_SNAPSHOT2       0xFFFFFF37
     /* ************************************************************************** */
@@ -987,6 +997,10 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     #define CMD_PLAYVIDEO       0xFFFFFF3A
     /* ************************************************************************** */
     #define CMD_SETFONT2        0xFFFFFF3B
+    #define _CMDSETFONT2(font, ptr, firstchar) \
+        ((uint8*)&(CINT32_3CINT32){CMD_SETFONT2, font, ptr, firstchar}), sizeof(CINT32_3CINT32), 0 
+    
+    inline void CMDSetfont2(int32 font, int32 ptr, int32 firstchar);
     /* ************************************************************************** */
     #define CMD_SETSCRATCH      0xFFFFFF3C
     /* ************************************************************************** */

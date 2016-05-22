@@ -261,7 +261,10 @@ FTERROR FT_ListStart(TRANSFERTYPE transfertype)
         
         transferinprogress = DLIST;
     } 
-    else transferinprogress = DATA;
+    else if (transfertype == DATA)
+    {
+        transferinprogress = DATA;
+    }
     
     return OK;
 }
@@ -956,6 +959,11 @@ inline void CMDStop()
     CMDListNewItem(_CMDStop());
 }
 
+inline void CMDMemWrite(int32 ptr, int32 size)
+{
+    CMDListNewItem(_CMDMemWrite(ptr, size));
+}
+
 inline void CMDMemSet(int32 ptr, int32 value, int32 size)
 {
     CMDListNewItem(_CMDMemSet(ptr, value, size));
@@ -1101,9 +1109,19 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     
 #if defined EVE_FT810
     
+    inline void CMDSetRotate(int32 rotation)
+    {
+        CMDListNewItem(_CMDSETROTATE(rotation));
+    }
+    
     inline void CMDSetBase(int32 base)
     {
         CMDListNewItem(_CMDSETBASE(base));
+    }
+    
+    inline void CMDSetfont2(int32 font, int32 ptr, int32 firstchar)
+    {
+        CMDListNewItem(_CMDSETFONT2(font, ptr, firstchar));
     }
     
     inline void CMDRomfont(int32 handle, int32 font)

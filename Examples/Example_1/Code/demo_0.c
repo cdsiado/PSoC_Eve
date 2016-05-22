@@ -48,7 +48,7 @@ void Demo_0_Loop()
     uint8 rdtag = FT_Read_Byte(REG_TOUCH_TAG);
     
     // Call the callback function with value of TAG.
-    if ((rdtag > 0) && (rdtag < 9))
+    if ((rdtag > 0) && (rdtag < 13))
         (*TouchCallback)(rdtag);
 }
 
@@ -73,21 +73,29 @@ void Demo_0_Screen()
         CMDFgcolor(0x00, 0x00, 0xFF);   // Button color = blue.
         DLColorRGB(0xFF, 0xFF, 0xFF);   // Text color = white.
         DLTag(1);                       // For touch. Assign tag 1 to this button.
-        CMDButton(10, 100, 100, 50, 28, OPT_3D, (char*)"Demo 1");
+        CMDButton(10, 100, 100, 30, 28, OPT_3D, (char*)"Demo 1");
         DLTag(2);                       // ... next button... next tag.
-        CMDButton(125, 100, 100, 50, 28, OPT_3D, (char*)"Demo 2");
+        CMDButton(125, 100, 100, 30, 28, OPT_3D, (char*)"Demo 2");
         DLTag(3);                       // ... next button... next tag.
-        CMDButton(240, 100, 100, 50, 28, OPT_3D, (char*)"Demo 3");
+        CMDButton(240, 100, 100, 30, 28, OPT_3D, (char*)"Demo 3");
         DLTag(4);                       // ... next button... next tag.
-        CMDButton(360, 100, 100, 50, 28, OPT_3D, (char*)"Demo 4");
+        CMDButton(355, 100, 100, 30, 28, OPT_3D, (char*)"Demo 4");
         DLTag(5);                       // ... next button... next tag.
-        CMDButton(10, 170, 100, 50, 28, OPT_3D, (char*)"Demo 5");
+        CMDButton(10, 140, 100, 30, 28, OPT_3D, (char*)"Demo 5");
         DLTag(6);                       // ... next button... next tag.
-        CMDButton(125, 170, 100, 50, 28, OPT_3D, (char*)"Demo 6");    
+        CMDButton(125, 140, 100, 30, 28, OPT_3D, (char*)"Demo 6");    
         DLTag(7);                       // ... next button... next tag.
-        CMDButton(240, 170, 100, 50, 28, OPT_3D, (char*)"Demo 7");  
+        CMDButton(240, 140, 100, 30, 28, OPT_3D, (char*)"Demo 7");  
         DLTag(8);                       // ... next button... next tag.
-        CMDButton(360, 170, 100, 50, 28, OPT_3D, (char*)"Demo 8");        
+        CMDButton(355, 140, 100, 30, 28, OPT_3D, (char*)"Demo 8");     
+        DLTag(9);                       // ... next button... next tag.
+        CMDButton(10, 180, 100, 30, 28, OPT_3D, (char*)"Demo 9");
+        DLTag(10);                       // ... next button... next tag.
+        CMDButton(125, 180, 100, 30, 28, OPT_3D, (char*)"Demo 10");
+        DLTag(11);                       // ... next button... next tag.
+        CMDButton(240, 180, 100, 30, 28, OPT_3D, (char*)"Demo 11");
+        DLTag(12);                       // ... next button... next tag.
+        CMDButton(355, 180, 100, 30, 28, OPT_3D, (char*)"Demo 12");
         
     /* Finish current display list. Make SWAP. */
     FT_ListEnd(END_DL_SWAP);        
