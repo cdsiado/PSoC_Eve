@@ -1,0 +1,7 @@
+same image than h_ft810.jpg
+converted with FTDI image conversion tool v0.7
+
+format = RGB565
+compressed zlib
+
+use inflate.
