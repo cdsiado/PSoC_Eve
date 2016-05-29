@@ -1007,7 +1007,59 @@ inline int32 CMDGetPtr()
 
 inline void CMDLoadImage(int32 ptr, int32 options)
 {
+    #if defined EVE_FT800
+        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
+    #elif defined EVE_FT810
+        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+    #endif
+
     CMDListNewItem(_CMDLoadImage(ptr, options));
+    FT_Transfer_End();
+    
+    #if defined EVE_FT800
+        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+    #endif
+}
+
+void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend)
+{
+    uint16 cmdfree;
+    
+    cmdfree = FTGetCMDFifoFreeSpace();
+    while (cmdfree < datalength) {};
+        
+    #if defined EVE_FT800
+        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);
+    #elif defined EVE_FT810
+        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+    #endif
+    
+    if (isend) FT_Write_ByteArray_4(data, datalength);
+    else 
+    {
+        FT_Send_ByteArray(data, datalength);
+        ramCMDOffset += datalength; CheckCMDOffset();
+    }
+        
+    FT_Transfer_End();
+
+    #if defined EVE_FT800
+        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+    #endif
+    
+    while (!FTIsCoproccesorReady()){};
+}
+
+inline void CMDGetProps(int32 ptr, int32* width, int32* height)
+{
+    uint16 cmdptr = FT_Register_Read(REG_CMD_WRITE);
+    
+    FT_ListStart(DATA);
+        CMDListNewItem(_CMDGETPROPS(ptr, 0, 0));
+    FT_ListEnd(END_DL_SWAP);
+    
+    *width = FT_Read_UINT32(RAM_CMD + cmdptr + 8);
+    *height = FT_Read_UINT32(RAM_CMD + cmdptr + 12);
 }
 
 inline void CMDLoadIdentity()
@@ -1103,7 +1155,24 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     #endif
     
     #if defined EVE_FT810
-        CMDListNewItem(_CMDSetBitmap(address, format, width, height));
+        //CMDListNewItem(_CMDSetBitmap(address, format, width, height));
+        
+        DLBitmapSource(address);
+        
+        switch(format)
+        {
+            case BITMAP_LAYOUT_ARGB1555: DLBitmapLayout(format, width << 1, height); break;
+            case BITMAP_LAYOUT_L1: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_L2: DLBitmapLayout(format, width >> 2, height); break;
+            case BITMAP_LAYOUT_L4: DLBitmapLayout(format, width >> 1, height); break;
+            case BITMAP_LAYOUT_L8: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_RGB332: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_ARGB2: DLBitmapLayout(format, width, height); break;
+            case BITMAP_LAYOUT_ARGB4: DLBitmapLayout(format, width << 1, height); break;
+            case BITMAP_LAYOUT_RGB565: DLBitmapLayout(format, width << 1, height); break;
+        }
+        
+        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, width, height);        
     #endif
 }
     

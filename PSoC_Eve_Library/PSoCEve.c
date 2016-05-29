@@ -103,15 +103,16 @@ uint8 FT_Init()
     PD_N_Write(0); CyDelay(10); PD_N_Write(1); CyDelay(20);
     
     // Initialize EVE chip. Max SPI speed before the chip is initialized is 11Mhz.
+        FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
+    CyDelay(50);
     FTCommandWrite(FT800_ACTIVE);            // Start FT800
-    CyDelay(5);	
-    FTCommandWrite(FT800_CLKEXT);			// Set FT800 for external clock
-    CyDelay(5);	
+    CyDelay(50);	
+	
 
     #if defined EVE_FT800
         FTCommandWrite(FT800_CLK48M);			// Set FT800 for 48MHz PLL
     #elif defined EVE_FT810
-        FTCommandWrite(FT800_CLKSEL);
+        //FTCommandWrite(FT800_CLKSEL);
     #endif
     
     CyDelay(200);	

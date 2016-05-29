@@ -32,8 +32,8 @@
 
 void FT_Touch_Enable()
 {
-    FT_Register_Write(REG_TOUCH_MODE, TOUCHMODE_CONTINUOUS);
-    //FT_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
+    //FT_Register_Write(REG_TOUCH_MODE, TOUCHMODE_CONTINUOUS);
+    FT_Register_Write(REG_TOUCH_MODE, TOUCHMODE_FRAME);
     FT_Register_Write(REG_TOUCH_RZTHRESH, 1200);    
 }
 

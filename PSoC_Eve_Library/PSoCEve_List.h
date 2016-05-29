@@ -25,22 +25,26 @@
 *******************************************************************************/  
 
 #if defined EVE_FT800
-    #define RAM_G           0x000000    // Main graphics RAM.
-    #define ROM_CHIPID      0x0C0000    // Chip ID and revision.
-    #define ROM_FONT        0x0BB23C    // Font table and bitmaps.
-    #define ROM_FONT_ADDR   0x0FFFFC    // Font table pointer address,
-    #define RAM_DL          0x100000    // Display list RAM.   
-    #define RAM_PAL         0x102000    // Palette RAM.  
-    #define RAM_REG         0x102400    // Registers.
-    #define RAM_CMD         0x108000    // Coprocessor command buffer.  
+    #define RAM_G               0x000000    // Main graphics RAM.
+    #define ROM_CHIPID          0x0C0000    // Chip ID and revision.
+    #define ROM_FONT            0x0BB23C    // Font table and bitmaps.
+    #define ROM_FONT_ADDR       0x0FFFFC    // Font table pointer address,
+    #define RAM_DL              0x100000    // Display list RAM.   
+    #define RAM_PAL             0x102000    // Palette RAM.  
+    #define RAM_REG             0x102400    // Registers.
+    #define RAM_CMD             0x108000    // Coprocessor command buffer.  
+
+    #define RAM_G_END_ADDRESS   0x03FFFF    // RAM_G last position address.    
 #elif defined EVE_FT810    
-    #define RAM_G           0x000000    // Main graphics RAM.
-    #define ROM_CHIPID      0x0C0000    // Chip ID and revision.    
-    #define ROM_FONT        0x1E0000    
-    #define ROM_FONT_ADDR   0x2FFFFC    // Font table pointer address,
-    #define RAM_DL          0x300000    // Display list RAM. 
-    #define RAM_REG         0x302000    // Registers.
-    #define RAM_CMD         0x308000    // Coprocessor command buffer.   
+    #define RAM_G               0x000000    // Main graphics RAM.
+    #define ROM_CHIPID          0x0C0000    // Chip ID and revision.    
+    #define ROM_FONT            0x1E0000    
+    #define ROM_FONT_ADDR       0x2FFFFC    // Font table pointer address,
+    #define RAM_DL              0x300000    // Display list RAM. 
+    #define RAM_REG             0x302000    // Registers.
+    #define RAM_CMD             0x308000    // Coprocessor command buffer.
+    
+    #define RAM_G_END_ADDRESS   0x0FFFFF    // RAM_G last position address. 
 #endif    
     
 /*******************************************************************************
@@ -668,7 +672,7 @@ typedef struct { int32 Command; int32 v0; int32 v1; } CINT32_2CINT32;
 typedef struct { int32 Command; int32 v0; int32 v1; int32 v2; } CINT32_3CINT32;
 typedef struct { int32 Command; int16 v0; int16 v1; int8 v2; int8 v3; int8 v4; int8 v5; int16 v6; int16 v7; int8 v8; int8 v9; int8 v10; int8 v11; } CINT32_2INT16_4INT8_X2;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; } CINT32_4INT16;
-typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int8 v4; int8 v5; } CINT32_4INT16_2INT8;
+//typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int8 v4; int8 v5; } CINT32_4INT16_2INT8;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int32 v4; } CINT32_4INT16_CINT32;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int32 v4; int16 v5; } CINT32_4INT16_CINT32_INT16;
 typedef struct { int32 Command; int16 v0; int16 v1; int16 v2; int16 v3; int16 v4; } CINT32_5INT16;
@@ -877,8 +881,13 @@ inline int32 CMDGetPtr();
     ((uint8*)&(CINT32_2CINT32){CMD_LOADIMAGE, ptr, options}), sizeof(CINT32_2CINT32), 0
 
 inline void CMDLoadImage(int32 ptr, int32 options);
+void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend);
 /* ************************************************************************** */
 #define CMD_GETPROPS            0xffffff25
+#define _CMDGETPROPS(ptr, dummy_width, dummy_height) \
+    ((uint8*)&(CINT32_3CINT32){CMD_GETPROPS, ptr, dummy_width, dummy_height}), sizeof(CINT32_3CINT32), 0
+
+inline void CMDGetProps(int32 ptr, int32* width, int32* height);
 /* ************************************************************************** */
 #define CMD_LOADIDENTITY        0xffffff26
 #define _CMDLoadIdentity() ((uint8*)&(CINT32){CMD_LOADIDENTITY}), sizeof(CINT32), 0
@@ -1016,7 +1025,9 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     /* ************************************************************************** */
     #define CMD_SETBITMAP       0xFFFFFF43   
     #define _CMDSetBitmap(address, format, width, height) \
-        ((uint8*)&(CINT32_4INT16_2INT8){CMD_SETBITMAP, address, format, width, height, 0, 0}), sizeof(CINT32_4INT16_2INT8), 0
+    ((uint8*)&(CINT32_5INT16){CMD_SETBITMAP, address, format, width, height, 0}), sizeof(CINT32_5INT16), 0
+        //((uint8*)&(CINT32_4INT16_2INT8){CMD_SETBITMAP, address, format, width, height, 0, 0}), sizeof(CINT32_4INT16_2INT8), 0
+    
     
     //inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height);
     /* ************************************************************************** */

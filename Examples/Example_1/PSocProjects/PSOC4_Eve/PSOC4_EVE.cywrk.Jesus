@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\PSoC_Eve_Library\PSoCEve_List.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSOC4_EVE\PSOC4_EVE\PSoC_Eve_Library\PSoCEve_Config.h">
 <ExpandedNodeIds>
 <v>PSOC4_EVE</v>
 <v>PSOC4_EVE\PSOC4_EVE</v>
@@ -314,49 +314,6 @@
 <VisibleNodeIds>
 <v>PSOC4_EVE</v>
 <v>PSOC4_EVE\PSOC4_EVE</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\Cm0Start.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLFClk.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_0.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_1.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_10.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_11.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_2.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_3.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_4.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_5.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_6.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_7.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_8.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo_9.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\demo12.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\Demos_Resources.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\main.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PD_N.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PD_N_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_Audio.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_Hal.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_List.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\PSoCEve_TouchPanel.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_BOOT.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_miso_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_miso_m_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_mosi_m.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_mosi_m_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_PM.lst</v>
-<v>PSOC4_EVE\PSOC4_EVE\CortexM0\ARM_GCC_493\Debug\Listing Files\SPI_SCBCLK.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

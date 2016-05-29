@@ -22,7 +22,7 @@
 #include "PSoCEve_Hal.h"
 
 // Define SS bus pin delay in uS.
-#define SS_DELAY        100
+#define SS_DELAY        1
 
 #define CONCATENATE(name, function)                 CONCAT(name, function)
 #define CONCAT(name, function)                      name##function
