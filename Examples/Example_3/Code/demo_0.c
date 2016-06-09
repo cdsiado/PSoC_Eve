@@ -49,8 +49,6 @@ void Demo_0_Loop()
    
     // Here we read the TAG register from EVE chip to know if a button is pressed.
     uint8 rdtag = FT_Read_Byte(REG_TOUCH_TAG);
-
-    Demo_0_Screen();
     
     // Call the callback function with value of TAG.
     if ((rdtag > 0) && (rdtag < 9))
@@ -63,7 +61,7 @@ void Demo_0_Loop()
 void Demo_0_Screen()
 {
     /* Start a new Display List. */
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
     
         // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
         DLClearColorRGB(0x00, 0x00, 0x00);

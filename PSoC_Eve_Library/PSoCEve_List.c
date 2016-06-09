@@ -15,11 +15,19 @@
 #include "PSoCEve_Hal.h"
 //#include "SST25VF032B.h"
 
+typedef enum { NOCOMMAND, ISCOMMAND } MOD4COMMANDSSTATE;
+
 //enum LISTTYPE transferinprogress = NONE;
 uint32 ramPtr;
-uint16 ramCMDOffset;
+uint16 cmdRamPtr;
 
+LISTSTATE listState = NOLIST;
+LISTERROR listError = NOERROR;
 TRANSFERTYPE transferinprogress = NONE;
+
+MOD4COMMANDSSTATE loadImageCommandState = NOCOMMAND;
+LISTSTATE mod4ListInProgress = NOLIST;
+uint32 mod4CommandDataSent = 0;
 
 #if defined EVE_FT800
     uint8 vertexFormat = VERTEX_FORMAT_1_16;
@@ -32,7 +40,7 @@ TRANSFERTYPE transferinprogress = NONE;
 /* Macro name : CheckCMDOffset
    Description: Control roll-over to command list ram in FT chip.
 */
-#define CheckCMDOffset() if (ramCMDOffset > 4095) { ramCMDOffset = (ramCMDOffset - 4096); }
+#define CheckCMDOffset() if (cmdRamPtr > 4095) { cmdRamPtr = (cmdRamPtr - 4096); }
 
 
 /*******************************************************************************
@@ -121,6 +129,241 @@ extern inline void CMDLogo();
 extern inline void CMDColdstart();
 extern inline void CMDGradcolor(int8 red, int8 green, int8 blue);
 
+/*******************************************************************************
+* Function Name: FT_ListStart
+********************************************************************************
+*
+* Summary:
+*  Starts a new list. 
+*  Can be a DISPLAY list or a COPROCCESSOR list.
+*
+* Parameters:
+*  listtype:    list to start, DISPLAY or COPROCCESOR
+*
+* Return:
+*  Type of error:   NOERROR, if it is ok.
+*                   LISTINPROGRESS, if a list has been started previouslly and
+*                                     not finished.
+*                   UNKNOWN_LIST_TYPE, if value of 'listtype' is unknown.
+*
+*******************************************************************************/
+LISTERROR FT_ListStart(uint16 dlramoffset)
+{
+    /* Check if there is some cmd fault error pending of reset. */
+    if (listError != NOERROR) return CMDFAULT;
+    
+    /* Check if trying to start a new list while a list is in progress yet. */
+    if (listState != NOLIST) return LISTINPROGRESS;
+    //if (transferinprogress != NONE) return LISTINPROGRESS;
+    
+    /* Write offset in proper register. */
+    FT_Register_Write(REG_CMD_DL, dlramoffset);
+    
+    /* Wait until the coproccesor is ready. It have finished proccesing 
+    previous commands. */
+    
+    while (!FTIsCoproReady(&cmdRamPtr)) {}
+        
+    #if defined EVE_FT800
+        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+    #elif defined EVE_FT810
+        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+    #endif
+    
+//    if (transfertype == DLIST)
+//    {
+    //***FT_Send_UINT32(CMD_DLSTART);
+    
+    #if defined EVE_FT800
+        cmdRamPtr += 4; CheckCMDOffset();        // Manage offset to FT RAM.
+    #endif
+    
+    listState = DISPLAYLIST;
+    
+    //transferinprogress = DLIST;
+//    } 
+//    else if (transfertype == DATA)
+//    {
+//        transferinprogress = DATA;
+//    }
+    
+    return NOERROR;
+}
+
+/*******************************************************************************
+* Function Name: FT_ListEnd
+********************************************************************************
+*
+* Summary:
+*  Finish a list that is in progress.
+*
+* Parameters:
+*  swap:    if = 1, then sends command CMD_SWAP.
+*           if = 0, do not send command CMD_SWAP.
+*      Sending CMD_SWAP is the usual way of finishing a coproccesor list, but 
+*  sometimes we can not send CMD_SWAP command because the command sent 
+*  previously to FT chip can not work properly (ex: CMD_SPINNER).
+*  This has no effect if the list in progress is a DISPLAY list.
+*
+* Return:
+*  Type of error:   OK, there is no error.
+*                   LISTNOTINPROGRESS, trying to finish a list that has not
+*                                         been started.
+*******************************************************************************/
+LISTERROR FT_ListEnd(SWAPACTION swap)
+{
+    /* Check if there is some cmd fault error pending of reset. */
+    if (listError != NOERROR) return CMDFAULT;
+    
+    /* Check if trying to finish a list when there is no list in progress. */
+    if (listState == NOLIST) return LISTNOTINPROGRESS;
+    //if (transferinprogress == NONE) return LISTNOTINPROGRESS;
+    
+    if (swap == END_DL_SWAP)
+    {
+        #if defined EVE_FT800
+            FT_Send_UINT32(DL_DISPLAY); 
+            cmdRamPtr += 4; CheckCMDOffset();        // Manage offset to FT RAM.
+            FT_Send_UINT32(CMD_SWAP); 
+            cmdRamPtr += 4; CheckCMDOffset();        // Manage offset to FT RAM.
+        #elif defined EVE_FT810          
+            FT_Send_UINT32(DL_DISPLAY);
+            FT_Send_UINT32(CMD_SWAP);
+        #endif
+    }
+    
+    FT_Transfer_End();
+    
+    #if defined EVE_FT800
+        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+    #endif
+
+    listState = NOLIST;
+    //transferinprogress = NONE;
+    
+    return NOERROR;
+}
+
+/*******************************************************************************
+* Function Name: DLListNewItem
+********************************************************************************
+*
+* Summary:
+*  Put new item (new command) inside current display list.
+*  If current list is a DISPLAY list,  pointer to FT ram is not incremented in 
+*  software. It is incremnted inside FT chip.
+*  If current list is a COPROCCESOR list, it takes care of pointer offset.
+*
+* Parameters:
+*  item:    command to be inserted in the list.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
+void DLListNewItem(uint32 item)
+{
+    /* Check if there is some cmd fault error pending of reset. */
+    if (listError != NOERROR) return;
+    
+    #if defined EVE_FT800
+        FT_Send_ByteArray((uint8*)&item, 4);
+        cmdRamPtr += 4; CheckCMDOffset();
+    #elif defined EVE_FT810
+        FT_Send_ByteArray((uint8*)&item, 4);        
+    #endif
+}
+
+/*******************************************************************************
+* Function Name: CMDListNewItem
+********************************************************************************
+*
+* Summary:
+*  Put new item inside current coproccesor list.
+*
+* Parameters:
+*  tobesent:    pointer to the item to be sent to FT chip.
+*  length:      length (in bytes) to be sent.
+*  string:      for commands with strings (like CMD_BUTTON or CMD_TEXT) this is
+*               a pointer to the string. For command that don´t use strings this
+*               have to take value 0.
+*
+* Return:
+*  none
+*
+*******************************************************************************/
+void CMDListNewItem(uint8 *tobesent, uint8 length, unsigned char *string)
+{
+    unsigned char *cptr = string;
+    
+    #if defined EVE_FT810
+        unsigned char charcounter = 0;
+    #endif    
+    
+    /* Check if there is some cmd fault error pending of reset. */
+    if (listError != NOERROR) return;    
+    
+    #if defined EVE_FT800
+        FT_Send_ByteArray(tobesent, length);                // Send all command parameters. 
+        cmdRamPtr += length; CheckCMDOffset();           // Manage offset to FT RAM. 
+        
+        // Send the string if pointer to string is not zero.
+        if (string != 0)                            
+        {
+            // Last byte of the string to be sent have to be equal to 0.
+            // So, send bytes until we find byte = 0. 
+            while (*cptr != 0)
+            {
+                FT_Send_Byte(*cptr);
+                cmdRamPtr++;  CheckCMDOffset();          // Manage offset to FT RAM.
+                cptr++;
+            } 
+        
+            // Send last byte (byte = 0) to FT chip.
+            FT_Send_Byte(0);
+            cmdRamPtr++; CheckCMDOffset();               // Manage offset to FT RAM.
+        
+            // Every time we send a string to FT chip, its lenght have be multiple of 4.
+            // If the length of the string is shorter than that, the we send 0 bytes until it is
+            // a multiple of 4.
+            while ((cmdRamPtr % 4) != 0)
+            {
+                FT_Send_Byte(0);
+                cmdRamPtr++; CheckCMDOffset();           // Manage offset to FT RAM.
+            }
+        }
+    #elif defined EVE_FT810
+    
+        FT_Send_ByteArray(tobesent, length);
+        
+        // Send the string if pointer to string is not zero.
+        if (string != 0)                            
+        {
+            // Last byte of the string to be sent have to be equal to 0.
+            // So, send bytes until we find byte = 0. 
+            while (*cptr != 0)
+            {
+                FT_Send_Byte(*cptr);
+                charcounter++;
+                cptr++;
+            } 
+        
+            // Send last byte (byte = 0) to FT chip.
+            FT_Send_Byte(0);
+            charcounter++;
+        
+            // Every time we send a string to FT chip, its lenght have be multiple of 4.
+            // If the length of the string is shorter than that, the we send 0 bytes until it is
+            // a multiple of 4.
+            while ((charcounter % 4) != 0)
+            {
+                FT_Send_Byte(0);
+                charcounter++;
+            }
+        }        
+    #endif
+  
+}
 
 /*******************************************************************************
 * Function Name: FTIsCoproccesorReady
@@ -140,7 +383,7 @@ extern inline void CMDGradcolor(int8 red, int8 green, int8 blue);
 *******************************************************************************/
 uint8 FTIsCoproccesorReady()
 {
-    return FTIsCoproReady(&ramCMDOffset);
+    return FTIsCoproReady(&cmdRamPtr);
 }
 
 /*******************************************************************************
@@ -209,239 +452,28 @@ uint16 FTGetCMDFifoFreeSpace()
 void FT_Write_ByteArray_4(const uint8 *data, uint32 length)
 {
     FT_Send_ByteArray(data, length);
-    ramCMDOffset += length; CheckCMDOffset();           // Manage offset to FT RAM.
+    cmdRamPtr += length; CheckCMDOffset();           // Manage offset to FT RAM.
     
-    while ((ramCMDOffset % 4) != 0)
+    while ((cmdRamPtr % 4) != 0)
     {
         FT_Send_Byte(0);
-        ramCMDOffset++; CheckCMDOffset();               // Manage offset to FT RAM.
+        cmdRamPtr++; CheckCMDOffset();               // Manage offset to FT RAM.
     }
 }
 
-/*******************************************************************************
-* Function Name: FT_ListStart
-********************************************************************************
-*
-* Summary:
-*  Starts a new list. 
-*  Can be a DISPLAY list or a COPROCCESSOR list.
-*
-* Parameters:
-*  listtype:    list to start, DISPLAY or COPROCCESOR
-*
-* Return:
-*  Type of error:   OK, if it is ok.
-*                   LIST_IN_PROGRESS, if a list has been started previouslly and
-*                                     not finished.
-*                   UNKNOWN_LIST_TYPE, if value of 'listtype' is unknown.
-*
-*******************************************************************************/
-FTERROR FT_ListStart(TRANSFERTYPE transfertype)
-{
-    if (transferinprogress != NONE) return LIST_IN_PROGRESS;
-    
-    /* Wait until the coproccesor is ready. It have finished proccesing 
-    previous commands. */
-    
-    while (!FTIsCoproReady(&ramCMDOffset)) {}
-        
-    #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
-    #elif defined EVE_FT810
-        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-    #endif
-    
-    if (transfertype == DLIST)
-    {
-        FT_Send_UINT32(CMD_DLSTART);
-        
-        #if defined EVE_FT800
-            ramCMDOffset += 4; CheckCMDOffset();        // Manage offset to FT RAM.
-        #endif
-        
-        transferinprogress = DLIST;
-    } 
-    else if (transfertype == DATA)
-    {
-        transferinprogress = DATA;
-    }
-    
-    return OK;
-}
 
-/*******************************************************************************
-* Function Name: FT_ListEnd
-********************************************************************************
-*
-* Summary:
-*  Finish a list that is in progress.
-*
-* Parameters:
-*  swap:    if = 1, then sends command CMD_SWAP.
-*           if = 0, do not send command CMD_SWAP.
-*      Sending CMD_SWAP is the usual way of finishing a coproccesor list, but 
-*  sometimes we can not send CMD_SWAP command because the command sent 
-*  previously to FT chip can not work properly (ex: CMD_SPINNER).
-*  This has no effect if the list in progress is a DISPLAY list.
-*
-* Return:
-*  Type of error:   OK, there is no error.
-*                   LIST_NOT_IN_PROGRESS, trying to finish a list that has not
-*                                         been started.
-*******************************************************************************/
-FTERROR FT_ListEnd(SWAPACTION swap)
-{
-    if (transferinprogress == NONE) return LIST_NOT_IN_PROGRESS;
-    
-    if (swap == END_DL_SWAP)
-    {
-        #if defined EVE_FT800
-            FT_Send_UINT32(DL_DISPLAY); 
-            ramCMDOffset += 4; CheckCMDOffset();        // Manage offset to FT RAM.
-            FT_Send_UINT32(CMD_SWAP); 
-            ramCMDOffset += 4; CheckCMDOffset();        // Manage offset to FT RAM.
 
-        #elif defined EVE_FT810          
-            FT_Send_UINT32(DL_DISPLAY);
-            FT_Send_UINT32(CMD_SWAP);
-        #endif
-    }
-    
-    FT_Transfer_End();
-    
-    #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
-    #endif
 
-    transferinprogress = NONE;
-    
-    return OK;
-}
 
-/*******************************************************************************
-* Function Name: DLListNewItem
-********************************************************************************
-*
-* Summary:
-*  Put new item (new command) inside current display list.
-*  If current list is a DISPLAY list,  pointer to FT ram is not incremented in 
-*  software. It is incremnted inside FT chip.
-*  If current list is a COPROCCESOR list, it takes care of pointer offset.
-*
-* Parameters:
-*  item:    command to be inserted in the list.
-*
-* Return:
-*  none
-*
-*******************************************************************************/
-void DLListNewItem(uint32 item)
-{
-    #if defined EVE_FT800
-        FT_Send_ByteArray((uint8*)&item, 4);
-        ramCMDOffset += 4; CheckCMDOffset();
-    #elif defined EVE_FT810
-        FT_Send_ByteArray((uint8*)&item, 4);        
-    #endif
-}
-
-/*******************************************************************************
-* Function Name: CMDListNewItem
-********************************************************************************
-*
-* Summary:
-*  Put new item inside current coproccesor list.
-*
-* Parameters:
-*  tobesent:    pointer to the item to be sent to FT chip.
-*  length:      length (in bytes) to be sent.
-*  string:      for commands with strings (like CMD_BUTTON or CMD_TEXT) this is
-*               a pointer to the string. For command that don´t use strings this
-*               have to take value 0.
-*
-* Return:
-*  none
-*
-*******************************************************************************/
-void CMDListNewItem(uint8 *tobesent, uint8 length, unsigned char *string)
-{
-    unsigned char *cptr = string;
-    
-    #if defined EVE_FT810
-        unsigned char charcounter = 0;
-    #endif    
-    
-    #if defined EVE_FT800
-        FT_Send_ByteArray(tobesent, length);                // Send all command parameters. 
-        ramCMDOffset += length; CheckCMDOffset();           // Manage offset to FT RAM. 
-        
-        // Send the string if pointer to string is not zero.
-        if (string != 0)                            
-        {
-            // Last byte of the string to be sent have to be equal to 0.
-            // So, send bytes until we find byte = 0. 
-            while (*cptr != 0)
-            {
-                FT_Send_Byte(*cptr);
-                ramCMDOffset++;  CheckCMDOffset();          // Manage offset to FT RAM.
-                cptr++;
-            } 
-        
-            // Send last byte (byte = 0) to FT chip.
-            FT_Send_Byte(0);
-            ramCMDOffset++; CheckCMDOffset();               // Manage offset to FT RAM.
-        
-            // Every time we send a string to FT chip, its lenght have be multiple of 4.
-            // If the length of the string is shorter than that, the we send 0 bytes until it is
-            // a multiple of 4.
-            while ((ramCMDOffset % 4) != 0)
-            {
-                FT_Send_Byte(0);
-                ramCMDOffset++; CheckCMDOffset();           // Manage offset to FT RAM.
-            }
-        }
-    #elif defined EVE_FT810
-    
-        FT_Send_ByteArray(tobesent, length);
-        
-        // Send the string if pointer to string is not zero.
-        if (string != 0)                            
-        {
-            // Last byte of the string to be sent have to be equal to 0.
-            // So, send bytes until we find byte = 0. 
-            while (*cptr != 0)
-            {
-                FT_Send_Byte(*cptr);
-                charcounter++;
-                cptr++;
-            } 
-        
-            // Send last byte (byte = 0) to FT chip.
-            FT_Send_Byte(0);
-            charcounter++;
-        
-            // Every time we send a string to FT chip, its lenght have be multiple of 4.
-            // If the length of the string is shorter than that, the we send 0 bytes until it is
-            // a multiple of 4.
-            while ((charcounter % 4) != 0)
-            {
-                FT_Send_Byte(0);
-                charcounter++;
-            }
-        }        
-    #endif
-  
-}
-
-FTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
+LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
 {
     uint16 readblocksize, cmdfree;
     
-    if (transferinprogress != NONE) return LIST_IN_PROGRESS;
+    if (transferinprogress != NONE) return LISTINPROGRESS;
     
     /* *** Send cmd_loadimage command. *** */
     #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
+        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
     #elif defined EVE_FT810
         FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
     #endif
@@ -458,7 +490,7 @@ FTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
         else readblocksize = size;
         
         #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);
+            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
         #elif defined EVE_FT810
             FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
         #endif
@@ -471,25 +503,25 @@ FTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
         FT_Transfer_End();
 
         #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
         #endif
         
         while (!FTIsCoproccesorReady()){};
     }     
     
-    return OK;    
+    return NOERROR;    
 }
 
-FTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size)
+LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size)
 {
     uint8 rbuffer[512];
     uint16 readblocksize, cmdfree;
     
-    if (transferinprogress != NONE) return LIST_IN_PROGRESS;    
+    if (transferinprogress != NONE) return LISTINPROGRESS;    
     
     /* *** Send cmd_loadimage command. *** */
     #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
+        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
     #elif defined EVE_FT810
         FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
     #endif
@@ -498,7 +530,7 @@ FTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size
     FT_Transfer_End();
     
     #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
     #endif
     
     /* *** Send image data. *** */
@@ -517,7 +549,7 @@ FTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size
         //SST25ReadArray(flashptr, rbuffer, readblocksize);
         
         #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);
+            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
         #elif defined EVE_FT810
             FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
         #endif
@@ -530,34 +562,34 @@ FTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size
         FT_Transfer_End();
 
         #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
         #endif
         
         while (!FTIsCoproccesorReady()){};
     }     
     
-    return OK;
+    return NOERROR;
 }
 
-FTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options)
+LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options)
 {
     uint8 rbuffer[512];
     uint16 readblocksize, cmdfree;
     
-    if (transferinprogress != NONE) return LIST_IN_PROGRESS;    
+    if (transferinprogress != NONE) return LISTINPROGRESS;    
     
     /* *** Send cmd_loadimage command. *** */
     #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
+        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
     #elif defined EVE_FT810
         FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
     #endif
 
-    CMDLoadImage(ramgptr, options);
+    //CMDLoadImage(ramgptr, options);
     FT_Transfer_End();
     
     #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
     #endif
     
     /* *** Send image data. *** */
@@ -573,7 +605,7 @@ FTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 si
         //SST25ReadArray(flashptr, rbuffer, readblocksize);
         
         #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);
+            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
         #elif defined EVE_FT810
             FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
         #endif
@@ -586,21 +618,21 @@ FTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 si
         FT_Transfer_End();
 
         #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
         #endif
         
         while (!FTIsCoproccesorReady()){};
     }     
     
-    return OK;
+    return NOERROR;
 }
 
-FTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size)
+LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size)
 {
     uint8 rbuffer[512];
     uint16 readblocksize;
     
-    if (transferinprogress != NONE) return LIST_IN_PROGRESS;    
+    if (transferinprogress != NONE) return LISTINPROGRESS;    
     
     /* *** Send image data. *** */
     while (size > 0)
@@ -619,7 +651,7 @@ FTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size)
 
     }     
     
-    return OK;
+    return NOERROR;
 }
 
 inline void DLBitmapSource(uint32 address)
@@ -1005,50 +1037,140 @@ inline int32 CMDGetPtr()
     return FT_Read_UINT32(RAM_CMD + cmdptr + 4);
 }
 
-inline void CMDLoadImage(int32 ptr, int32 options)
+void CMDLoadImage(int32 ptr, int32 options, uint8* data, uint32 datalength, CMDMOD4PHASE cmdphase)
 {
-    #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);    // Start the display list
-    #elif defined EVE_FT810
-        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-    #endif
-
-    CMDListNewItem(_CMDLoadImage(ptr, options));
-    FT_Transfer_End();
-    
-    #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
-    #endif
-}
-
-void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend)
-{
+    uint16 dlramoffset;
     uint16 cmdfree;
     
+    /* CMDLoadImage first call? Start the command. First, send the command and options. */
+    if (loadImageCommandState == NOCOMMAND)
+    {
+        /* If there is some display list in progress, finish the list without swaping.
+           It will be reopened at the end of this command. */
+        if (listState == DISPLAYLIST) 
+        {
+            FT_ListEnd(END_DL_NOSWAP);
+            mod4ListInProgress = DISPLAYLIST;
+        }
+        
+        dlramoffset = FT_Register_Read(REG_CMD_DL);
+        
+        #if defined EVE_FT800
+            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+        #elif defined EVE_FT810
+            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+        #endif
+
+        CMDListNewItem(_CMDLoadImage(ptr, options));
+        FT_Transfer_End();
+    
+        #if defined EVE_FT800
+            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+        #endif
+        
+        mod4CommandDataSent = 0;
+        
+        loadImageCommandState = ISCOMMAND;
+    }
+    
+    /* Send the block of data. */
     cmdfree = FTGetCMDFifoFreeSpace();
     while (cmdfree < datalength) {};
         
     #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + ramCMDOffset) | MEMORY_WRITE);
+        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
     #elif defined EVE_FT810
         FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
     #endif
     
-    if (isend) FT_Write_ByteArray_4(data, datalength);
-    else 
+    FT_Send_ByteArray(data, datalength);
+    mod4CommandDataSent += datalength;
+    
+    #if defined EVE_FT800
+        cmdRamPtr += datalength; CheckCMDOffset();
+    #endif
+    
+    /* If this is the last block of data, be sure that the total amount of data is four byte aligned.
+       If needed, send more bytes until total amount of data is a multiple of four. */
+    if (cmdphase == LASTDATA)
     {
-        FT_Send_ByteArray(data, datalength);
-        ramCMDOffset += datalength; CheckCMDOffset();
+        while ((mod4CommandDataSent % 4) != 0)
+        {
+            FT_Send_Byte(0);
+            mod4CommandDataSent++;
+            
+            #if defined EVE_FT800
+                cmdRamPtr += datalength; CheckCMDOffset();
+            #endif
+        }
+        
+        loadImageCommandState = NOCOMMAND;
     }
         
     FT_Transfer_End();
 
     #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, ramCMDOffset);
+        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
     #endif
     
-    while (!FTIsCoproccesorReady()){};
+    while (!FTIsCoproccesorReady()){};  
+    
+    /* Reopen previous display list if needed. */
+    if (cmdphase == LASTDATA)
+    {
+        if (mod4ListInProgress == DISPLAYLIST)
+        {
+            dlramoffset = FT_Register_Read(REG_CMD_DL);
+            FT_ListStart(dlramoffset);
+            mod4ListInProgress = NOLIST;
+        }
+    }
 }
+
+//inline void CMDLoadImage(int32 ptr, int32 options)
+//{
+//    #if defined EVE_FT800
+//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+//    #elif defined EVE_FT810
+//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//    #endif
+//
+//    CMDListNewItem(_CMDLoadImage(ptr, options));
+//    FT_Transfer_End();
+//    
+//    #if defined EVE_FT800
+//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//    #endif
+//}
+
+//void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend)
+//{
+//    uint16 cmdfree;
+//    
+//    cmdfree = FTGetCMDFifoFreeSpace();
+//    while (cmdfree < datalength) {};
+//        
+//    #if defined EVE_FT800
+//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
+//    #elif defined EVE_FT810
+//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//    #endif
+//    
+//    if (isend) FT_Write_ByteArray_4(data, datalength);
+//    else 
+//    {
+//        FT_Send_ByteArray(data, datalength);
+//        cmdRamPtr += datalength; CheckCMDOffset();
+//    }
+//        
+//    FT_Transfer_End();
+//
+//    #if defined EVE_FT800
+//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//    #endif
+//    
+//    while (!FTIsCoproccesorReady()){};
+//}
 
 inline void CMDGetProps(int32 ptr, int32* width, int32* height)
 {

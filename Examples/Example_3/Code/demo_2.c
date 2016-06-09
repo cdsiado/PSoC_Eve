@@ -70,7 +70,7 @@ void Demo_2_Screen()
     uint8 sdcarderror = 0;      // 1 = can not mount, 2 = file not found.
     
 #if defined EVE_FT800
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
 
         // Num. format for Vertex2F.
         DLVertexFormat(VERTEX_FORMAT_1);    // 1/1    
@@ -97,7 +97,7 @@ void Demo_2_Screen()
 #endif
 
     /* *** Show message while loading image. *** */
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
         // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
         DLClearColorRGB(0x00, 0x00, 0x00);
         DLClear(1, 1, 1);
@@ -133,7 +133,7 @@ void Demo_2_Screen()
     if (sdcarderror != 0)
     {
         // Show error.
-        FT_ListStart(DLIST);
+        FT_ListStart(0);
                 
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1
@@ -166,7 +166,7 @@ void Demo_2_Screen()
 //        FT_ListEnd(END_DL_NOSWAP);        
         
         /* Load the image to RAM_G */
-        FT_ListStart(DLIST);
+        FT_ListStart(0);
 
             // Inflate data in RAM_G memory at offset 0.
             CMDInflate(RAM_G);                                      

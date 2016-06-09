@@ -106,8 +106,8 @@ int main()
     */
     
     CalibrateTouchPanel();                                  // Perform calibration. 
-test();
-while(1) {};
+//test();
+//while(1) {};
         // After calibration, we read calibration values from FT chip.
         // We can store contents of 'calibrationvalues.TouchTransform_Bytes' in memory 
         // (flash, external, etc...) to 
@@ -210,7 +210,7 @@ while(1) {};
 void CalibrateTouchPanel()
 {
     /* Start a display list. */    
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
     
         // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
         DLClearColorRGB(0x00, 0x00, 0x00);
@@ -389,22 +389,22 @@ void test()
     
     // ************************************************************************
     
-    /* Mount sdcard. */
-    resultf = f_mount(&fatfs, "", 1);
-    resultf = f_open(&imgfile, "/photos/a.jpg", FA_READ); 
-    filesize = f_size(&imgfile);
-    
-    CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL);
-    while (filesize > 0)
-    {
-        f_read(&imgfile, rdbuffer, 512, &bytesreaded);
-                
-        if (bytesreaded < 512) CMDLoadImage_Data(rdbuffer, bytesreaded, 1);
-        else CMDLoadImage_Data(rdbuffer, bytesreaded, 0);
 
-            
-        filesize -= bytesreaded;
-    }
+    
+//////    //CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL);
+//////    while (filesize > 0)
+//////    {
+//////        f_read(&imgfile, rdbuffer, 512, &bytesreaded);
+//////        
+//////        if (bytesreaded < 512) CMDLoadImage(RAM_G, OPT_RGB565, rdbuffer, bytesreaded, LASTDATA);
+//////        else CMDLoadImage(RAM_G, OPT_RGB565, rdbuffer, bytesreaded, DATA2);
+//////                
+////////        if (bytesreaded < 512) CMDLoadImage_Data(rdbuffer, bytesreaded, 1);
+////////        else CMDLoadImage_Data(rdbuffer, bytesreaded, 0);
+//////
+//////            
+//////        filesize -= bytesreaded;
+//////    }
 
 //        /* Load the image to RAM_G */
 //    FT_ListStart(DLIST);
@@ -422,20 +422,37 @@ void test()
 //        }
 //    FT_ListEnd(END_DL_NOSWAP);
     
-    f_close(&imgfile);    
+        
     
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
         DLVertexFormat(VERTEX_FORMAT_1);    // 1/1
         DLClearColorRGB(0x00, 0x00, 0x00);
         DLClear(1, 1, 1); 
         DLVertexFormat(VERTEX_FORMAT_1);    // 1/1  
+        
+        /* Mount sdcard. */
+        resultf = f_mount(&fatfs, "", 1);
+        resultf = f_open(&imgfile, "/photos/a.jpg", FA_READ); 
+        filesize = f_size(&imgfile);
+        
+        while (filesize > 0)
+        {
+            f_read(&imgfile, rdbuffer, 512, &bytesreaded);
             
-//        CMDSetBitmap(0, BITMAP_LAYOUT_RGB565, 375, 250);
+            if (bytesreaded < 512) CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL, rdbuffer, bytesreaded, LASTDATA);
+            else CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL, rdbuffer, bytesreaded, DATA2);
+            
+            filesize -= bytesreaded;
+        }        
+        
+        f_close(&imgfile);
+            
+        CMDSetBitmap(0, BITMAP_LAYOUT_RGB565, 375, 250);
         DLBegin(PRIMITIVE_BITMAP);
             
-        DLBitmapSource(0);
-        DLBitmapLayout(BITMAP_LAYOUT_RGB565, 375 * 2, 250);
-        DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 375, 250);
+        //DLBitmapSource(0);
+        //DLBitmapLayout(BITMAP_LAYOUT_RGB565, 375 * 2, 250);
+        //DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 375, 250);
         DLVertex2F((int16)((LCDWIDTH - 375) / 2), (int16)((LCDHEIGHT - 250) /2));   
             
         FT_ListEnd(END_DL_SWAP);

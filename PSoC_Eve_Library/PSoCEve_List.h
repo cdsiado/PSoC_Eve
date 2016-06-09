@@ -21,6 +21,21 @@
 #endif    
 
 /*******************************************************************************
+*   Typedefs.
+*******************************************************************************/
+
+typedef enum { NOLIST, DISPLAYLIST } LISTSTATE;
+/* Typedef name : LISTTYPE.
+   Description: To be used to know if there is a list in progress and wich type of
+                list.
+*/
+typedef enum { NONE, DLIST, DATA } TRANSFERTYPE;
+
+typedef enum { NOERROR, LISTINPROGRESS, LISTNOTINPROGRESS, CMDFAULT } LISTERROR;
+
+typedef enum { START, DATA2, LASTDATA } CMDMOD4PHASE;
+
+/*******************************************************************************
 *   EVE Memory Map Addresses
 *******************************************************************************/  
 
@@ -880,8 +895,9 @@ inline int32 CMDGetPtr();
 #define _CMDLoadImage(ptr, options) \
     ((uint8*)&(CINT32_2CINT32){CMD_LOADIMAGE, ptr, options}), sizeof(CINT32_2CINT32), 0
 
-inline void CMDLoadImage(int32 ptr, int32 options);
-void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend);
+//inline void CMDLoadImage(int32 ptr, int32 options);
+//void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend);
+void CMDLoadImage(int32 ptr, int32 options, uint8* data, uint32 datalength, CMDMOD4PHASE cmdphase);
 /* ************************************************************************** */
 #define CMD_GETPROPS            0xffffff25
 #define _CMDGETPROPS(ptr, dummy_width, dummy_height) \
@@ -1034,17 +1050,7 @@ inline void CMDSetBitmap(int32 address, int16 format, int16 width, int16 height)
     
 #endif    
     
-/*******************************************************************************
-*   Typedefs.
-*******************************************************************************/
 
-/* Typedef name : LISTTYPE.
-   Description: To be used to know if there is a list in progress and wich type of
-                list.
-*/
-typedef enum { NONE, DLIST, DATA } TRANSFERTYPE;
-
-typedef enum { OK, UNKNOWN_LIST_TYPE, LIST_IN_PROGRESS, LIST_NOT_IN_PROGRESS } FTERROR;
 
 /*******************************************************************************
 *   Definition of constants for EVE_CoPro_EndDisplayList
@@ -1057,23 +1063,28 @@ typedef enum { END_DL_NOSWAP, END_DL_SWAP } SWAPACTION;
 *   Variables.
 *******************************************************************************/
     
-extern uint16 ramCMDOffset;
+extern uint16 cmdRamPtr;
+extern LISTSTATE listState;
+extern LISTERROR listError;
  
 /*******************************************************************************
 *   Function prototypes.
 *******************************************************************************/
 
+LISTERROR FT_ListStart(uint16 dlramoffset);
+LISTERROR FT_ListEnd(SWAPACTION swap);
+
 uint8 FTIsCoproccesorReady();
 uint16 FTGetCMDFifoFreeSpace();
 void FT_Write_ByteArray_4(const uint8 *data, uint32 length);
-FTERROR FT_ListStart(TRANSFERTYPE transfertype);
-//FTERROR FT_ListStart(LISTTYPE listtype);
-FTERROR FT_ListEnd(SWAPACTION swap);
+
+//LISTERROR FT_ListStart(LISTTYPE listtype);
+
 //void DLListNewItem(uint32 item);
-FTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size);
-FTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size);
-FTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options);
-FTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size);    
+LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size);
+LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size);
+LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options);
+LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size);    
 
 #endif /* End PSOC_EVE_LIST_H */   
 

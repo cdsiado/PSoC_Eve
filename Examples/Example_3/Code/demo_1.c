@@ -98,7 +98,7 @@ void LoadJPG_ToRAMG(uint8 image)
     uint8 sdcarderror = 0;      // 1 = can not mount, 2 = file not found.
 
     /* *** Show message while loading image. *** */
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
         // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
         DLClearColorRGB(0x00, 0x00, 0x00);
         DLClear(1, 1, 1);
@@ -152,7 +152,7 @@ void LoadJPG_ToRAMG(uint8 image)
     if (sdcarderror != 0)
     {
         // Show error.
-        FT_ListStart(DLIST);
+        FT_ListStart(0);
                 
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1
@@ -180,7 +180,7 @@ void LoadJPG_ToRAMG(uint8 image)
     else
     {
         /* Load the image to RAM_G */
-        FT_ListStart(DLIST);
+        FT_ListStart(0);
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1
         
@@ -189,7 +189,7 @@ void LoadJPG_ToRAMG(uint8 image)
             DLClear(1, 1, 1); 
             
             // Load image to RAM_G
-            CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL);        // RAM_G offset = 0. Convert to RGB565.
+            CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL, rdbuffer, 512, LASTDATA);        // RAM_G offset = 0. Convert to RGB565.
             
             // Remember!!. Data after CMDLoadImage have to be four bytes aligned.
             // Will read data image in blocks of 512 bytes. 512 is multiple of 4.
