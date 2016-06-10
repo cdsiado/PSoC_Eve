@@ -23,7 +23,7 @@ uint16 cmdRamPtr;
 
 LISTSTATE listState = NOLIST;
 LISTERROR listError = NOERROR;
-TRANSFERTYPE transferinprogress = NONE;
+//TRANSFERTYPE transferinprogress = NONE;
 
 MOD4COMMANDSSTATE loadImageCommandState = NOCOMMAND;
 LISTSTATE mod4ListInProgress = NOLIST;
@@ -463,196 +463,196 @@ void FT_Write_ByteArray_4(const uint8 *data, uint32 length)
 
 
 
+//
+//
+//LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
+//{
+//    uint16 readblocksize, cmdfree;
+//    
+//    if (transferinprogress != NONE) return LISTINPROGRESS;
+//    
+//    /* *** Send cmd_loadimage command. *** */
+//    #if defined EVE_FT800
+//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+//    #elif defined EVE_FT810
+//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//    #endif
+//
+//    CMDInflate(ramgptr);
+//    FT_Transfer_End();    
+//    
+//    /* *** Send image data. *** */
+//    while (size > 0)
+//    {
+//        cmdfree = FTGetCMDFifoFreeSpace();
+//        
+//        if (size >= cmdfree) readblocksize = cmdfree;
+//        else readblocksize = size;
+//        
+//        #if defined EVE_FT800
+//            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
+//        #elif defined EVE_FT810
+//            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//        #endif
+//
+//        FT_Send_ByteArray(flashptr, readblocksize);
+//        
+//        flashptr += readblocksize;
+//        size -= readblocksize;
+//        
+//        FT_Transfer_End();
+//
+//        #if defined EVE_FT800
+//            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//        #endif
+//        
+//        while (!FTIsCoproccesorReady()){};
+//    }     
+//    
+//    return NOERROR;    
+//}
+//
+//LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size)
+//{
+//    uint8 rbuffer[512];
+//    uint16 readblocksize, cmdfree;
+//    
+//    if (transferinprogress != NONE) return LISTINPROGRESS;    
+//    
+//    /* *** Send cmd_loadimage command. *** */
+//    #if defined EVE_FT800
+//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+//    #elif defined EVE_FT810
+//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//    #endif
+//
+//    CMDInflate(ramgptr);
+//    FT_Transfer_End();
+//    
+//    #if defined EVE_FT800
+//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//    #endif
+//    
+//    /* *** Send image data. *** */
+//    while (size > 0)
+//    {
+//        if (size >= 512) readblocksize = 512;
+//        else readblocksize = size;
+//        
+//        cmdfree = FTGetCMDFifoFreeSpace();
+//        
+//        while (cmdfree < readblocksize) 
+//        {
+//            cmdfree = FTGetCMDFifoFreeSpace();
+//        }
+//        
+//        //SST25ReadArray(flashptr, rbuffer, readblocksize);
+//        
+//        #if defined EVE_FT800
+//            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
+//        #elif defined EVE_FT810
+//            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//        #endif
+//
+//        FT_Send_ByteArray(rbuffer, readblocksize);
+//        
+//        flashptr += readblocksize;
+//        size -= readblocksize;
+//        
+//        FT_Transfer_End();
+//
+//        #if defined EVE_FT800
+//            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//        #endif
+//        
+//        while (!FTIsCoproccesorReady()){};
+//    }     
+//    
+//    return NOERROR;
+//}
+//
+//LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options)
+//{
+//    uint8 rbuffer[512];
+//    uint16 readblocksize, cmdfree;
+//    
+//    if (transferinprogress != NONE) return LISTINPROGRESS;    
+//    
+//    /* *** Send cmd_loadimage command. *** */
+//    #if defined EVE_FT800
+//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
+//    #elif defined EVE_FT810
+//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//    #endif
+//
+//    //CMDLoadImage(ramgptr, options);
+//    FT_Transfer_End();
+//    
+//    #if defined EVE_FT800
+//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//    #endif
+//    
+//    /* *** Send image data. *** */
+//    while (size > 0)
+//    {
+//        if (size >= 512) readblocksize = 512;
+//        else readblocksize = size;
+//        
+//        cmdfree = FTGetCMDFifoFreeSpace();
+//        
+//        while (cmdfree < readblocksize) {};
+//        
+//        //SST25ReadArray(flashptr, rbuffer, readblocksize);
+//        
+//        #if defined EVE_FT800
+//            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
+//        #elif defined EVE_FT810
+//            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
+//        #endif
+//
+//        FT_Send_ByteArray(rbuffer, readblocksize);
+//        
+//        flashptr += readblocksize;
+//        size -= readblocksize;
+//        
+//        FT_Transfer_End();
+//
+//        #if defined EVE_FT800
+//            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
+//        #endif
+//        
+//        while (!FTIsCoproccesorReady()){};
+//    }     
+//    
+//    return NOERROR;
+//}
 
-
-LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size)
-{
-    uint16 readblocksize, cmdfree;
-    
-    if (transferinprogress != NONE) return LISTINPROGRESS;
-    
-    /* *** Send cmd_loadimage command. *** */
-    #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
-    #elif defined EVE_FT810
-        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-    #endif
-
-    CMDInflate(ramgptr);
-    FT_Transfer_End();    
-    
-    /* *** Send image data. *** */
-    while (size > 0)
-    {
-        cmdfree = FTGetCMDFifoFreeSpace();
-        
-        if (size >= cmdfree) readblocksize = cmdfree;
-        else readblocksize = size;
-        
-        #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
-        #elif defined EVE_FT810
-            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-        #endif
-
-        FT_Send_ByteArray(flashptr, readblocksize);
-        
-        flashptr += readblocksize;
-        size -= readblocksize;
-        
-        FT_Transfer_End();
-
-        #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-        #endif
-        
-        while (!FTIsCoproccesorReady()){};
-    }     
-    
-    return NOERROR;    
-}
-
-LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size)
-{
-    uint8 rbuffer[512];
-    uint16 readblocksize, cmdfree;
-    
-    if (transferinprogress != NONE) return LISTINPROGRESS;    
-    
-    /* *** Send cmd_loadimage command. *** */
-    #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
-    #elif defined EVE_FT810
-        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-    #endif
-
-    CMDInflate(ramgptr);
-    FT_Transfer_End();
-    
-    #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-    #endif
-    
-    /* *** Send image data. *** */
-    while (size > 0)
-    {
-        if (size >= 512) readblocksize = 512;
-        else readblocksize = size;
-        
-        cmdfree = FTGetCMDFifoFreeSpace();
-        
-        while (cmdfree < readblocksize) 
-        {
-            cmdfree = FTGetCMDFifoFreeSpace();
-        }
-        
-        //SST25ReadArray(flashptr, rbuffer, readblocksize);
-        
-        #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
-        #elif defined EVE_FT810
-            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-        #endif
-
-        FT_Send_ByteArray(rbuffer, readblocksize);
-        
-        flashptr += readblocksize;
-        size -= readblocksize;
-        
-        FT_Transfer_End();
-
-        #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-        #endif
-        
-        while (!FTIsCoproccesorReady()){};
-    }     
-    
-    return NOERROR;
-}
-
-LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options)
-{
-    uint8 rbuffer[512];
-    uint16 readblocksize, cmdfree;
-    
-    if (transferinprogress != NONE) return LISTINPROGRESS;    
-    
-    /* *** Send cmd_loadimage command. *** */
-    #if defined EVE_FT800
-        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
-    #elif defined EVE_FT810
-        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-    #endif
-
-    //CMDLoadImage(ramgptr, options);
-    FT_Transfer_End();
-    
-    #if defined EVE_FT800
-        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-    #endif
-    
-    /* *** Send image data. *** */
-    while (size > 0)
-    {
-        if (size >= 512) readblocksize = 512;
-        else readblocksize = size;
-        
-        cmdfree = FTGetCMDFifoFreeSpace();
-        
-        while (cmdfree < readblocksize) {};
-        
-        //SST25ReadArray(flashptr, rbuffer, readblocksize);
-        
-        #if defined EVE_FT800
-            FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
-        #elif defined EVE_FT810
-            FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-        #endif
-
-        FT_Send_ByteArray(rbuffer, readblocksize);
-        
-        flashptr += readblocksize;
-        size -= readblocksize;
-        
-        FT_Transfer_End();
-
-        #if defined EVE_FT800
-            FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-        #endif
-        
-        while (!FTIsCoproccesorReady()){};
-    }     
-    
-    return NOERROR;
-}
-
-LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size)
-{
-    uint8 rbuffer[512];
-    uint16 readblocksize;
-    
-    if (transferinprogress != NONE) return LISTINPROGRESS;    
-    
-    /* *** Send image data. *** */
-    while (size > 0)
-    {
-        if (size >= 512) readblocksize = 512;
-        else readblocksize = size;
-        
-       // SST25ReadArray(flashptr, rbuffer, readblocksize);
-        
-        FT_Transfer_Start((RAM_G + flashptr) | MEMORY_WRITE);
-        FT_Send_ByteArray(rbuffer, readblocksize);
-        FT_Transfer_End();
-        
-        flashptr += readblocksize;
-        size -= readblocksize;
-
-    }     
-    
-    return NOERROR;
-}
+//LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size)
+//{
+//    uint8 rbuffer[512];
+//    uint16 readblocksize;
+//    
+//    if (transferinprogress != NONE) return LISTINPROGRESS;    
+//    
+//    /* *** Send image data. *** */
+//    while (size > 0)
+//    {
+//        if (size >= 512) readblocksize = 512;
+//        else readblocksize = size;
+//        
+//       // SST25ReadArray(flashptr, rbuffer, readblocksize);
+//        
+//        FT_Transfer_Start((RAM_G + flashptr) | MEMORY_WRITE);
+//        FT_Send_ByteArray(rbuffer, readblocksize);
+//        FT_Transfer_End();
+//        
+//        flashptr += readblocksize;
+//        size -= readblocksize;
+//
+//    }     
+//    
+//    return NOERROR;
+//}
 
 inline void DLBitmapSource(uint32 address)
 {
@@ -1030,9 +1030,9 @@ inline int32 CMDGetPtr()
 {
     uint16 cmdptr = FT_Register_Read(REG_CMD_WRITE);
 
-    FT_ListStart(DATA);
-        CMDListNewItem(_CMDGETPTR(0));
-    FT_ListEnd(END_DL_NOSWAP);
+//    FT_ListStart(DATA);
+//        CMDListNewItem(_CMDGETPTR(0));
+//    FT_ListEnd(END_DL_NOSWAP);
     
     return FT_Read_UINT32(RAM_CMD + cmdptr + 4);
 }
@@ -1127,58 +1127,13 @@ void CMDLoadImage(int32 ptr, int32 options, uint8* data, uint32 datalength, CMDM
     }
 }
 
-//inline void CMDLoadImage(int32 ptr, int32 options)
-//{
-//    #if defined EVE_FT800
-//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);    // Start the display list
-//    #elif defined EVE_FT810
-//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-//    #endif
-//
-//    CMDListNewItem(_CMDLoadImage(ptr, options));
-//    FT_Transfer_End();
-//    
-//    #if defined EVE_FT800
-//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-//    #endif
-//}
-
-//void CMDLoadImage_Data(uint8* data, uint32 datalength, uint8 isend)
-//{
-//    uint16 cmdfree;
-//    
-//    cmdfree = FTGetCMDFifoFreeSpace();
-//    while (cmdfree < datalength) {};
-//        
-//    #if defined EVE_FT800
-//        FT_Transfer_Start((RAM_CMD + cmdRamPtr) | MEMORY_WRITE);
-//    #elif defined EVE_FT810
-//        FT_Transfer_Start(REG_CMDB_WRITE | MEMORY_WRITE);
-//    #endif
-//    
-//    if (isend) FT_Write_ByteArray_4(data, datalength);
-//    else 
-//    {
-//        FT_Send_ByteArray(data, datalength);
-//        cmdRamPtr += datalength; CheckCMDOffset();
-//    }
-//        
-//    FT_Transfer_End();
-//
-//    #if defined EVE_FT800
-//        FT_Register_Write(REG_CMD_WRITE, cmdRamPtr);
-//    #endif
-//    
-//    while (!FTIsCoproccesorReady()){};
-//}
-
 inline void CMDGetProps(int32 ptr, int32* width, int32* height)
 {
     uint16 cmdptr = FT_Register_Read(REG_CMD_WRITE);
     
-    FT_ListStart(DATA);
-        CMDListNewItem(_CMDGETPROPS(ptr, 0, 0));
-    FT_ListEnd(END_DL_SWAP);
+//    FT_ListStart(DATA);
+//        CMDListNewItem(_CMDGETPROPS(ptr, 0, 0));
+//    FT_ListEnd(END_DL_SWAP);
     
     *width = FT_Read_UINT32(RAM_CMD + cmdptr + 8);
     *height = FT_Read_UINT32(RAM_CMD + cmdptr + 12);

@@ -82,7 +82,7 @@ void Demo_3_Screen()
 
     
     /* *** Show message while loading image. *** */
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
         // Clear screen. Clear Stencil buffer. Clear TAG buffer. 
         DLClearColorRGB(0x00, 0x00, 0x00);
         DLClear(1, 1, 1);
@@ -101,7 +101,7 @@ void Demo_3_Screen()
     if (resultf != FR_OK)
     {
         // Show error.
-        FT_ListStart(DLIST);
+        FT_ListStart(0);
                 
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1    
@@ -159,7 +159,7 @@ void Demo_3_Screen()
         if (resultf != FR_OK)
         {
             // Show error.
-            FT_ListStart(DLIST);
+            FT_ListStart(0);
                 
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1    
@@ -182,7 +182,7 @@ void Demo_3_Screen()
         else
         {
             // Show number.
-            FT_ListStart(DLIST);
+            FT_ListStart(0);
                 
             // Num. format for Vertex2F.
             DLVertexFormat(VERTEX_FORMAT_1);    // 1/1    
@@ -241,7 +241,7 @@ void Demo_3_Screen()
     
     
     // Show error.
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
         
     // Num. format for Vertex2F.
     DLVertexFormat(VERTEX_FORMAT_1);    // 1/1    

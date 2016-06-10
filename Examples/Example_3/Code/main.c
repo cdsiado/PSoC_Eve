@@ -171,30 +171,30 @@ int main()
                     CurrentScreenLoop = Demo_3_Start(Demo_3_TouchCallback, &CurrentScreenCloseFunction);
                 }; break;   
                 
-                case DEMO_4: 
-                {
-                    CurrentScreenLoop = Demo_4_Start(Demo_4_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;   
-                
-                case DEMO_5: 
-                {
-                    CurrentScreenLoop = Demo_5_Start(Demo_5_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;    
-                
-                case DEMO_6: 
-                {
-                    CurrentScreenLoop = Demo_6_Start(Demo_6_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;   
-                
-                case DEMO_7: 
-                {
-                    CurrentScreenLoop = Demo_7_Start(Demo_7_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;
-                
-                case DEMO_8: 
-                {
-                    CurrentScreenLoop = Demo_8_Start(Demo_8_TouchCallback, &CurrentScreenCloseFunction);
-                }; break;                
+//                case DEMO_4: 
+//                {
+//                    CurrentScreenLoop = Demo_4_Start(Demo_4_TouchCallback, &CurrentScreenCloseFunction);
+//                }; break;   
+//                
+//                case DEMO_5: 
+//                {
+//                    CurrentScreenLoop = Demo_5_Start(Demo_5_TouchCallback, &CurrentScreenCloseFunction);
+//                }; break;    
+//                
+//                case DEMO_6: 
+//                {
+//                    CurrentScreenLoop = Demo_6_Start(Demo_6_TouchCallback, &CurrentScreenCloseFunction);
+//                }; break;   
+//                
+//                case DEMO_7: 
+//                {
+//                    CurrentScreenLoop = Demo_7_Start(Demo_7_TouchCallback, &CurrentScreenCloseFunction);
+//                }; break;
+//                
+//                case DEMO_8: 
+//                {
+//                    CurrentScreenLoop = Demo_8_Start(Demo_8_TouchCallback, &CurrentScreenCloseFunction);
+//                }; break;                
             }
             
             /***/

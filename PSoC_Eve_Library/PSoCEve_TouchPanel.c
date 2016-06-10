@@ -82,7 +82,7 @@ uint8 FT_Touch_Calibrate()
 {
     //if (listInProgress != NONE) return 0;
     
-    FT_ListStart(DLIST);
+    FT_ListStart(0);
     CMDCalibrate();
     FT_ListEnd(END_DL_NOSWAP);  
     

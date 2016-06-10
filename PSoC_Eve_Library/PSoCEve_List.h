@@ -29,7 +29,7 @@ typedef enum { NOLIST, DISPLAYLIST } LISTSTATE;
    Description: To be used to know if there is a list in progress and wich type of
                 list.
 */
-typedef enum { NONE, DLIST, DATA } TRANSFERTYPE;
+//typedef enum { NONE, DLIST, DATA } TRANSFERTYPE;
 
 typedef enum { NOERROR, LISTINPROGRESS, LISTNOTINPROGRESS, CMDFAULT } LISTERROR;
 
@@ -1081,10 +1081,10 @@ void FT_Write_ByteArray_4(const uint8 *data, uint32 length);
 //LISTERROR FT_ListStart(LISTTYPE listtype);
 
 //void DLListNewItem(uint32 item);
-LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size);
-LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size);
-LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options);
-LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size);    
+//LISTERROR FT_InflateFromFlash(const uint8 *flashptr, uint32 ramgptr, uint32 size);
+//LISTERROR FT_InflateFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size);
+//LISTERROR FT_LoadImageFromExternalFlash(uint32 flashptr, uint32 ramgptr, uint32 size, uint16 options);
+//LISTERROR FT_TransferToRAMG(uint32 flashptr, uint32 size);    
 
 #endif /* End PSOC_EVE_LIST_H */   
 

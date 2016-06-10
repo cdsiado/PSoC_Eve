@@ -189,34 +189,26 @@ void LoadJPG_ToRAMG(uint8 image)
             DLClear(1, 1, 1); 
             
             // Load image to RAM_G
-            CMDLoadImage(RAM_G, OPT_RGB565 | OPT_NODL, rdbuffer, 512, LASTDATA);        // RAM_G offset = 0. Convert to RGB565.
-            
-            // Remember!!. Data after CMDLoadImage have to be four bytes aligned.
-            // Will read data image in blocks of 512 bytes. 512 is multiple of 4.
-            // Will use 'FT_Send_ByteArray' for blocks of 512 bytes.
-            // Then, if last block < 512. It can be four byte aligned or not depending on length.
-            // So last block will be sent using 'FT_Write_ByteArray_4'
+            // Using CMD_LOADIMAGE inside a display list.
+            // We read image data from sdcard in blocks of 512 bytes. We send the data using "DATA2" 
+            // indicator, except for the last block, we use "LASTDATA".
+            // In this demo, CMD_LOADIMAGE generates proper display_list commands for image size, layout 
+            // and source.
 
             while (filesize > 0)
             {
                 f_read(&imgfile, rdbuffer, 512, &bytesreaded);
-                
-                if (bytesreaded < 512) FT_Write_ByteArray_4(rdbuffer, bytesreaded);
-                else FT_Send_ByteArray(rdbuffer, 512);
-
-                    
                 filesize -= bytesreaded;
+                
+                if (filesize == 0) CMDLoadImage(RAM_G, OPT_RGB565, rdbuffer, bytesreaded, LASTDATA);
+                else CMDLoadImage(RAM_G, OPT_RGB565, rdbuffer, bytesreaded, DATA2);                         
             }
              
             // Close image file.
             f_close(&imgfile);
 
             DLBegin(PRIMITIVE_BITMAP);
-            DLBitmapSource(0);
-            DLBitmapLayout(BITMAP_LAYOUT_RGB565, 375 * 2, 250);
-            DLBitmapSize(BITMAP_SIZE_FILTER_NEAREST, BITMAP_SIZE_WRAP_BORDER, BITMAP_SIZE_WRAP_BORDER, 375, 250);
-
-                switch (image)
+                switch (image) // Image dimensions are hard coded.
                 {
                     case 0: 
                     case 2: DLVertex2F((int16)((LCDWIDTH - 375) / 2), (int16)((LCDHEIGHT - 250) /2)); break;

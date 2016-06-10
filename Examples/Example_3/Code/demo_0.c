@@ -44,9 +44,6 @@ void* Demo_0_Start(void (*touchcallback)(DEMO_0_EVENTS button), void (**closefun
 */
 void Demo_0_Loop()
 {
-        
-    uint32 tt = FT_Register_Read(REG_TOUCH_SCREEN_XY);
-   
     // Here we read the TAG register from EVE chip to know if a button is pressed.
     uint8 rdtag = FT_Read_Byte(REG_TOUCH_TAG);
     
